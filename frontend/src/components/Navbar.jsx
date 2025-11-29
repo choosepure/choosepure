@@ -2,27 +2,21 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, Youtube, Facebook, Instagram, User, LogOut } from 'lucide-react';
 import { Button } from './ui/button';
+import { useAuth } from '../context/AuthContext';
 import LoginModal from './LoginModal';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogin = (credentials) => {
-    // Mock login
-    console.log('Login:', credentials);
-    setIsLoggedIn(true);
-    setShowLoginModal(false);
-  };
-
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    logout();
   };
 
   const handleDashboardClick = () => {
-    if (isLoggedIn) {
+    if (isAuthenticated) {
       navigate('/dashboard');
     } else {
       setShowLoginModal(true);
