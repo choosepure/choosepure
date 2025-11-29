@@ -10,7 +10,7 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { toast } from '../components/ui/use-toast';
+import { toast } from '../hooks/use-toast';
 import { 
   testReports, testimonials, communityStats, 
   features, howItWorks, foodDangers 
