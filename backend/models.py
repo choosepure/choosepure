@@ -1,0 +1,225 @@
+from pydantic import BaseModel, Field, EmailStr
+from typing import List, Optional
+from datetime import datetime
+from bson import ObjectId
+
+# Custom ObjectId type for Pydantic
+class PyObjectId(ObjectId):
+    @classmethod
+    def __get_validators__(cls):
+        yield cls.validate
+
+    @classmethod
+    def validate(cls, v):
+        if not ObjectId.is_valid(v):
+            raise ValueError("Invalid objectid")
+        return ObjectId(v)
+
+    @classmethod
+    def __modify_schema__(cls, field_schema):
+        field_schema.update(type="string")
+
+# User Models
+class User(BaseModel):
+    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    name: str
+    email: EmailStr
+    mobile: str
+    password: str
+    role: str = "member"
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    last_login: Optional[datetime] = None
+
+    class Config:
+        json_encoders = {ObjectId: str}
+        populate_by_name = True
+
+class UserCreate(BaseModel):
+    name: str
+    email: EmailStr
+    mobile: str
+    password: str
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+class UserResponse(BaseModel):
+    id: str
+    name: str
+    email: str
+    mobile: str
+    role: str
+
+# Waitlist Model
+class Waitlist(BaseModel):
+    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    first_name: str
+    mobile: str
+    email: EmailStr
+    pincode: Optional[str] = None
+    joined_at: datetime = Field(default_factory=datetime.utcnow)
+
+    class Config:
+        json_encoders = {ObjectId: str}
+        populate_by_name = True
+
+class WaitlistCreate(BaseModel):
+    firstName: str
+    mobile: str
+    email: EmailStr
+    pincode: Optional[str] = None
+
+# Test Report Models
+class TestParameter(BaseModel):
+    name: str
+    result: str
+    status: str  # pass, warning, fail
+
+class TestReport(BaseModel):
+    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    product_name: str
+    brand: str
+    category: str
+    purity_score: float
+    test_date: str
+    tested_by: str
+    image: str
+    parameters: List[TestParameter]
+    summary: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+    class Config:
+        json_encoders = {ObjectId: str}
+        populate_by_name = True
+
+class TestReportCreate(BaseModel):
+    product_name: str
+    brand: str
+    category: str
+    purity_score: float
+    test_date: str
+    tested_by: str
+    image: str
+    parameters: List[TestParameter]
+    summary: str
+
+# Voting Models
+class Contributor(BaseModel):
+    user_id: str
+    amount: float
+    date: datetime
+
+class UpcomingTest(BaseModel):
+    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    product_category: str
+    description: str
+    votes: int = 0
+    funded: int = 0
+    target_funding: int = 100
+    estimated_test_date: str
+    voters: List[str] = []  # user IDs
+    contributors: List[Contributor] = []
+    status: str = "voting"  # voting, funded, testing, completed
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+    class Config:
+        json_encoders = {ObjectId: str}
+        populate_by_name = True
+
+class UpcomingTestCreate(BaseModel):
+    product_category: str
+    description: str
+    estimated_test_date: str
+    target_funding: int = 100
+
+class VoteCreate(BaseModel):
+    test_id: str
+    user_id: str
+
+# Forum Models
+class ForumReply(BaseModel):
+    user_id: str
+    user_name: str
+    user_image: str
+    content: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+class ForumPost(BaseModel):
+    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    user_id: str
+    author: str
+    author_image: str
+    title: str
+    content: str
+    category: str
+    likes: List[str] = []  # user IDs
+    replies: List[ForumReply] = []
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+
+    class Config:
+        json_encoders = {ObjectId: str}
+        populate_by_name = True
+
+class ForumPostCreate(BaseModel):
+    user_id: str
+    title: str
+    content: str
+    category: str
+
+class ForumReplyCreate(BaseModel):
+    user_id: str
+    content: str
+
+class ForumLike(BaseModel):
+    user_id: str
+
+# Blog Models
+class BlogPost(BaseModel):
+    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    title: str
+    excerpt: str
+    content: str
+    author: str
+    category: str
+    image: str
+    views: int = 0
+    publish_date: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+    class Config:
+        json_encoders = {ObjectId: str}
+        populate_by_name = True
+
+class BlogPostCreate(BaseModel):
+    title: str
+    excerpt: str
+    content: str
+    author: str
+    category: str
+    image: str
+    publish_date: str
+
+# Newsletter Model
+class Newsletter(BaseModel):
+    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    email: EmailStr
+    subscribed_at: datetime = Field(default_factory=datetime.utcnow)
+    active: bool = True
+
+    class Config:
+        json_encoders = {ObjectId: str}
+        populate_by_name = True
+
+class NewsletterSubscribe(BaseModel):
+    email: EmailStr
+
+# Community Stats Model
+class CommunityStats(BaseModel):
+    total_members: int
+    tests_completed: int
+    products_analyzed: int
+    funds_pooled: float
+    upcoming_tests: int
+    active_posts: int
