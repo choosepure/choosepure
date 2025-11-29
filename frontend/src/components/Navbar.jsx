@@ -99,12 +99,12 @@ const Navbar = () => {
               <Link to="/forum" className="block text-gray-700 hover:text-green-600 font-medium py-2">FORUM</Link>
               <Link to="/blog" className="block text-gray-700 hover:text-green-600 font-medium py-2">BLOG</Link>
               <button onClick={handleDashboardClick} className="block w-full text-left text-gray-700 hover:text-green-600 font-medium py-2">DASHBOARD</button>
-              {!isLoggedIn && (
+              {!isAuthenticated && (
                 <Button onClick={() => setShowLoginModal(true)} className="w-full bg-green-600 hover:bg-green-700 mt-4">
                   Login
                 </Button>
               )}
-              {isLoggedIn && (
+              {isAuthenticated && (
                 <Button onClick={handleLogout} variant="outline" className="w-full mt-2">
                   <LogOut size={18} className="mr-2" />
                   Logout
