@@ -431,8 +431,8 @@ const Home = () => {
             
             <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1756281957679-ae18e1aafcad?w=800&q=80"
-                alt="Parents community"
+                src="https://images.unsplash.com/photo-1665250855519-25e3f817a96f?w=800&q=80"
+                alt="Modern Indian family community"
                 className="w-full h-full object-cover"
               />
             </div>
