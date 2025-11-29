@@ -48,8 +48,8 @@ const Home = () => {
       <section className="relative h-[600px] flex items-center">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1553434132-b9cd7d9022d8?w=1920&q=80"
-            alt="Mother with child"
+            src="https://images.unsplash.com/photo-1758874960573-75a9a6ad79b6?w=1920&q=80"
+            alt="Mother with child in premium kitchen"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-green-900/90 via-green-800/80 to-transparent"></div>
