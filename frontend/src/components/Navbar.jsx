@@ -63,7 +63,7 @@ const Navbar = () => {
                 <Instagram size={20} />
               </a>
               <div className="w-px h-6 bg-gray-300 mx-2"></div>
-              {isLoggedIn ? (
+              {isAuthenticated ? (
                 <div className="flex items-center space-x-2">
                   <Button variant="ghost" size="sm" onClick={handleDashboardClick}>
                     <User size={18} className="mr-1" />
