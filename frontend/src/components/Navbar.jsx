@@ -118,7 +118,6 @@ const Navbar = () => {
       <LoginModal 
         isOpen={showLoginModal} 
         onClose={() => setShowLoginModal(false)}
-        onLogin={handleLogin}
       />
     </>
   );
