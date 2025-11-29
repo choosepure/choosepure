@@ -124,8 +124,8 @@ const LoginModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 h-12 text-base">
-            {isSignup ? 'Create Account' : 'Sign In'}
+          <Button type="submit" disabled={loading} className="w-full bg-green-600 hover:bg-green-700 h-12 text-base">
+            {loading ? 'Please wait...' : (isSignup ? 'Create Account' : 'Sign In')}
           </Button>
         </form>
 
