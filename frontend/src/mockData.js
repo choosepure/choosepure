@@ -160,7 +160,7 @@ export const blogPosts = [
     publishDate: '2025-01-18',
     readTime: '8 min read',
     category: 'Education',
-    image: 'https://images.unsplash.com/photo-1551884170-09fb70a3a2ed',
+    image: 'https://images.unsplash.com/photo-1758685734244-1eb74ec0b983',
     views: 2341
   },
   {
@@ -171,7 +171,7 @@ export const blogPosts = [
     publishDate: '2025-01-15',
     readTime: '6 min read',
     category: 'Behind the Scenes',
-    image: 'https://images.unsplash.com/photo-1742206594477-15139139c0df',
+    image: 'https://images.unsplash.com/photo-1758685848602-09e52ef9c7d3',
     views: 3456
   },
   {
@@ -182,7 +182,7 @@ export const blogPosts = [
     publishDate: '2025-01-12',
     readTime: '4 min read',
     category: 'DIY Tips',
-    image: 'https://images.unsplash.com/photo-1461354464878-ad92f492a5a0',
+    image: 'https://images.unsplash.com/photo-1758874960576-9604b7cd1ee5',
     views: 5678
   },
   {
@@ -193,7 +193,7 @@ export const blogPosts = [
     publishDate: '2025-01-10',
     readTime: '7 min read',
     category: 'Community',
-    image: 'https://images.unsplash.com/photo-1756281957679-ae18e1aafcad',
+    image: 'https://images.unsplash.com/photo-1665250855519-25e3f817a96f',
     views: 4321
   },
   {
@@ -204,7 +204,7 @@ export const blogPosts = [
     publishDate: '2025-01-08',
     readTime: '6 min read',
     category: 'Food Safety',
-    image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150',
+    image: 'https://images.unsplash.com/photo-1758874961000-d8b11690ce22',
     views: 6789
   }
 ];
