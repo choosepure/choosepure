@@ -3,21 +3,41 @@ import { X } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
+import { useAuth } from '../context/AuthContext';
 
-const LoginModal = ({ isOpen, onClose, onLogin }) => {
+const LoginModal = ({ isOpen, onClose }) => {
   const [isSignup, setIsSignup] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     name: '',
     mobile: ''
   });
+  
+  const { login, register } = useAuth();
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onLogin(formData);
+    setLoading(true);
+    
+    try {
+      let result;
+      if (isSignup) {
+        result = await register(formData);
+      } else {
+        result = await login({ email: formData.email, password: formData.password });
+      }
+      
+      if (result.success) {
+        onClose();
+        setFormData({ email: '', password: '', name: '', mobile: '' });
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
