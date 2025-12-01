@@ -26,6 +26,7 @@ function App() {
             <Route path="/forum" element={<Forum />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
           <Footer />
           <Toaster />
