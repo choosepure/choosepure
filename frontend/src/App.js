@@ -11,6 +11,7 @@ import ReportDetail from "./pages/ReportDetail";
 import Forum from "./pages/Forum";
 import Blog from "./pages/Blog";
 import Dashboard from "./pages/Dashboard";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
