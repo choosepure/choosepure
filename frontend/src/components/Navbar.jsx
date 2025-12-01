@@ -49,6 +49,9 @@ const Navbar = () => {
               <Link to="/forum" className="text-gray-700 hover:text-green-600 font-medium transition-colors">FORUM</Link>
               <Link to="/blog" className="text-gray-700 hover:text-green-600 font-medium transition-colors">BLOG</Link>
               <button onClick={handleDashboardClick} className="text-gray-700 hover:text-green-600 font-medium transition-colors">DASHBOARD</button>
+              {isAuthenticated && (
+                <Link to="/admin" className="text-gray-700 hover:text-green-600 font-medium transition-colors">ADMIN</Link>
+              )}
             </div>
 
             {/* Social Icons & Auth */}
