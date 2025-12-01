@@ -158,22 +158,22 @@ const Admin = () => {
         </div>
 
         {/* Quick Stats */}
-        <div className=\"grid grid-cols-1 md:grid-cols-4 gap-6 mb-8\">
-          <Card className=\"p-6 bg-gradient-to-br from-green-500 to-green-600 text-white\">
-            <div className=\"text-3xl font-bold mb-2\">{testReports.length}</div>
-            <div className=\"text-green-100\">Test Reports</div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <Card className="p-6 bg-gradient-to-br from-green-500 to-green-600 text-white">
+            <div className="text-3xl font-bold mb-2">{testReports.length}</div>
+            <div className="text-green-100">Test Reports</div>
           </Card>
-          <Card className=\"p-6 bg-gradient-to-br from-blue-500 to-blue-600 text-white\">
-            <div className=\"text-3xl font-bold mb-2\">{blogPosts.length}</div>
-            <div className=\"text-blue-100\">Blog Posts</div>
+          <Card className="p-6 bg-gradient-to-br from-blue-500 to-blue-600 text-white">
+            <div className="text-3xl font-bold mb-2">{blogPosts.length}</div>
+            <div className="text-blue-100">Blog Posts</div>
           </Card>
-          <Card className=\"p-6 bg-gradient-to-br from-purple-500 to-purple-600 text-white\">
-            <div className=\"text-3xl font-bold mb-2\">{upcomingTests.length}</div>
-            <div className=\"text-purple-100\">Upcoming Tests</div>
+          <Card className="p-6 bg-gradient-to-br from-purple-500 to-purple-600 text-white">
+            <div className="text-3xl font-bold mb-2">{upcomingTests.length}</div>
+            <div className="text-purple-100">Upcoming Tests</div>
           </Card>
-          <Card className=\"p-6 bg-gradient-to-br from-orange-500 to-orange-600 text-white\">
-            <div className=\"text-3xl font-bold mb-2\">{waitlistEntries}</div>
-            <div className=\"text-orange-100\">Waitlist Entries</div>
+          <Card className="p-6 bg-gradient-to-br from-orange-500 to-orange-600 text-white">
+            <div className="text-3xl font-bold mb-2">{waitlistEntries}</div>
+            <div className="text-orange-100">Waitlist Entries</div>
           </Card>
         </div>
 
