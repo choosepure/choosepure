@@ -187,21 +187,21 @@ const Admin = () => {
           </TabsList>
 
           {/* Test Reports Tab */}
-          <TabsContent value=\"reports\">
-            <Card className=\"p-6\">
-              <div className=\"flex justify-between items-center mb-6\">
-                <h2 className=\"text-2xl font-bold text-gray-900\">Test Reports Management</h2>
+          <TabsContent value="reports">
+            <Card className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">Test Reports Management</h2>
                 <Button 
                   onClick={() => { setEditingItem(null); setShowReportForm(true); }}
-                  className=\"bg-green-600 hover:bg-green-700\"
+                  className="bg-green-600 hover:bg-green-700"
                 >
-                  <Plus size={20} className=\"mr-2\" />
+                  <Plus size={20} className="mr-2" />
                   Add New Report
                 </Button>
               </div>
 
               {showReportForm && (
-                <div className=\"mb-6\">
+                <div className="mb-6">
                   <TestReportForm
                     report={editingItem}
                     onClose={() => { setShowReportForm(false); setEditingItem(null); }}
@@ -214,7 +214,7 @@ const Admin = () => {
                 </div>
               )}
 
-              <div className=\"space-y-4\">
+              <div className="space-y-4">
                 {testReports.map((report) => (
                   <Card key={report.id} className=\"p-4 hover:shadow-lg transition-shadow\">
                     <div className=\"flex items-center justify-between\">
