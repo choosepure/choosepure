@@ -216,13 +216,13 @@ const Admin = () => {
 
               <div className="space-y-4">
                 {testReports.map((report) => (
-                  <Card key={report.id} className=\"p-4 hover:shadow-lg transition-shadow\">
-                    <div className=\"flex items-center justify-between\">
-                      <div className=\"flex items-center space-x-4\">
-                        <img src={report.image} alt={report.productName} className=\"w-20 h-20 object-cover rounded-lg\" />
+                  <Card key={report.id} className="p-4 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-4">
+                        <img src={report.image} alt={report.productName} className="w-20 h-20 object-cover rounded-lg\" />
                         <div>
-                          <h3 className=\"text-xl font-bold text-gray-900\">{report.productName}</h3>
-                          <p className=\"text-gray-600\">{report.brand} • {report.category}</p>
+                          <h3 className="text-xl font-bold text-gray-900">{report.productName}</h3>
+                          <p className="text-gray-600">{report.brand} • {report.category}</p>
                           <Badge className={`mt-2 ${
                             report.purityScore >= 9 ? 'bg-green-600' :
                             report.purityScore >= 8 ? 'bg-yellow-600' : 'bg-red-600'
@@ -231,7 +231,7 @@ const Admin = () => {
                           </Badge>
                         </div>
                       </div>
-                      <div className=\"flex space-x-2\">
+                      <div className="flex space-x-2">
                         <Button variant=\"outline\" size=\"sm\" onClick={() => navigate(`/reports/${report.id}`)}>
                           <Eye size={16} />
                         </Button>
@@ -258,21 +258,21 @@ const Admin = () => {
           </TabsContent>
 
           {/* Blog Posts Tab */}
-          <TabsContent value=\"blogs\">
-            <Card className=\"p-6\">
-              <div className=\"flex justify-between items-center mb-6\">
-                <h2 className=\"text-2xl font-bold text-gray-900\">Blog Posts Management</h2>
+          <TabsContent value=\"blogs">
+            <Card className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">Blog Posts Management</h2>
                 <Button 
                   onClick={() => { setEditingItem(null); setShowBlogForm(true); }}
-                  className=\"bg-green-600 hover:bg-green-700\"
+                  className="bg-green-600 hover:bg-green-700\"
                 >
-                  <Plus size={20} className=\"mr-2\" />
+                  <Plus size={20} className="mr-2\" />
                   Add New Blog Post
                 </Button>
               </div>
 
               {showBlogForm && (
-                <div className=\"mb-6\">
+                <div className="mb-6">
                   <BlogPostForm
                     post={editingItem}
                     onClose={() => { setShowBlogForm(false); setEditingItem(null); }}
@@ -285,16 +285,16 @@ const Admin = () => {
                 </div>
               )}
 
-              <div className=\"space-y-4\">
+              <div className="space-y-4">
                 {blogPosts.map((post) => (
-                  <Card key={post.id} className=\"p-4 hover:shadow-lg transition-shadow\">
-                    <div className=\"flex items-center justify-between\">
-                      <div className=\"flex items-center space-x-4\">
-                        <img src={post.image} alt={post.title} className=\"w-20 h-20 object-cover rounded-lg\" />
+                  <Card key={post.id} className="p-4 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-4">
+                        <img src={post.image} alt={post.title} className="w-20 h-20 object-cover rounded-lg\" />
                         <div>
-                          <h3 className=\"text-xl font-bold text-gray-900\">{post.title}</h3>
-                          <p className=\"text-gray-600 line-clamp-1\">{post.excerpt}</p>
-                          <div className=\"flex items-center space-x-3 mt-2 text-sm text-gray-500\">
+                          <h3 className="text-xl font-bold text-gray-900">{post.title}</h3>
+                          <p className="text-gray-600 line-clamp-1">{post.excerpt}</p>
+                          <div className="flex items-center space-x-3 mt-2 text-sm text-gray-500">
                             <Badge>{post.category}</Badge>
                             <span>{post.author}</span>
                             <span>•</span>
@@ -302,7 +302,7 @@ const Admin = () => {
                           </div>
                         </div>
                       </div>
-                      <div className=\"flex space-x-2\">
+                      <div className="flex space-x-2">
                         <Button variant=\"outline\" size=\"sm\" onClick={() => navigate(`/blog/${post.id}`)}>
                           <Eye size={16} />
                         </Button>
@@ -329,21 +329,21 @@ const Admin = () => {
           </TabsContent>
 
           {/* Upcoming Tests Tab */}
-          <TabsContent value=\"tests\">
-            <Card className=\"p-6\">
-              <div className=\"flex justify-between items-center mb-6\">
-                <h2 className=\"text-2xl font-bold text-gray-900\">Upcoming Tests Management</h2>
+          <TabsContent value=\"tests">
+            <Card className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">Upcoming Tests Management</h2>
                 <Button 
                   onClick={() => { setEditingItem(null); setShowTestForm(true); }}
-                  className=\"bg-green-600 hover:bg-green-700\"
+                  className="bg-green-600 hover:bg-green-700\"
                 >
-                  <Plus size={20} className=\"mr-2\" />
+                  <Plus size={20} className="mr-2\" />
                   Add New Test
                 </Button>
               </div>
 
               {showTestForm && (
-                <div className=\"mb-6\">
+                <div className="mb-6">
                   <UpcomingTestForm
                     test={editingItem}
                     onClose={() => { setShowTestForm(false); setEditingItem(null); }}
@@ -356,20 +356,20 @@ const Admin = () => {
                 </div>
               )}
 
-              <div className=\"space-y-4\">
+              <div className="space-y-4">
                 {upcomingTests.map((test) => (
-                  <Card key={test.id} className=\"p-4 hover:shadow-lg transition-shadow\">
-                    <div className=\"flex items-center justify-between\">
-                      <div className=\"flex-1\">
-                        <h3 className=\"text-xl font-bold text-gray-900\">{test.productCategory}</h3>
-                        <p className=\"text-gray-600 mt-1\">{test.description}</p>
-                        <div className=\"flex items-center space-x-4 mt-3 text-sm\">
-                          <Badge className=\"bg-green-600\">{test.votes} votes</Badge>
-                          <span className=\"text-gray-600\">Funded: {test.funded}/{test.targetFunding}</span>
-                          <span className=\"text-gray-600\">Est. Date: {test.estimatedTestDate}</span>
+                  <Card key={test.id} className="p-4 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold text-gray-900">{test.productCategory}</h3>
+                        <p className="text-gray-600 mt-1">{test.description}</p>
+                        <div className="flex items-center space-x-4 mt-3 text-sm">
+                          <Badge className="bg-green-600">{test.votes} votes</Badge>
+                          <span className="text-gray-600">Funded: {test.funded}/{test.targetFunding}</span>
+                          <span className="text-gray-600">Est. Date: {test.estimatedTestDate}</span>
                         </div>
                       </div>
-                      <div className=\"flex space-x-2 ml-4\">
+                      <div className="flex space-x-2 ml-4">
                         <Button 
                           variant=\"outline\" 
                           size=\"sm\"
@@ -393,32 +393,32 @@ const Admin = () => {
           </TabsContent>
 
           {/* Forum Posts Tab */}
-          <TabsContent value=\"forum\">
-            <Card className=\"p-6\">
-              <div className=\"flex justify-between items-center mb-6\">
-                <h2 className=\"text-2xl font-bold text-gray-900\">Forum Posts Moderation</h2>
+          <TabsContent value=\"forum">
+            <Card className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">Forum Posts Moderation</h2>
               </div>
 
-              <div className=\"space-y-4\">
+              <div className="space-y-4">
                 {forumPosts.map((post) => (
-                  <Card key={post.id} className=\"p-4 hover:shadow-lg transition-shadow\">
-                    <div className=\"flex items-center justify-between\">
-                      <div className=\"flex-1\">
-                        <div className=\"flex items-center space-x-3 mb-2\">
-                          <img src={post.authorImage} alt={post.author} className=\"w-10 h-10 rounded-full\" />
+                  <Card key={post.id} className="p-4 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-3 mb-2">
+                          <img src={post.authorImage} alt={post.author} className="w-10 h-10 rounded-full\" />
                           <div>
-                            <h3 className=\"text-lg font-bold text-gray-900\">{post.title}</h3>
-                            <p className=\"text-sm text-gray-600\">{post.author} • {post.timeAgo || 'Recently'}</p>
+                            <h3 className="text-lg font-bold text-gray-900">{post.title}</h3>
+                            <p className="text-sm text-gray-600">{post.author} • {post.timeAgo || 'Recently'}</p>
                           </div>
                         </div>
-                        <p className=\"text-gray-700 line-clamp-2\">{post.content}</p>
-                        <div className=\"flex items-center space-x-4 mt-3 text-sm\">
+                        <p className="text-gray-700 line-clamp-2">{post.content}</p>
+                        <div className="flex items-center space-x-4 mt-3 text-sm">
                           <Badge>{post.category}</Badge>
-                          <span className=\"text-gray-600\">{post.likes} likes</span>
-                          <span className=\"text-gray-600\">{post.replies} replies</span>
+                          <span className="text-gray-600">{post.likes} likes</span>
+                          <span className="text-gray-600">{post.replies} replies</span>
                         </div>
                       </div>
-                      <div className=\"flex space-x-2 ml-4\">
+                      <div className="flex space-x-2 ml-4">
                         <Button 
                           variant=\"destructive\" 
                           size=\"sm\"
