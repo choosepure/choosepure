@@ -85,6 +85,8 @@ export const blogAPI = {
   getPosts: (params) => api.get('/blog/posts', { params }),
   getPost: (id) => api.get(`/blog/posts/${id}`),
   create: (data) => api.post('/blog/posts', data),
+  update: (id, data) => api.put(`/blog/posts/${id}`, data),
+  delete: (id) => api.delete(`/blog/posts/${id}`),
 };
 
 // Newsletter APIs
