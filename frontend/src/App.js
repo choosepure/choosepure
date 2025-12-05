@@ -26,6 +26,7 @@ function App() {
             <Route path="/reports/:id" element={<ReportDetail />} />
             <Route path="/forum" element={<Forum />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/pricing" element={<Pricing />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/admin" element={<Admin />} />
           </Routes>
