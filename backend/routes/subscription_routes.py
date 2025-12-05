@@ -8,6 +8,7 @@ import os
 import hmac
 import hashlib
 import logging
+from middleware import require_admin
 
 logger = logging.getLogger(__name__)
 
