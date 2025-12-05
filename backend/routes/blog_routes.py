@@ -109,3 +109,44 @@ async def create_blog_post(post_data: BlogPostCreate, db: AsyncIOMotorDatabase =
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to create blog post"
         )
+
+@router.put("/posts/{post_id}")
+async def update_blog_post(post_id: str, post_data: BlogPostCreate, db: AsyncIOMotorDatabase = Depends(get_db)):
+    """Update a blog post (admin only)."""
+    try:
+        if not ObjectId.is_valid(post_id):
+            raise HTTPException(status_code=400, detail="Invalid post ID")
+        
+        result = await db.blog_posts.update_one(
+            {"_id": ObjectId(post_id)},
+            {"$set": post_data.dict()}
+        )
+        
+        if result.modified_count == 0:
+            raise HTTPException(status_code=404, detail="Post not found")
+        
+        return {"success": True, "message": "Blog post updated successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Update blog post error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to update blog post")
+
+@router.delete("/posts/{post_id}")
+async def delete_blog_post(post_id: str, db: AsyncIOMotorDatabase = Depends(get_db)):
+    """Delete a blog post (admin only)."""
+    try:
+        if not ObjectId.is_valid(post_id):
+            raise HTTPException(status_code=400, detail="Invalid post ID")
+        
+        result = await db.blog_posts.delete_one({"_id": ObjectId(post_id)})
+        
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="Post not found")
+        
+        return {"success": True, "message": "Blog post deleted successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Delete blog post error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to delete blog post")
