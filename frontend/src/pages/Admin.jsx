@@ -13,7 +13,7 @@ import BlogPostForm from '../components/admin/BlogPostForm';
 import UpcomingTestForm from '../components/admin/UpcomingTestForm';
 
 const Admin = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
   
   const [testReports, setTestReports] = useState([]);
