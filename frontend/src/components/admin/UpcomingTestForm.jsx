@@ -27,7 +27,11 @@ const UpcomingTestForm = ({ test, onClose, onSuccess }) => {
     setLoading(true);
 
     try {
-      await votingAPI.createTest(formData);
+      if (test) {
+        await votingAPI.updateTest(test.id, formData);
+      } else {
+        await votingAPI.createTest(formData);
+      }
       toast({
         title: 'Success!',
         description: `Upcoming test ${test ? 'updated' : 'created'} successfully`,
