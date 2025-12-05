@@ -1,19 +1,52 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Search, Filter, Download, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Search, Filter, ExternalLink, Lock, Loader2 } from 'lucide-react';
 import { Card } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
-import { testReports } from '../mockData';
+import { reportsAPI } from '../services/api';
+import { useAuth } from '../context/AuthContext';
+import { toast } from '../hooks/use-toast';
 
 const Reports = () => {
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [reports, setReports] = useState([]);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const categories = ['All', 'Dairy', 'Sweeteners', 'Oils', 'Spices', 'Grains'];
+  const categories = ['All', 'Dairy', 'Sweeteners', 'Oils', 'Spices', 'Grains', 'Beverages', 'Snacks'];
 
-  const filteredReports = testReports.filter(report => {
+  useEffect(() => {
+    loadReports();
+  }, [user]);
+
+  const loadReports = async () => {
+    setLoading(true);
+    try {
+      const params = {};
+      if (user?.id) {
+        params.user_id = user.id;
+      }
+      
+      const response = await reportsAPI.getAll(params);
+      setReports(response.data.reports || []);
+      setIsSubscribed(response.data.is_subscribed || false);
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to load reports',
+        variant: 'destructive'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const filteredReports = reports.filter(report => {
     const matchesSearch = report.productName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          report.brand.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'All' || report.category === selectedCategory;
