@@ -225,11 +225,12 @@ const Admin = () => {
         </div>
 
         <Tabs defaultValue="reports" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
+          <TabsList className="grid w-full grid-cols-5 mb-8">
             <TabsTrigger value="reports">Test Reports</TabsTrigger>
             <TabsTrigger value="blogs">Blog Posts</TabsTrigger>
             <TabsTrigger value="tests">Upcoming Tests</TabsTrigger>
             <TabsTrigger value="forum">Forum Posts</TabsTrigger>
+            <TabsTrigger value="subscriptions">Subscriptions</TabsTrigger>
           </TabsList>
 
           <TabsContent value="reports">
