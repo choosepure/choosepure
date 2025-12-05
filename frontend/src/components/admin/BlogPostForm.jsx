@@ -32,7 +32,11 @@ const BlogPostForm = ({ post, onClose, onSuccess }) => {
     setLoading(true);
 
     try {
-      await blogAPI.create(formData);
+      if (post) {
+        await blogAPI.update(post.id, formData);
+      } else {
+        await blogAPI.create(formData);
+      }
       toast({
         title: 'Success!',
         description: `Blog post ${post ? 'updated' : 'created'} successfully`,
