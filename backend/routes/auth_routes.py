@@ -129,7 +129,8 @@ async def get_current_user_info(current_user: dict = Depends(get_current_user), 
             "name": user["name"],
             "email": user["email"],
             "mobile": user["mobile"],
-            "role": user.get("role", "member")
+            "role": user.get("role", "member"),
+            "isAdmin": user.get("role") == "admin"
         }
     except HTTPException:
         raise
