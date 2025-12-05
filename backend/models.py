@@ -228,3 +228,50 @@ class CommunityStats(BaseModel):
     funds_pooled: float
     upcoming_tests: int
     active_posts: int
+
+# Subscription Tier Models
+class SubscriptionTier(BaseModel):
+    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    name: str
+    description: str
+    price: float
+    duration_days: int
+    features: List[str]
+    is_active: bool = True
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+    class Config:
+        json_encoders = {ObjectId: str}
+        populate_by_name = True
+
+class SubscriptionTierCreate(BaseModel):
+    name: str
+    description: str
+    price: float
+    duration_days: int
+    features: List[str]
+
+# User Subscription Models
+class UserSubscription(BaseModel):
+    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    user_id: str
+    tier_id: str
+    razorpay_order_id: Optional[str] = None
+    razorpay_payment_id: Optional[str] = None
+    razorpay_subscription_id: Optional[str] = None
+    status: str  # pending, active, expired, cancelled
+    start_date: Optional[datetime] = None
+    end_date: Optional[datetime] = None
+    amount_paid: float
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+    class Config:
+        json_encoders = {ObjectId: str}
+        populate_by_name = True
+
+class PaymentVerification(BaseModel):
+    razorpay_order_id: str
+    razorpay_payment_id: str
+    razorpay_signature: str
+    tier_id: str
+    user_id: str
