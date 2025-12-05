@@ -101,3 +101,86 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Test the ChoosePure Admin Panel and Subscription Management"
+
+frontend:
+  - task: "Admin Login Flow"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/LoginModal.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Testing admin login with credentials: support@choosepure.in / 123456"
+
+  - task: "Admin Panel Access"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Admin.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Testing admin panel access and stats display"
+
+  - task: "Subscriptions Tab Management"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Admin.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Testing subscription tiers display and edit/delete functionality"
+
+  - task: "Test Reports Tab Management"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Admin.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Testing test reports display and edit/delete buttons"
+
+  - task: "Pricing Page Display"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Pricing.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Testing pricing page display for non-admin users"
+
+metadata:
+  created_by: "testing_agent"
+  version: "1.0"
+  test_sequence: 1
+
+test_plan:
+  current_focus:
+    - "Admin Login Flow"
+    - "Admin Panel Access"
+    - "Subscriptions Tab Management"
+    - "Test Reports Tab Management"
+    - "Pricing Page Display"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+    - agent: "testing"
+    - message: "Starting comprehensive testing of ChoosePure Admin Panel and Subscription Management features"
