@@ -105,3 +105,44 @@ async def create_upcoming_test(test_data: UpcomingTestCreate, db: AsyncIOMotorDa
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to create test"
         )
+
+@router.put("/tests/{test_id}")
+async def update_upcoming_test(test_id: str, test_data: UpcomingTestCreate, db: AsyncIOMotorDatabase = Depends(get_db)):
+    """Update an upcoming test (admin only)."""
+    try:
+        if not ObjectId.is_valid(test_id):
+            raise HTTPException(status_code=400, detail="Invalid test ID")
+        
+        result = await db.upcoming_tests.update_one(
+            {"_id": ObjectId(test_id)},
+            {"$set": test_data.dict()}
+        )
+        
+        if result.modified_count == 0:
+            raise HTTPException(status_code=404, detail="Test not found")
+        
+        return {"success": True, "message": "Test updated successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Update test error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to update test")
+
+@router.delete("/tests/{test_id}")
+async def delete_upcoming_test(test_id: str, db: AsyncIOMotorDatabase = Depends(get_db)):
+    """Delete an upcoming test (admin only)."""
+    try:
+        if not ObjectId.is_valid(test_id):
+            raise HTTPException(status_code=400, detail="Invalid test ID")
+        
+        result = await db.upcoming_tests.delete_one({"_id": ObjectId(test_id)})
+        
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="Test not found")
+        
+        return {"success": True, "message": "Test deleted successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Delete test error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to delete test")
