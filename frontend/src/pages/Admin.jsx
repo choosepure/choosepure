@@ -399,6 +399,17 @@ const Admin = () => {
                           <span className="text-gray-600">Date: {test.estimatedTestDate}</span>
                         </div>
                       </div>
+                      <div className="flex space-x-2">
+                        <Button variant="outline" size="sm" onClick={() => {
+                          setEditingItem(test);
+                          setShowTestForm(true);
+                        }}>
+                          <Edit size={16} />
+                        </Button>
+                        <Button variant="destructive" size="sm" onClick={() => handleDeleteTest(test.id)}>
+                          <Trash2 size={16} />
+                        </Button>
+                      </div>
                     </div>
                   </Card>
                 ))}
