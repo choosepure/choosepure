@@ -453,6 +453,86 @@ const Admin = () => {
               </div>
             </Card>
           </TabsContent>
+
+          <TabsContent value="subscriptions">
+            <Card className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">Subscription Plans Management</h2>
+                <Button 
+                  onClick={() => { setEditingItem(null); setShowTierForm(true); }}
+                  className="bg-green-600 hover:bg-green-700"
+                >
+                  <Plus size={20} className="mr-2" />
+                  Add New Plan
+                </Button>
+              </div>
+
+              {showTierForm && (
+                <div className="mb-6">
+                  <SubscriptionTierForm
+                    tier={editingItem}
+                    onClose={() => { setShowTierForm(false); setEditingItem(null); }}
+                    onSuccess={() => {
+                      setShowTierForm(false);
+                      setEditingItem(null);
+                      loadAllData();
+                    }}
+                  />
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {subscriptionTiers.map((tier) => (
+                  <Card key={tier.id} className="p-6 hover:shadow-lg transition-shadow border-2">
+                    <div className="text-center mb-4">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">{tier.name}</h3>
+                      <div className="text-4xl font-bold text-green-600 mb-2">
+                        ₹{tier.price}
+                      </div>
+                      <p className="text-sm text-gray-600">{tier.duration_days} days access</p>
+                    </div>
+                    
+                    <div className="space-y-2 mb-6">
+                      {tier.features && tier.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start">
+                          <span className="text-green-600 mr-2">✓</span>
+                          <span className="text-gray-700 text-sm">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex space-x-2">
+                      <Button 
+                        variant="outline" 
+                        className="flex-1"
+                        onClick={() => {
+                          setEditingItem(tier);
+                          setShowTierForm(true);
+                        }}
+                      >
+                        <Edit size={16} className="mr-2" />
+                        Edit
+                      </Button>
+                      <Button 
+                        variant="destructive" 
+                        className="flex-1"
+                        onClick={() => handleDeleteTier(tier.id)}
+                      >
+                        <Trash2 size={16} className="mr-2" />
+                        Delete
+                      </Button>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+
+              {subscriptionTiers.length === 0 && (
+                <div className="text-center py-12 text-gray-500">
+                  <p>No subscription plans created yet. Click "Add New Plan" to get started.</p>
+                </div>
+              )}
+            </Card>
+          </TabsContent>
         </Tabs>
       </div>
     </div>
