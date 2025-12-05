@@ -342,6 +342,15 @@ const Admin = () => {
                         <Button variant="outline" size="sm" onClick={() => navigate(`/blog/${post.id}`)}>
                           <Eye size={16} />
                         </Button>
+                        <Button variant="outline" size="sm" onClick={() => {
+                          setEditingItem(post);
+                          setShowBlogForm(true);
+                        }}>
+                          <Edit size={16} />
+                        </Button>
+                        <Button variant="destructive" size="sm" onClick={() => handleDeleteBlog(post.id)}>
+                          <Trash2 size={16} />
+                        </Button>
                       </div>
                     </div>
                   </Card>
