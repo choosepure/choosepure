@@ -66,6 +66,8 @@ export const votingAPI = {
   getUpcomingTests: () => api.get('/voting/upcoming-tests'),
   vote: (data) => api.post('/voting/vote', data),
   createTest: (data) => api.post('/voting/create-test', data),
+  updateTest: (id, data) => api.put(`/voting/tests/${id}`, data),
+  deleteTest: (id) => api.delete(`/voting/tests/${id}`),
 };
 
 // Forum APIs
