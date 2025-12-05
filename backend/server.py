@@ -8,7 +8,7 @@ from pathlib import Path
 
 # Import routes
 from routes import auth_routes, waitlist_routes, report_routes, voting_routes
-from routes import forum_routes, blog_routes, newsletter_routes, stats_routes
+from routes import forum_routes, blog_routes, newsletter_routes, stats_routes, subscription_routes
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
