@@ -116,14 +116,21 @@ const Reports = () => {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-4 right-4">
-                  <Badge 
-                    className={`text-lg px-3 py-1 ${
-                      report.purityScore >= 9 ? 'bg-green-600' :
-                      report.purityScore >= 8 ? 'bg-yellow-600' : 'bg-red-600'
-                    }`}
-                  >
-                    {report.purityScore}
-                  </Badge>
+                  {isSubscribed && report.purityScore ? (
+                    <Badge 
+                      className={`text-lg px-3 py-1 ${
+                        report.purityScore >= 9 ? 'bg-green-600' :
+                        report.purityScore >= 8 ? 'bg-yellow-600' : 'bg-red-600'
+                      }`}
+                    >
+                      {report.purityScore}
+                    </Badge>
+                  ) : (
+                    <Badge className="text-lg px-3 py-1 bg-gray-600 flex items-center gap-1">
+                      <Lock size={14} />
+                      Subscribe
+                    </Badge>
+                  )}
                 </div>
               </div>
               
@@ -142,16 +149,30 @@ const Reports = () => {
                 
                 <p className="text-sm text-gray-600 mb-4">{report.summary}</p>
                 
-                <div className="space-y-2 mb-4">
-                  {report.parameters.slice(0, 2).map((param, idx) => (
-                    <div key={idx} className="flex justify-between text-sm">
-                      <span className="text-gray-600">{param.name}:</span>
-                      <span className={`font-semibold ${
-                        param.status === 'pass' ? 'text-green-600' : 'text-yellow-600'
-                      }`}>{param.result}</span>
-                    </div>
-                  ))}
-                </div>
+                {!isSubscribed ? (
+                  <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-4 mb-4 text-center">
+                    <Lock className="mx-auto mb-2 text-gray-400" size={24} />
+                    <p className="text-sm text-gray-600 mb-2">Detailed test parameters are available to subscribers</p>
+                    <Button 
+                      size="sm" 
+                      onClick={() => navigate('/pricing')}
+                      className="bg-green-600 hover:bg-green-700"
+                    >
+                      View Plans
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="space-y-2 mb-4">
+                    {report.parameters && report.parameters.slice(0, 2).map((param, idx) => (
+                      <div key={idx} className="flex justify-between text-sm">
+                        <span className="text-gray-600">{param.name}:</span>
+                        <span className={`font-semibold ${
+                          param.status === 'pass' ? 'text-green-600' : 'text-yellow-600'
+                        }`}>{param.result}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
                 
                 <Link to={`/reports/${report.id}`}>
                   <Button className="w-full bg-green-600 hover:bg-green-700">
