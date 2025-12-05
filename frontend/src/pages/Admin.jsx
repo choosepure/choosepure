@@ -22,10 +22,12 @@ const Admin = () => {
   const [upcomingTests, setUpcomingTests] = useState([]);
   const [forumPosts, setForumPosts] = useState([]);
   const [waitlistEntries, setWaitlistEntries] = useState(0);
+  const [subscriptionTiers, setSubscriptionTiers] = useState([]);
   
   const [showReportForm, setShowReportForm] = useState(false);
   const [showBlogForm, setShowBlogForm] = useState(false);
   const [showTestForm, setShowTestForm] = useState(false);
+  const [showTierForm, setShowTierForm] = useState(false);
   
   const [editingItem, setEditingItem] = useState(null);
   const [loading, setLoading] = useState(true);
