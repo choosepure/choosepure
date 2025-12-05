@@ -9,17 +9,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-green-600 to-green-700 rounded-full">
-                <svg viewBox="0 0 24 24" className="w-6 h-6 text-white" fill="currentColor">
-                  <path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.18l5.5 3.44v6.76L12 17.82l-5.5-3.44V7.62L12 4.18z"/>
-                  <circle cx="12" cy="12" r="2"/>
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white">choosepure</h3>
-                <p className="text-xs text-green-400 font-medium">HEALTHIER LIFE</p>
-              </div>
+            <div className="mb-4">
+              <img 
+                src="/logo.png" 
+                alt="ChoosePure" 
+                className="h-10 w-auto brightness-0 invert"
+              />
             </div>
             <p className="text-sm text-gray-400">
               India's first parent-led community that tests food for purity. Together, we ensure every child eats pure.
