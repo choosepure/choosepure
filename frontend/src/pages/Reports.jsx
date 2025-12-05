@@ -53,6 +53,14 @@ const Reports = () => {
     return matchesSearch && matchesCategory;
   });
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white py-24 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-green-600" />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,6 +68,14 @@ const Reports = () => {
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-gray-900 mb-4">Test Reports</h1>
           <p className="text-xl text-gray-600">Transparent, unbiased food testing results from certified labs</p>
+          
+          {!isSubscribed && (
+            <div className="mt-6">
+              <Badge className="bg-yellow-600 text-white px-4 py-2">
+                Subscribe to view detailed purity scores
+              </Badge>
+            </div>
+          )}
         </div>
 
         {/* Search and Filter */}
