@@ -97,7 +97,7 @@ const Navbar = () => {
               <Link to="/forum" className="block text-gray-700 hover:text-green-600 font-medium py-2">FORUM</Link>
               <Link to="/blog" className="block text-gray-700 hover:text-green-600 font-medium py-2">BLOG</Link>
               <button onClick={handleDashboardClick} className="block w-full text-left text-gray-700 hover:text-green-600 font-medium py-2">DASHBOARD</button>
-              {isAuthenticated && (
+              {isAuthenticated && user?.isAdmin && (
                 <Link to="/admin" className="block text-gray-700 hover:text-green-600 font-medium py-2">ADMIN</Link>
               )}
               {!isAuthenticated && (
