@@ -77,6 +77,7 @@ export const forumAPI = {
   createPost: (data) => api.post('/forum/posts', data),
   likePost: (id, data) => api.post(`/forum/posts/${id}/like`, data),
   replyToPost: (id, data) => api.post(`/forum/posts/${id}/reply`, data),
+  deletePost: (id) => api.delete(`/forum/posts/${id}`),
 };
 
 // Blog APIs
