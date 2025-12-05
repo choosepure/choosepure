@@ -51,7 +51,8 @@ async def register(user_data: UserCreate, db: AsyncIOMotorDatabase = Depends(get
                 "name": user.name,
                 "email": user.email,
                 "mobile": user.mobile,
-                "role": user.role
+                "role": user.role,
+                "isAdmin": user.role == "admin"
             }
         }
     except HTTPException:
