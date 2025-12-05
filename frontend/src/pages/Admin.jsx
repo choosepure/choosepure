@@ -442,6 +442,11 @@ const Admin = () => {
                           <span className="text-gray-600">{post.replies} replies</span>
                         </div>
                       </div>
+                      <div className="flex space-x-2">
+                        <Button variant="destructive" size="sm" onClick={() => handleDeleteForumPost(post.id)}>
+                          <Trash2 size={16} />
+                        </Button>
+                      </div>
                     </div>
                   </Card>
                 ))}
