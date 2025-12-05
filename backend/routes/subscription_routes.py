@@ -108,7 +108,7 @@ async def update_subscription_tier(tier_id: str, tier_data: SubscriptionTierCrea
         raise HTTPException(status_code=500, detail="Failed to update tier")
 
 @router.delete("/tiers/{tier_id}")
-async def delete_subscription_tier(tier_id: str, db: AsyncIOMotorDatabase = Depends(get_db)):
+async def delete_subscription_tier(tier_id: str, db: AsyncIOMotorDatabase = Depends(get_db), admin_user = Depends(require_admin)):
     """Delete/deactivate a subscription tier (Admin only)."""
     try:
         if not ObjectId.is_valid(tier_id):
