@@ -207,7 +207,10 @@ metadata:
   test_sequence: 1
 
 test_plan:
-  current_focus: []
+  current_focus:
+    - "Content Gating for Non-Subscribed Users"
+    - "Pricing Navigation from Reports"
+    - "Subscribe Button Login Prompt"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
@@ -215,3 +218,5 @@ test_plan:
 agent_communication:
     - agent: "testing"
     - message: "✅ TESTING COMPLETED SUCCESSFULLY - All admin panel and subscription management features are working correctly. Admin login, panel access, subscription management, test reports management, and pricing page all function as expected. No critical issues found."
+    - agent: "main"
+    - message: "Added content gating testing tasks for Reports page. Need to test: 1) Non-subscribed users see 'Lock + Subscribe' badges instead of purity scores, 2) Test parameters show 'Subscribe to view' message with 'View Plans' button, 3) View Plans button navigates to pricing, 4) Subscribe Now prompts for login when not authenticated."
