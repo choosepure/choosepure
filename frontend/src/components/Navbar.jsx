@@ -29,17 +29,12 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2 group">
-              <div className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-green-600 to-green-700 rounded-full transition-transform group-hover:scale-105">
-                <svg viewBox="0 0 24 24" className="w-7 h-7 text-white" fill="currentColor">
-                  <path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.18l5.5 3.44v6.76L12 17.82l-5.5-3.44V7.62L12 4.18z"/>
-                  <circle cx="12" cy="12" r="2"/>
-                </svg>
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">choosepure</h1>
-                <p className="text-xs text-green-600 font-medium tracking-wider">HEALTHIER LIFE</p>
-              </div>
+            <Link to="/" className="flex items-center group">
+              <img 
+                src="/logo.png" 
+                alt="ChoosePure" 
+                className="h-12 w-auto transition-transform group-hover:scale-105"
+              />
             </Link>
 
             {/* Desktop Navigation */}
