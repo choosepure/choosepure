@@ -86,7 +86,7 @@ async def create_subscription_tier(tier_data: SubscriptionTierCreate, db: AsyncI
         raise HTTPException(status_code=500, detail="Failed to create tier")
 
 @router.put("/tiers/{tier_id}")
-async def update_subscription_tier(tier_id: str, tier_data: SubscriptionTierCreate, db: AsyncIOMotorDatabase = Depends(get_db)):
+async def update_subscription_tier(tier_id: str, tier_data: SubscriptionTierCreate, db: AsyncIOMotorDatabase = Depends(get_db), admin_user = Depends(require_admin)):
     """Update a subscription tier (Admin only)."""
     try:
         if not ObjectId.is_valid(tier_id):
