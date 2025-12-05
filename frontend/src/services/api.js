@@ -101,4 +101,17 @@ export const statsAPI = {
   getUserStats: (userId) => api.get(`/stats/user/${userId}`),
 };
 
+// Subscription APIs
+export const subscriptionAPI = {
+  getTiers: () => api.get('/subscriptions/tiers'),
+  getTier: (id) => api.get(`/subscriptions/tiers/${id}`),
+  createTier: (data) => api.post('/subscriptions/tiers', data),
+  updateTier: (id, data) => api.put(`/subscriptions/tiers/${id}`, data),
+  deleteTier: (id) => api.delete(`/subscriptions/tiers/${id}`),
+  createOrder: (tierId, userId) => api.post(`/subscriptions/create-order?tier_id=${tierId}&user_id=${userId}`),
+  verifyPayment: (data) => api.post('/subscriptions/verify-payment', data),
+  getUserStatus: (userId) => api.get(`/subscriptions/user/${userId}/status`),
+  getUserHistory: (userId) => api.get(`/subscriptions/user/${userId}/history`),
+};
+
 export default api;
