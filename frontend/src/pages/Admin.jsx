@@ -60,6 +60,20 @@ const Admin = () => {
     }
   };
 
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white py-24 flex items-center justify-center">
+        <Card className="p-8 max-w-md text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Admin Access Required</h2>
+          <p className="text-gray-600 mb-6">Please login to access the admin panel.</p>
+          <Button onClick={() => navigate('/')} className="bg-green-600 hover:bg-green-700">
+            Go to Homepage & Login
+          </Button>
+        </Card>
+      </div>
+    );
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-green-50 to-white py-24 flex items-center justify-center">
