@@ -70,7 +70,7 @@ async def get_tier(tier_id: str, db: AsyncIOMotorDatabase = Depends(get_db)):
         raise HTTPException(status_code=500, detail="Failed to get tier")
 
 @router.post("/tiers")
-async def create_subscription_tier(tier_data: SubscriptionTierCreate, db: AsyncIOMotorDatabase = Depends(get_db)):
+async def create_subscription_tier(tier_data: SubscriptionTierCreate, db: AsyncIOMotorDatabase = Depends(get_db), admin_user = Depends(require_admin)):
     """Create a new subscription tier (Admin only)."""
     try:
         tier = SubscriptionTier(**tier_data.dict())
