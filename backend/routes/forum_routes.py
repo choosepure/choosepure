@@ -237,3 +237,22 @@ async def reply_to_post(post_id: str, reply_data: ForumReplyCreate, db: AsyncIOM
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to add reply"
         )
+
+@router.delete("/posts/{post_id}")
+async def delete_forum_post(post_id: str, db: AsyncIOMotorDatabase = Depends(get_db)):
+    """Delete a forum post (admin/moderator only)."""
+    try:
+        if not ObjectId.is_valid(post_id):
+            raise HTTPException(status_code=400, detail="Invalid post ID")
+        
+        result = await db.forum_posts.delete_one({"_id": ObjectId(post_id)})
+        
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="Post not found")
+        
+        return {"success": True, "message": "Forum post deleted successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Delete forum post error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to delete forum post")
