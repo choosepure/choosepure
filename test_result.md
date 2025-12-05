@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test the ChoosePure Admin Panel and Subscription Management"
+user_problem_statement: "Test Content Gating on Reports Page - Non-subscribed users should see 'Subscribe to View' messages instead of detailed test parameters and purity scores should show 'Lock + Subscribe' badge"
 
 frontend:
   - task: "Admin Login Flow"
@@ -164,6 +164,42 @@ frontend:
         - working: true
         - agent: "testing"
         - comment: "✓ Pricing page loads correctly with 'Choose Your Plan' title. Displays 3 subscription tiers with proper pricing, features, and 'Subscribe Now' buttons. Premium plan is highlighted as 'Most Popular'. Trust section shows 100+ Test Reports, Secure Payment Gateway, 24/7 Support."
+
+  - task: "Content Gating for Non-Subscribed Users"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Reports.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Content gating implemented in Reports page. Non-subscribed users should see 'Lock + Subscribe' badge instead of purity scores and 'Subscribe to view' message for test parameters with 'View Plans' button."
+
+  - task: "Pricing Navigation from Reports"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Reports.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "View Plans button in gated content area should navigate to /pricing page."
+
+  - task: "Subscribe Button Login Prompt"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Pricing.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Subscribe Now button should prompt for login when user is not authenticated, showing error toast or redirecting to login."
 
 metadata:
   created_by: "testing_agent"
