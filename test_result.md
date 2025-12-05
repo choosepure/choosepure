@@ -167,39 +167,48 @@ frontend:
 
   - task: "Content Gating for Non-Subscribed Users"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/Reports.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "main"
         - comment: "Content gating implemented in Reports page. Non-subscribed users should see 'Lock + Subscribe' badge instead of purity scores and 'Subscribe to view' message for test parameters with 'View Plans' button."
+        - working: true
+        - agent: "testing"
+        - comment: "✓ Content gating working perfectly. Found 3 'Subscribe' badges replacing purity scores, subscription notice in header, 3 'Subscribe to view' messages for test parameters, and 3 'View Plans' buttons. All gated content sections properly styled with dashed borders."
 
   - task: "Pricing Navigation from Reports"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/Reports.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "main"
         - comment: "View Plans button in gated content area should navigate to /pricing page."
+        - working: true
+        - agent: "testing"
+        - comment: "✓ Navigation working correctly. Clicking 'View Plans' button successfully navigates to /pricing page and displays 'Choose Your Plan' title with all subscription tiers."
 
   - task: "Subscribe Button Login Prompt"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/Pricing.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "main"
         - comment: "Subscribe Now button should prompt for login when user is not authenticated, showing error toast or redirecting to login."
+        - working: true
+        - agent: "testing"
+        - comment: "✓ Login prompt working correctly. Clicking 'Subscribe Now' as non-logged-in user shows toast message 'Login Required - Please login to subscribe to a plan'. No login modal opens, which is correct behavior."
 
 metadata:
   created_by: "testing_agent"
