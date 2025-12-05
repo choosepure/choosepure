@@ -278,6 +278,15 @@ const Admin = () => {
                         <Button variant="outline" size="sm" onClick={() => navigate(`/reports/${report.id}`)}>
                           <Eye size={16} />
                         </Button>
+                        <Button variant="outline" size="sm" onClick={() => {
+                          setEditingItem(report);
+                          setShowReportForm(true);
+                        }}>
+                          <Edit size={16} />
+                        </Button>
+                        <Button variant="destructive" size="sm" onClick={() => handleDeleteReport(report.id)}>
+                          <Trash2 size={16} />
+                        </Button>
                       </div>
                     </div>
                   </Card>
