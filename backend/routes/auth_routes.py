@@ -100,7 +100,8 @@ async def login(credentials: UserLogin, db: AsyncIOMotorDatabase = Depends(get_d
                 "name": user["name"],
                 "email": user["email"],
                 "mobile": user["mobile"],
-                "role": user.get("role", "member")
+                "role": user.get("role", "member"),
+                "isAdmin": user.get("role") == "admin"
             }
         }
     except HTTPException:
