@@ -30,12 +30,8 @@ const Admin = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      navigate('/');
-      return;
-    }
     loadAllData();
-  }, [isAuthenticated, navigate]);
+  }, []);
 
   const loadAllData = async () => {
     setLoading(true);
