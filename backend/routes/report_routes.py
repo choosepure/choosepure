@@ -132,3 +132,44 @@ async def create_report(report_data: TestReportCreate, db: AsyncIOMotorDatabase 
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to create report"
         )
+
+@router.put("/{report_id}")
+async def update_report(report_id: str, report_data: TestReportCreate, db: AsyncIOMotorDatabase = Depends(get_db)):
+    """Update a test report (admin only)."""
+    try:
+        if not ObjectId.is_valid(report_id):
+            raise HTTPException(status_code=400, detail="Invalid report ID")
+        
+        result = await db.test_reports.update_one(
+            {"_id": ObjectId(report_id)},
+            {"$set": report_data.dict()}
+        )
+        
+        if result.modified_count == 0:
+            raise HTTPException(status_code=404, detail="Report not found")
+        
+        return {"success": True, "message": "Report updated successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Update report error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to update report")
+
+@router.delete("/{report_id}")
+async def delete_report(report_id: str, db: AsyncIOMotorDatabase = Depends(get_db)):
+    """Delete a test report (admin only)."""
+    try:
+        if not ObjectId.is_valid(report_id):
+            raise HTTPException(status_code=400, detail="Invalid report ID")
+        
+        result = await db.test_reports.delete_one({"_id": ObjectId(report_id)})
+        
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="Report not found")
+        
+        return {"success": True, "message": "Report deleted successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Delete report error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to delete report")
