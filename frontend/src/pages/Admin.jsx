@@ -39,12 +39,13 @@ const Admin = () => {
   const loadAllData = async () => {
     setLoading(true);
     try {
-      const [reports, blogs, tests, forum, waitlist] = await Promise.all([
+      const [reports, blogs, tests, forum, waitlist, tiers] = await Promise.all([
         reportsAPI.getAll(),
         blogAPI.getPosts(),
         votingAPI.getUpcomingTests(),
         forumAPI.getPosts(),
-        waitlistAPI.getCount()
+        waitlistAPI.getCount(),
+        subscriptionAPI.getTiers()
       ]);
       
       setTestReports(reports.data.reports || []);
@@ -52,6 +53,7 @@ const Admin = () => {
       setUpcomingTests(tests.data.tests || []);
       setForumPosts(forum.data.posts || []);
       setWaitlistEntries(waitlist.data.count || 0);
+      setSubscriptionTiers(tiers.data.tiers || []);
     } catch (error) {
       toast({
         title: 'Error',
@@ -60,6 +62,101 @@ const Admin = () => {
       });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDeleteReport = async (id) => {
+    if (window.confirm('Are you sure you want to delete this report?')) {
+      try {
+        await reportsAPI.delete(id);
+        toast({
+          title: 'Success',
+          description: 'Report deleted successfully',
+        });
+        loadAllData();
+      } catch (error) {
+        toast({
+          title: 'Error',
+          description: 'Failed to delete report',
+          variant: 'destructive'
+        });
+      }
+    }
+  };
+
+  const handleDeleteBlog = async (id) => {
+    if (window.confirm('Are you sure you want to delete this blog post?')) {
+      try {
+        await blogAPI.delete(id);
+        toast({
+          title: 'Success',
+          description: 'Blog post deleted successfully',
+        });
+        loadAllData();
+      } catch (error) {
+        toast({
+          title: 'Error',
+          description: 'Failed to delete blog post',
+          variant: 'destructive'
+        });
+      }
+    }
+  };
+
+  const handleDeleteTest = async (id) => {
+    if (window.confirm('Are you sure you want to delete this upcoming test?')) {
+      try {
+        await votingAPI.deleteTest(id);
+        toast({
+          title: 'Success',
+          description: 'Test deleted successfully',
+        });
+        loadAllData();
+      } catch (error) {
+        toast({
+          title: 'Error',
+          description: 'Failed to delete test',
+          variant: 'destructive'
+        });
+      }
+    }
+  };
+
+  const handleDeleteForumPost = async (id) => {
+    if (window.confirm('Are you sure you want to delete this forum post?')) {
+      try {
+        await forumAPI.deletePost(id);
+        toast({
+          title: 'Success',
+          description: 'Forum post deleted successfully',
+        });
+        loadAllData();
+      } catch (error) {
+        toast({
+          title: 'Error',
+          description: 'Failed to delete forum post',
+          variant: 'destructive'
+        });
+      }
+    }
+  };
+
+  const handleDeleteTier = async (id) => {
+    if (window.confirm('Are you sure you want to delete this subscription tier?')) {
+      try {
+        await subscriptionAPI.deleteTier(id);
+        toast({
+          title: 'Success',
+          description: 'Subscription tier deleted successfully',
+        });
+        loadAllData();
+      } catch (error) {
+        toast({
+          title: 'Error',
+          description: 'Failed to delete tier',
+          variant: 'destructive'
+        });
+      }
     }
   };
 
