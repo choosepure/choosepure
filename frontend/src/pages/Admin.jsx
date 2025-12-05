@@ -6,11 +6,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { Badge } from '../components/ui/badge';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { reportsAPI, blogAPI, votingAPI, forumAPI, waitlistAPI } from '../services/api';
+import { reportsAPI, blogAPI, votingAPI, forumAPI, waitlistAPI, subscriptionAPI } from '../services/api';
 import { toast } from '../hooks/use-toast';
 import TestReportForm from '../components/admin/TestReportForm';
 import BlogPostForm from '../components/admin/BlogPostForm';
 import UpcomingTestForm from '../components/admin/UpcomingTestForm';
+import SubscriptionTierForm from '../components/admin/SubscriptionTierForm';
 
 const Admin = () => {
   const { isAuthenticated, user } = useAuth();
