@@ -12,6 +12,7 @@ import Forum from "./pages/Forum";
 import Blog from "./pages/Blog";
 import Dashboard from "./pages/Dashboard";
 import Admin from "./pages/Admin";
+import Pricing from "./pages/Pricing";
 
 function App() {
   return (
