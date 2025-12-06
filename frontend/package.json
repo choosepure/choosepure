@@ -59,6 +59,9 @@
     "build": "craco build",
     "test": "craco test"
   },
+  "resolutions": {
+    "ajv": "^8.12.0"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
