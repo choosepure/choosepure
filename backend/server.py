@@ -43,6 +43,7 @@ api_router.include_router(blog_routes.router)
 api_router.include_router(newsletter_routes.router)
 api_router.include_router(stats_routes.router)
 api_router.include_router(subscription_routes.router)
+api_router.include_router(donation_routes.router)
 
 # Include the router in the main app
 app.include_router(api_router)
