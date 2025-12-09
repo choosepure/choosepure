@@ -212,15 +212,18 @@ frontend:
 
   - task: "Donation Section Visibility"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/Home.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "testing"
         - comment: "Need to test donation section visibility on homepage with heart icon, headline, description, impact cards (₹100, ₹500, ₹1000+), Make a Donation button, and statistics."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ Donation section fully visible and working. Found: 'Help Us Protect Every Child' heading with heart icon, description about food testing in certified labs, all 3 impact cards (₹100, ₹500, ₹1000+), 'Make a Donation' button, and all statistics (50,000+ products, 1000+ parents, 100% transparency). Section properly styled and positioned at bottom of homepage."
 
   - task: "Donation Modal Functionality"
     implemented: true
