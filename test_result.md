@@ -257,15 +257,18 @@ frontend:
 
   - task: "Razorpay Payment Integration"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/routes/donation_routes.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "testing"
         - comment: "Need to test Razorpay payment flow with test keys, order creation, payment processing, and verification."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ Razorpay integration working excellently. Payment popup opens successfully with all payment options (UPI, Cards, EMI, Netbanking, Wallet, Pay Later). Shows correct amount (₹2500), merchant name 'ChoosePure', and QR code for UPI payments. Backend properly configured with test keys (rzp_test_*). Order creation and payment flow functioning correctly."
 
   - task: "Support Mission Button"
     implemented: true
