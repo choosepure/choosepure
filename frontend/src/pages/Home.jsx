@@ -447,6 +447,71 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Donation Section */}
+      <section className="py-20 bg-gradient-to-br from-green-50 via-white to-teal-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-6">
+              <Heart className="text-red-600 fill-red-600" size={32} />
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Help Us Protect Every Child
+            </h2>
+            
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              Your donation directly funds food testing in certified labs. Every contribution helps us uncover the truth about what our children eat and holds brands accountable.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-6 mb-10">
+              <Card className="p-6 border-2 border-green-200 bg-white">
+                <div className="text-3xl font-bold text-green-600 mb-2">₹100</div>
+                <p className="text-sm text-gray-600">Tests one product parameter</p>
+              </Card>
+              <Card className="p-6 border-2 border-green-400 bg-green-50 transform scale-105">
+                <div className="text-3xl font-bold text-green-700 mb-2">₹500</div>
+                <p className="text-sm text-gray-700 font-semibold">Funds partial product testing</p>
+              </Card>
+              <Card className="p-6 border-2 border-green-200 bg-white">
+                <div className="text-3xl font-bold text-green-600 mb-2">₹1000+</div>
+                <p className="text-sm text-gray-600">Complete product analysis</p>
+              </Card>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button 
+                size="lg" 
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all"
+                onClick={() => setShowDonationModal(true)}
+              >
+                <Heart className="mr-2 fill-white" size={20} />
+                Make a Donation
+              </Button>
+              <p className="text-sm text-gray-500">
+                Secure payment via Razorpay • Tax receipts available
+              </p>
+            </div>
+
+            <div className="mt-10 pt-8 border-t border-gray-200">
+              <div className="flex flex-wrap justify-center gap-8 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-gray-900">50,000+</div>
+                  <div className="text-sm text-gray-600">Products tested so far</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-gray-900">1000+</div>
+                  <div className="text-sm text-gray-600">Parents in community</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-gray-900">100%</div>
+                  <div className="text-sm text-gray-600">Transparency guaranteed</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Newsletter */}
       <section className="py-12 bg-green-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -465,6 +530,11 @@ const Home = () => {
           </form>
         </div>
       </section>
+
+      {/* Donation Modal */}
+      {showDonationModal && (
+        <DonationModal onClose={() => setShowDonationModal(false)} />
+      )}
     </div>
   );
 };
