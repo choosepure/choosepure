@@ -426,8 +426,13 @@ const Home = () => {
                 </ul>
               </div>
               
-              <Button size="lg" className="bg-green-600 hover:bg-green-700">
-                Help Us Grow
+              <Button 
+                size="lg" 
+                className="bg-green-600 hover:bg-green-700"
+                onClick={() => setShowDonationModal(true)}
+              >
+                <Heart className="mr-2" size={20} />
+                Support Our Mission
               </Button>
             </div>
             
