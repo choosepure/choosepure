@@ -114,4 +114,12 @@ export const subscriptionAPI = {
   getUserHistory: (userId) => api.get(`/subscriptions/user/${userId}/history`),
 };
 
+// Donation APIs
+export const donationAPI = {
+  createOrder: (data) => api.post('/donations/create-order', data),
+  verifyPayment: (data) => api.post('/donations/verify-payment', data),
+  getStats: () => api.get('/donations/stats'),
+  getRecent: (limit) => api.get(`/donations/recent?limit=${limit || 10}`),
+};
+
 export default api;
