@@ -291,12 +291,7 @@ metadata:
   test_sequence: 1
 
 test_plan:
-  current_focus:
-    - "Donation Section Visibility"
-    - "Donation Modal Functionality"
-    - "Amount Selection and Form Validation"
-    - "Razorpay Payment Integration"
-    - "Support Mission Button"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
