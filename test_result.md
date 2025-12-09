@@ -210,6 +210,66 @@ frontend:
         - agent: "testing"
         - comment: "✓ Login prompt working correctly. Clicking 'Subscribe Now' as non-logged-in user shows toast message 'Login Required - Please login to subscribe to a plan'. No login modal opens, which is correct behavior."
 
+  - task: "Donation Section Visibility"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Home.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test donation section visibility on homepage with heart icon, headline, description, impact cards (₹100, ₹500, ₹1000+), Make a Donation button, and statistics."
+
+  - task: "Donation Modal Functionality"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/DonationModal.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test donation modal opening with Support Our Cause header, 5 preset amount buttons, custom amount input, donor information fields, impact section, and action buttons."
+
+  - task: "Amount Selection and Form Validation"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/DonationModal.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test amount selection (preset and custom), form validation for required fields, and proper UI feedback."
+
+  - task: "Razorpay Payment Integration"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/routes/donation_routes.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test Razorpay payment flow with test keys, order creation, payment processing, and verification."
+
+  - task: "Support Mission Button"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Home.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test Support Our Mission button in How It Works section opens donation modal."
+
 metadata:
   created_by: "testing_agent"
   version: "1.0"
