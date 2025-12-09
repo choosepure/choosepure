@@ -242,15 +242,18 @@ frontend:
 
   - task: "Amount Selection and Form Validation"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/components/DonationModal.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "testing"
         - comment: "Need to test amount selection (preset and custom), form validation for required fields, and proper UI feedback."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ Amount selection and form validation working perfectly. Preset buttons highlight when selected (green styling), custom amount input deselects preset buttons, form validation shows red toast 'Missing Information - Please enter your name and email' when required fields are empty. Donate button dynamically updates to show selected amount (e.g., 'Donate ₹2500')."
 
   - task: "Razorpay Payment Integration"
     implemented: true
