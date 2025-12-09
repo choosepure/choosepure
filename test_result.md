@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test Content Gating on Reports Page - Non-subscribed users should see 'Subscribe to View' messages instead of detailed test parameters and purity scores should show 'Lock + Subscribe' badge"
+user_problem_statement: "Test Donation Feature on Homepage - Donation section visibility, modal functionality, amount selection, form validation, and Razorpay payment integration"
 
 frontend:
   - task: "Admin Login Flow"
