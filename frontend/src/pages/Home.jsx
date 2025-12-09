@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { 
   FlaskConical, Users, FileCheck, UsersRound, Microscope, 
   FileText, AlertTriangle, Star, ArrowRight, TrendingUp,
-  Shield, Award, CheckCircle2
+  Shield, Award, CheckCircle2, Heart
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -11,6 +11,7 @@ import { Label } from '../components/ui/label';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { toast } from '../hooks/use-toast';
+import DonationModal from '../components/DonationModal';
 import { 
   testReports, testimonials, communityStats, 
   features, howItWorks, foodDangers 
