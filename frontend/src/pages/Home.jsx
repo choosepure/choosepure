@@ -18,6 +18,7 @@ import {
 } from '../mockData';
 
 const Home = () => {
+  const [showDonationModal, setShowDonationModal] = useState(false);
   const [waitlistForm, setWaitlistForm] = useState({
     firstName: '',
     mobile: '',
