@@ -272,15 +272,18 @@ frontend:
 
   - task: "Support Mission Button"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/Home.jsx"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "testing"
         - comment: "Need to test Support Our Mission button in How It Works section opens donation modal."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ Support Mission button working correctly. Located in 'How It Works' section with heart icon, opens the same donation modal as 'Make a Donation' button. Button properly styled with green background and positioned in the movement section alongside family image."
 
 metadata:
   created_by: "testing_agent"
