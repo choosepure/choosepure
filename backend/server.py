@@ -8,7 +8,15 @@ from pathlib import Path
 
 # Import routes
 from routes import auth_routes, waitlist_routes, report_routes, voting_routes
-from routes import forum_routes, blog_routes, newsletter_routes, stats_routes, subscription_routes, donation_routes
+from routes import forum_routes, blog_routes, newsletter_routes, stats_routes, subscription_routes
+
+# Try to import donation_routes (may not exist in older deployments)
+try:
+    from routes import donation_routes
+    HAS_DONATION_ROUTES = True
+except ImportError:
+    HAS_DONATION_ROUTES = False
+    logging.warning("donation_routes not found - donation features will be disabled")
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
