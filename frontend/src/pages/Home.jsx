@@ -12,6 +12,7 @@ import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { toast } from '../hooks/use-toast';
 import DonationModal from '../components/DonationModal';
+import ShareButton from '../components/ShareButton';
 import { 
   testReports, testimonials, communityStats, 
   features, howItWorks, foodDangers 
