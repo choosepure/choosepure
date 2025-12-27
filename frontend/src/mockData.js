@@ -171,7 +171,7 @@ export const blogPosts = [
     publishDate: '2025-01-15',
     readTime: '6 min read',
     category: 'Behind the Scenes',
-    image: 'https://images.unsplash.com/photo-1758685848602-09e52ef9c7d3',
+    image: 'https://images.unsplash.com/photo-1668243304603-7ecf4eefba6e',
     views: 3456
   },
   {
