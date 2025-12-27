@@ -50,7 +50,7 @@ const Home = () => {
       <section className="relative h-[600px] flex items-center">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1758874960573-75a9a6ad79b6?w=1920&q=80"
+            src="https://images.unsplash.com/photo-1677132529121-3ea5b62ac9b5?w=1920&q=80"
             alt="Mother with child in premium kitchen"
             className="w-full h-full object-cover"
           />
