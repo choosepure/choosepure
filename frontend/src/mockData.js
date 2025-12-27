@@ -260,7 +260,7 @@ export const testimonials = [
     name: 'Meera Joshi',
     role: 'Mother of 3-year-old',
     location: 'Ahmedabad',
-    image: 'https://i.pravatar.cc/150?img=26',
+    image: 'https://images.unsplash.com/photo-1764967411658-64b8bdecb0be',
     quote: 'This is what India needs. Real parents, real tests, real results. Proud to be part of this movement.',
     rating: 5
   }
