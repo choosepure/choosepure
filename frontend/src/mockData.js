@@ -251,7 +251,7 @@ export const testimonials = [
     name: 'Vikram Singh',
     role: 'Father of twins',
     location: 'Pune',
-    image: 'https://i.pravatar.cc/150?img=14',
+    image: 'https://images.pexels.com/photos/8819149/pexels-photo-8819149.jpeg',
     quote: 'The transparency and unbiased testing give me confidence. Worth every rupee contributed.',
     rating: 5
   },
