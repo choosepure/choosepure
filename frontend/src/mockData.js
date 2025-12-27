@@ -43,7 +43,7 @@ export const testReports = [
     purityScore: 7.2,
     testDate: '2025-01-10',
     testedBy: 'FSSAI Approved Lab',
-    image: 'https://images.unsplash.com/photo-1587049352846-4a222e784578',
+    image: 'https://images.pexels.com/photos/14797915/pexels-photo-14797915.jpeg',
     parameters: [
       { name: 'Sugar Composition', result: 'Natural', status: 'pass' },
       { name: 'Moisture Content', result: '18%', status: 'warning' },
