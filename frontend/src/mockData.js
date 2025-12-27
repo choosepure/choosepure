@@ -193,7 +193,7 @@ export const blogPosts = [
     publishDate: '2025-01-10',
     readTime: '7 min read',
     category: 'Community',
-    image: 'https://images.unsplash.com/photo-1665250855519-25e3f817a96f',
+    image: 'https://images.unsplash.com/photo-1660015155339-c224fae66104',
     views: 4321
   },
   {
