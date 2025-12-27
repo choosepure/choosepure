@@ -204,7 +204,7 @@ export const blogPosts = [
     publishDate: '2025-01-08',
     readTime: '6 min read',
     category: 'Food Safety',
-    image: 'https://images.unsplash.com/photo-1758874961000-d8b11690ce22',
+    image: 'https://images.unsplash.com/photo-1639979511096-e3fa0348eb16',
     views: 6789
   }
 ];
