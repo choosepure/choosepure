@@ -67,12 +67,20 @@ const Home = () => {
             <p className="text-xl text-white/90 mb-8 animate-in slide-in-from-left duration-700 delay-100">
               Join India's first parent-led community that tests food for purity. Together, we ensure every child eats pure.
             </p>
-            <a href="#waitlist">
-              <Button size="lg" className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-6 text-lg animate-in slide-in-from-left duration-700 delay-200">
-                JOIN THE WAITLIST
-                <ArrowRight className="ml-2" size={20} />
-              </Button>
-            </a>
+            <div className="flex flex-wrap gap-4 items-center">
+              <a href="#waitlist">
+                <Button size="lg" className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-6 text-lg animate-in slide-in-from-left duration-700 delay-200">
+                  JOIN THE WAITLIST
+                  <ArrowRight className="ml-2" size={20} />
+                </Button>
+              </a>
+              <ShareButton 
+                size="lg"
+                variant="outline"
+                title="ChoosePure - India's Food Safety Community"
+                description="Join India's first parent-led community that tests food for purity"
+              />
+            </div>
           </div>
         </div>
       </section>
