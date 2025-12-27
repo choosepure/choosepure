@@ -215,7 +215,7 @@ export const testimonials = [
     name: 'Rajesh Kumar',
     role: 'Father of 9-year-old',
     location: 'Mumbai',
-    image: 'https://i.pravatar.cc/150?img=12',
+    image: 'https://images.pexels.com/photos/8819149/pexels-photo-8819149.jpeg',
     quote: 'I used to think all paneer brands were pure - until ChoosePure showed how much purity can really vary. Now I only trust what our community tests.',
     rating: 5
   },
