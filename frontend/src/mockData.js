@@ -26,7 +26,7 @@ export const testReports = [
     purityScore: 8.8,
     testDate: '2025-01-15',
     testedBy: 'NABL Certified Lab',
-    image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b',
+    image: 'https://images.unsplash.com/photo-1659353887617-8cf154b312c5',
     parameters: [
       { name: 'Fat Content', result: '4.2%', status: 'pass' },
       { name: 'SNF', result: '8.5%', status: 'pass' },
