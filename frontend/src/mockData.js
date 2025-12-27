@@ -233,7 +233,7 @@ export const testimonials = [
     name: 'Anil Patel',
     role: 'Parent',
     location: 'Bangalore',
-    image: 'https://i.pravatar.cc/150?img=13',
+    image: 'https://images.pexels.com/photos/8819149/pexels-photo-8819149.jpeg',
     quote: 'It\'s amazing to be part of something that holds brands accountable. This is the future of food safety.',
     rating: 5
   },
