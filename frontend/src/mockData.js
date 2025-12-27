@@ -224,7 +224,7 @@ export const testimonials = [
     name: 'Ritu Sharma',
     role: 'Mother of 5-year-old',
     location: 'Delhi',
-    image: 'https://i.pravatar.cc/150?img=5',
+    image: 'https://images.unsplash.com/photo-1764967411658-64b8bdecb0be',
     quote: 'As a mom, I finally feel confident about what I buy. ChoosePure has given me peace of mind.',
     rating: 5
   },
