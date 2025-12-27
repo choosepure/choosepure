@@ -182,7 +182,7 @@ export const blogPosts = [
     publishDate: '2025-01-12',
     readTime: '4 min read',
     category: 'DIY Tips',
-    image: 'https://images.unsplash.com/photo-1758874960576-9604b7cd1ee5',
+    image: 'https://images.unsplash.com/photo-1660015154762-c9b086d796e4',
     views: 5678
   },
   {
