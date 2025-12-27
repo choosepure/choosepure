@@ -242,7 +242,7 @@ export const testimonials = [
     name: 'Priya Reddy',
     role: 'Mother of 7-year-old',
     location: 'Hyderabad',
-    image: 'https://i.pravatar.cc/150?img=9',
+    image: 'https://images.unsplash.com/photo-1764967411658-64b8bdecb0be',
     quote: 'Finally someone\'s testing food for our kids, not just for brands. This community is a game-changer.',
     rating: 5
   },
