@@ -149,7 +149,7 @@ export const blogPosts = [
     publishDate: '2025-01-20',
     readTime: '5 min read',
     category: 'Food Safety',
-    image: 'https://images.unsplash.com/photo-1615485736247-d21a3c33e321',
+    image: 'https://images.pexels.com/photos/9345627/pexels-photo-9345627.jpeg',
     views: 1234
   },
   {
@@ -344,7 +344,7 @@ export const foodDangers = [
     title: 'Adulterated Spices',
     subtitle: 'Low Purity Score',
     description: '1 in 5 foods in India is found to be adulterated. From turmeric laced with lead chromate to chili powder with textile dyes.',
-    image: 'https://images.unsplash.com/photo-1615485736247-d21a3c33e321',
+    image: 'https://images.pexels.com/photos/9345627/pexels-photo-9345627.jpeg',
     icon: 'AlertTriangle'
   }
 ];
