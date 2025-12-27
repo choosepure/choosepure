@@ -160,7 +160,7 @@ export const blogPosts = [
     publishDate: '2025-01-18',
     readTime: '8 min read',
     category: 'Education',
-    image: 'https://images.unsplash.com/photo-1758685734244-1eb74ec0b983',
+    image: 'https://images.pexels.com/photos/9345625/pexels-photo-9345625.jpeg',
     views: 2341
   },
   {
