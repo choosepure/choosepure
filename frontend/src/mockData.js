@@ -3,8 +3,8 @@
 export const testReports = [
   {
     id: '1',
-    productName: 'Amul Gold Milk',
-    brand: 'Amul',
+    productName: 'Full Cream Milk',
+    brand: 'Brand A',
     category: 'Dairy',
     purityScore: 9.6,
     testDate: '2025-01-15',
@@ -20,8 +20,8 @@ export const testReports = [
   },
   {
     id: '2',
-    productName: 'Mother Dairy Milk',
-    brand: 'Mother Dairy',
+    productName: 'Toned Milk',
+    brand: 'Brand B',
     category: 'Dairy',
     purityScore: 8.8,
     testDate: '2025-01-15',
@@ -37,8 +37,8 @@ export const testReports = [
   },
   {
     id: '3',
-    productName: 'Dabur Honey',
-    brand: 'Dabur',
+    productName: 'Pure Honey',
+    brand: 'Brand C',
     category: 'Sweeteners',
     purityScore: 7.2,
     testDate: '2025-01-10',
