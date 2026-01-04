@@ -8,7 +8,7 @@ from pathlib import Path
 
 # Import routes
 from routes import auth_routes, waitlist_routes, report_routes, voting_routes
-from routes import forum_routes, blog_routes, newsletter_routes, stats_routes, subscription_routes
+from routes import forum_routes, blog_routes, newsletter_routes, stats_routes, subscription_routes, password_reset_routes
 
 # Try to import donation_routes (may not exist in older deployments)
 try:
