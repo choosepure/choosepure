@@ -8,6 +8,7 @@ import ForgotPassword from './ForgotPassword';
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [isSignup, setIsSignup] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -19,6 +20,15 @@ const LoginModal = ({ isOpen, onClose }) => {
   const { login, register } = useAuth();
 
   if (!isOpen) return null;
+
+  if (showForgotPassword) {
+    return (
+      <ForgotPassword
+        onClose={onClose}
+        onBackToLogin={() => setShowForgotPassword(false)}
+      />
+    );
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
