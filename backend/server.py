@@ -51,6 +51,7 @@ api_router.include_router(blog_routes.router)
 api_router.include_router(newsletter_routes.router)
 api_router.include_router(stats_routes.router)
 api_router.include_router(subscription_routes.router)
+api_router.include_router(password_reset_routes.router)
 
 # Include donation routes if available
 if HAS_DONATION_ROUTES:
