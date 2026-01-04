@@ -122,4 +122,11 @@ export const donationAPI = {
   getRecent: (limit) => api.get(`/donations/recent?limit=${limit || 10}`),
 };
 
+// Password Reset APIs
+export const passwordResetAPI = {
+  requestReset: (email) => api.post('/password-reset/request-reset', { email }),
+  verifyToken: (email, reset_token) => api.post('/password-reset/verify-token', { email, reset_token }),
+  resetPassword: (email, reset_token, new_password) => api.post('/password-reset/reset-password', { email, reset_token, new_password }),
+};
+
 export default api;
