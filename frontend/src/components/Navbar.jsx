@@ -4,6 +4,7 @@ import { Menu, X, Youtube, Facebook, Instagram, User, LogOut } from 'lucide-reac
 import { Button } from './ui/button';
 import { useAuth } from '../context/AuthContext';
 import LoginModal from './LoginModal';
+import ShareButton from './ShareButton';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
