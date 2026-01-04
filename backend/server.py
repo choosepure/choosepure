@@ -8,7 +8,15 @@ from pathlib import Path
 
 # Import routes
 from routes import auth_routes, waitlist_routes, report_routes, voting_routes
-from routes import forum_routes, blog_routes, newsletter_routes, stats_routes, subscription_routes
+from routes import forum_routes, blog_routes, newsletter_routes, stats_routes, subscription_routes, password_reset_routes
+
+# Try to import donation_routes (may not exist in older deployments)
+try:
+    from routes import donation_routes
+    HAS_DONATION_ROUTES = True
+except ImportError:
+    HAS_DONATION_ROUTES = False
+    logging.warning("donation_routes not found - donation features will be disabled")
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -43,6 +51,11 @@ api_router.include_router(blog_routes.router)
 api_router.include_router(newsletter_routes.router)
 api_router.include_router(stats_routes.router)
 api_router.include_router(subscription_routes.router)
+api_router.include_router(password_reset_routes.router)
+
+# Include donation routes if available
+if HAS_DONATION_ROUTES:
+    api_router.include_router(donation_routes.router)
 
 # Include the router in the main app
 app.include_router(api_router)

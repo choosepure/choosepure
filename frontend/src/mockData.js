@@ -3,13 +3,13 @@
 export const testReports = [
   {
     id: '1',
-    productName: 'Amul Gold Milk',
-    brand: 'Amul',
+    productName: 'Full Cream Milk',
+    brand: 'Brand A',
     category: 'Dairy',
     purityScore: 9.6,
     testDate: '2025-01-15',
     testedBy: 'NABL Certified Lab',
-    image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150',
+    image: 'https://images.unsplash.com/photo-1668243304603-7ecf4eefba6e',
     parameters: [
       { name: 'Fat Content', result: '4.5%', status: 'pass' },
       { name: 'SNF', result: '8.7%', status: 'pass' },
@@ -20,13 +20,13 @@ export const testReports = [
   },
   {
     id: '2',
-    productName: 'Mother Dairy Milk',
-    brand: 'Mother Dairy',
+    productName: 'Toned Milk',
+    brand: 'Brand B',
     category: 'Dairy',
     purityScore: 8.8,
     testDate: '2025-01-15',
     testedBy: 'NABL Certified Lab',
-    image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b',
+    image: 'https://images.unsplash.com/photo-1659353887617-8cf154b312c5',
     parameters: [
       { name: 'Fat Content', result: '4.2%', status: 'pass' },
       { name: 'SNF', result: '8.5%', status: 'pass' },
@@ -37,13 +37,13 @@ export const testReports = [
   },
   {
     id: '3',
-    productName: 'Dabur Honey',
-    brand: 'Dabur',
+    productName: 'Pure Honey',
+    brand: 'Brand C',
     category: 'Sweeteners',
     purityScore: 7.2,
     testDate: '2025-01-10',
     testedBy: 'FSSAI Approved Lab',
-    image: 'https://images.unsplash.com/photo-1587049352846-4a222e784578',
+    image: 'https://images.pexels.com/photos/14797915/pexels-photo-14797915.jpeg',
     parameters: [
       { name: 'Sugar Composition', result: 'Natural', status: 'pass' },
       { name: 'Moisture Content', result: '18%', status: 'warning' },
@@ -149,7 +149,7 @@ export const blogPosts = [
     publishDate: '2025-01-20',
     readTime: '5 min read',
     category: 'Food Safety',
-    image: 'https://images.unsplash.com/photo-1615485736247-d21a3c33e321',
+    image: 'https://images.pexels.com/photos/9345627/pexels-photo-9345627.jpeg',
     views: 1234
   },
   {
@@ -160,7 +160,7 @@ export const blogPosts = [
     publishDate: '2025-01-18',
     readTime: '8 min read',
     category: 'Education',
-    image: 'https://images.unsplash.com/photo-1758685734244-1eb74ec0b983',
+    image: 'https://images.pexels.com/photos/9345625/pexels-photo-9345625.jpeg',
     views: 2341
   },
   {
@@ -171,7 +171,7 @@ export const blogPosts = [
     publishDate: '2025-01-15',
     readTime: '6 min read',
     category: 'Behind the Scenes',
-    image: 'https://images.unsplash.com/photo-1758685848602-09e52ef9c7d3',
+    image: 'https://images.unsplash.com/photo-1668243304603-7ecf4eefba6e',
     views: 3456
   },
   {
@@ -182,7 +182,7 @@ export const blogPosts = [
     publishDate: '2025-01-12',
     readTime: '4 min read',
     category: 'DIY Tips',
-    image: 'https://images.unsplash.com/photo-1758874960576-9604b7cd1ee5',
+    image: 'https://images.unsplash.com/photo-1660015154762-c9b086d796e4',
     views: 5678
   },
   {
@@ -193,7 +193,7 @@ export const blogPosts = [
     publishDate: '2025-01-10',
     readTime: '7 min read',
     category: 'Community',
-    image: 'https://images.unsplash.com/photo-1665250855519-25e3f817a96f',
+    image: 'https://images.unsplash.com/photo-1660015155339-c224fae66104',
     views: 4321
   },
   {
@@ -204,7 +204,7 @@ export const blogPosts = [
     publishDate: '2025-01-08',
     readTime: '6 min read',
     category: 'Food Safety',
-    image: 'https://images.unsplash.com/photo-1758874961000-d8b11690ce22',
+    image: 'https://images.unsplash.com/photo-1639979511096-e3fa0348eb16',
     views: 6789
   }
 ];
@@ -215,7 +215,7 @@ export const testimonials = [
     name: 'Rajesh Kumar',
     role: 'Father of 9-year-old',
     location: 'Mumbai',
-    image: 'https://i.pravatar.cc/150?img=12',
+    image: 'https://images.pexels.com/photos/8819149/pexels-photo-8819149.jpeg',
     quote: 'I used to think all paneer brands were pure - until ChoosePure showed how much purity can really vary. Now I only trust what our community tests.',
     rating: 5
   },
@@ -224,7 +224,7 @@ export const testimonials = [
     name: 'Ritu Sharma',
     role: 'Mother of 5-year-old',
     location: 'Delhi',
-    image: 'https://i.pravatar.cc/150?img=5',
+    image: 'https://images.unsplash.com/photo-1764967411658-64b8bdecb0be',
     quote: 'As a mom, I finally feel confident about what I buy. ChoosePure has given me peace of mind.',
     rating: 5
   },
@@ -233,7 +233,7 @@ export const testimonials = [
     name: 'Anil Patel',
     role: 'Parent',
     location: 'Bangalore',
-    image: 'https://i.pravatar.cc/150?img=13',
+    image: 'https://images.pexels.com/photos/8819149/pexels-photo-8819149.jpeg',
     quote: 'It\'s amazing to be part of something that holds brands accountable. This is the future of food safety.',
     rating: 5
   },
@@ -242,7 +242,7 @@ export const testimonials = [
     name: 'Priya Reddy',
     role: 'Mother of 7-year-old',
     location: 'Hyderabad',
-    image: 'https://i.pravatar.cc/150?img=9',
+    image: 'https://images.unsplash.com/photo-1764967411658-64b8bdecb0be',
     quote: 'Finally someone\'s testing food for our kids, not just for brands. This community is a game-changer.',
     rating: 5
   },
@@ -251,7 +251,7 @@ export const testimonials = [
     name: 'Vikram Singh',
     role: 'Father of twins',
     location: 'Pune',
-    image: 'https://i.pravatar.cc/150?img=14',
+    image: 'https://images.pexels.com/photos/8819149/pexels-photo-8819149.jpeg',
     quote: 'The transparency and unbiased testing give me confidence. Worth every rupee contributed.',
     rating: 5
   },
@@ -260,7 +260,7 @@ export const testimonials = [
     name: 'Meera Joshi',
     role: 'Mother of 3-year-old',
     location: 'Ahmedabad',
-    image: 'https://i.pravatar.cc/150?img=26',
+    image: 'https://images.unsplash.com/photo-1764967411658-64b8bdecb0be',
     quote: 'This is what India needs. Real parents, real tests, real results. Proud to be part of this movement.',
     rating: 5
   }
@@ -344,7 +344,7 @@ export const foodDangers = [
     title: 'Adulterated Spices',
     subtitle: 'Low Purity Score',
     description: '1 in 5 foods in India is found to be adulterated. From turmeric laced with lead chromate to chili powder with textile dyes.',
-    image: 'https://images.unsplash.com/photo-1615485736247-d21a3c33e321',
+    image: 'https://images.pexels.com/photos/9345627/pexels-photo-9345627.jpeg',
     icon: 'AlertTriangle'
   }
 ];

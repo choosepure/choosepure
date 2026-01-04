@@ -53,7 +53,11 @@ const TestReportForm = ({ report, onClose, onSuccess }) => {
     setLoading(true);
 
     try {
-      await reportsAPI.create(formData);
+      if (report) {
+        await reportsAPI.update(report.id, formData);
+      } else {
+        await reportsAPI.create(formData);
+      }
       toast({
         title: 'Success!',
         description: `Test report ${report ? 'updated' : 'created'} successfully`,

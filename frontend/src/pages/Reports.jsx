@@ -1,24 +1,65 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Search, Filter, Download, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Search, Filter, ExternalLink, Lock, Loader2 } from 'lucide-react';
 import { Card } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
-import { testReports } from '../mockData';
+import { reportsAPI } from '../services/api';
+import { useAuth } from '../context/AuthContext';
+import { toast } from '../hooks/use-toast';
 
 const Reports = () => {
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [reports, setReports] = useState([]);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const categories = ['All', 'Dairy', 'Sweeteners', 'Oils', 'Spices', 'Grains'];
+  const categories = ['All', 'Dairy', 'Sweeteners', 'Oils', 'Spices', 'Grains', 'Beverages', 'Snacks'];
 
-  const filteredReports = testReports.filter(report => {
+  useEffect(() => {
+    loadReports();
+  }, [user]);
+
+  const loadReports = async () => {
+    setLoading(true);
+    try {
+      const params = {};
+      if (user?.id) {
+        params.user_id = user.id;
+      }
+      
+      const response = await reportsAPI.getAll(params);
+      setReports(response.data.reports || []);
+      setIsSubscribed(response.data.is_subscribed || false);
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to load reports',
+        variant: 'destructive'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const filteredReports = reports.filter(report => {
     const matchesSearch = report.productName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          report.brand.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'All' || report.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white py-24 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-green-600" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white py-24">
@@ -27,6 +68,14 @@ const Reports = () => {
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-gray-900 mb-4">Test Reports</h1>
           <p className="text-xl text-gray-600">Transparent, unbiased food testing results from certified labs</p>
+          
+          {!isSubscribed && (
+            <div className="mt-6">
+              <Badge className="bg-yellow-600 text-white px-4 py-2">
+                Subscribe to view detailed purity scores
+              </Badge>
+            </div>
+          )}
         </div>
 
         {/* Search and Filter */}
@@ -67,14 +116,21 @@ const Reports = () => {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-4 right-4">
-                  <Badge 
-                    className={`text-lg px-3 py-1 ${
-                      report.purityScore >= 9 ? 'bg-green-600' :
-                      report.purityScore >= 8 ? 'bg-yellow-600' : 'bg-red-600'
-                    }`}
-                  >
-                    {report.purityScore}
-                  </Badge>
+                  {isSubscribed && report.purityScore ? (
+                    <Badge 
+                      className={`text-lg px-3 py-1 ${
+                        report.purityScore >= 9 ? 'bg-green-600' :
+                        report.purityScore >= 8 ? 'bg-yellow-600' : 'bg-red-600'
+                      }`}
+                    >
+                      {report.purityScore}
+                    </Badge>
+                  ) : (
+                    <Badge className="text-lg px-3 py-1 bg-gray-600 flex items-center gap-1">
+                      <Lock size={14} />
+                      Subscribe
+                    </Badge>
+                  )}
                 </div>
               </div>
               
@@ -93,16 +149,30 @@ const Reports = () => {
                 
                 <p className="text-sm text-gray-600 mb-4">{report.summary}</p>
                 
-                <div className="space-y-2 mb-4">
-                  {report.parameters.slice(0, 2).map((param, idx) => (
-                    <div key={idx} className="flex justify-between text-sm">
-                      <span className="text-gray-600">{param.name}:</span>
-                      <span className={`font-semibold ${
-                        param.status === 'pass' ? 'text-green-600' : 'text-yellow-600'
-                      }`}>{param.result}</span>
-                    </div>
-                  ))}
-                </div>
+                {!isSubscribed ? (
+                  <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-4 mb-4 text-center">
+                    <Lock className="mx-auto mb-2 text-gray-400" size={24} />
+                    <p className="text-sm text-gray-600 mb-2">Detailed test parameters are available to subscribers</p>
+                    <Button 
+                      size="sm" 
+                      onClick={() => navigate('/pricing')}
+                      className="bg-green-600 hover:bg-green-700"
+                    >
+                      View Plans
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="space-y-2 mb-4">
+                    {report.parameters && report.parameters.slice(0, 2).map((param, idx) => (
+                      <div key={idx} className="flex justify-between text-sm">
+                        <span className="text-gray-600">{param.name}:</span>
+                        <span className={`font-semibold ${
+                          param.status === 'pass' ? 'text-green-600' : 'text-yellow-600'
+                        }`}>{param.result}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
                 
                 <Link to={`/reports/${report.id}`}>
                   <Button className="w-full bg-green-600 hover:bg-green-700">

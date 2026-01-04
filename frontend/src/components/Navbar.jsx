@@ -4,6 +4,7 @@ import { Menu, X, Youtube, Facebook, Instagram, User, LogOut } from 'lucide-reac
 import { Button } from './ui/button';
 import { useAuth } from '../context/AuthContext';
 import LoginModal from './LoginModal';
+import ShareButton from './ShareButton';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -43,6 +44,7 @@ const Navbar = () => {
               <Link to="/reports" className="text-gray-700 hover:text-green-600 font-medium transition-colors">REPORTS</Link>
               <Link to="/forum" className="text-gray-700 hover:text-green-600 font-medium transition-colors">FORUM</Link>
               <Link to="/blog" className="text-gray-700 hover:text-green-600 font-medium transition-colors">BLOG</Link>
+              <Link to="/pricing" className="text-gray-700 hover:text-green-600 font-medium transition-colors">PRICING</Link>
               <button onClick={handleDashboardClick} className="text-gray-700 hover:text-green-600 font-medium transition-colors">DASHBOARD</button>
               {isAuthenticated && user?.isAdmin && (
                 <Link to="/admin" className="text-gray-700 hover:text-green-600 font-medium transition-colors">ADMIN</Link>
@@ -51,6 +53,7 @@ const Navbar = () => {
 
             {/* Social Icons & Auth */}
             <div className="hidden md:flex items-center space-x-4">
+              <ShareButton size="sm" variant="ghost" />
               <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-red-600 transition-colors">
                 <Youtube size={20} />
               </a>
@@ -96,10 +99,16 @@ const Navbar = () => {
               <Link to="/reports" className="block text-gray-700 hover:text-green-600 font-medium py-2">REPORTS</Link>
               <Link to="/forum" className="block text-gray-700 hover:text-green-600 font-medium py-2">FORUM</Link>
               <Link to="/blog" className="block text-gray-700 hover:text-green-600 font-medium py-2">BLOG</Link>
+              <Link to="/pricing" className="block text-gray-700 hover:text-green-600 font-medium py-2">PRICING</Link>
               <button onClick={handleDashboardClick} className="block w-full text-left text-gray-700 hover:text-green-600 font-medium py-2">DASHBOARD</button>
               {isAuthenticated && user?.isAdmin && (
                 <Link to="/admin" className="block text-gray-700 hover:text-green-600 font-medium py-2">ADMIN</Link>
               )}
+              
+              <div className="pt-4 border-t">
+                <ShareButton size="default" variant="outline" />
+              </div>
+              
               {!isAuthenticated && (
                 <Button onClick={() => setShowLoginModal(true)} className="w-full bg-green-600 hover:bg-green-700 mt-4">
                   Login

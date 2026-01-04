@@ -4,9 +4,11 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { useAuth } from '../context/AuthContext';
+import ForgotPassword from './ForgotPassword';
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [isSignup, setIsSignup] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -18,6 +20,15 @@ const LoginModal = ({ isOpen, onClose }) => {
   const { login, register } = useAuth();
 
   if (!isOpen) return null;
+
+  if (showForgotPassword) {
+    return (
+      <ForgotPassword
+        onClose={onClose}
+        onBackToLogin={() => setShowForgotPassword(false)}
+      />
+    );
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -111,7 +122,18 @@ const LoginModal = ({ isOpen, onClose }) => {
           )}
 
           <div>
-            <Label htmlFor="password">Password</Label>
+            <div className="flex justify-between items-center mb-1">
+              <Label htmlFor="password">Password</Label>
+              {!isSignup && (
+                <button
+                  type="button"
+                  onClick={() => setShowForgotPassword(true)}
+                  className="text-sm text-green-600 hover:text-green-700 font-medium"
+                >
+                  Forgot Password?
+                </button>
+              )}
+            </div>
             <Input
               id="password"
               name="password"

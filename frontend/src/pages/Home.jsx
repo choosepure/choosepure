@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { 
   FlaskConical, Users, FileCheck, UsersRound, Microscope, 
   FileText, AlertTriangle, Star, ArrowRight, TrendingUp,
-  Shield, Award, CheckCircle2
+  Shield, Award, CheckCircle2, Heart
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -11,12 +11,15 @@ import { Label } from '../components/ui/label';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { toast } from '../hooks/use-toast';
+import DonationModal from '../components/DonationModal';
+import ShareButton from '../components/ShareButton';
 import { 
   testReports, testimonials, communityStats, 
   features, howItWorks, foodDangers 
 } from '../mockData';
 
 const Home = () => {
+  const [showDonationModal, setShowDonationModal] = useState(false);
   const [waitlistForm, setWaitlistForm] = useState({
     firstName: '',
     mobile: '',
@@ -48,7 +51,7 @@ const Home = () => {
       <section className="relative h-[600px] flex items-center">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1758874960573-75a9a6ad79b6?w=1920&q=80"
+            src="https://images.pexels.com/photos/4259140/pexels-photo-4259140.jpeg?w=1920&q=80"
             alt="Mother with child in premium kitchen"
             className="w-full h-full object-cover"
           />
@@ -64,12 +67,20 @@ const Home = () => {
             <p className="text-xl text-white/90 mb-8 animate-in slide-in-from-left duration-700 delay-100">
               Join India's first parent-led community that tests food for purity. Together, we ensure every child eats pure.
             </p>
-            <a href="#waitlist">
-              <Button size="lg" className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-6 text-lg animate-in slide-in-from-left duration-700 delay-200">
-                JOIN THE WAITLIST
-                <ArrowRight className="ml-2" size={20} />
-              </Button>
-            </a>
+            <div className="flex flex-wrap gap-4 items-center">
+              <a href="#waitlist">
+                <Button size="lg" className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-6 text-lg animate-in slide-in-from-left duration-700 delay-200">
+                  JOIN THE WAITLIST
+                  <ArrowRight className="ml-2" size={20} />
+                </Button>
+              </a>
+              <ShareButton 
+                size="lg"
+                variant="outline"
+                title="ChoosePure - India's Food Safety Community"
+                description="Join India's first parent-led community that tests food for purity"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -424,17 +435,87 @@ const Home = () => {
                 </ul>
               </div>
               
-              <Button size="lg" className="bg-green-600 hover:bg-green-700">
-                Help Us Grow
+              <Button 
+                size="lg" 
+                className="bg-green-600 hover:bg-green-700"
+                onClick={() => setShowDonationModal(true)}
+              >
+                <Heart className="mr-2" size={20} />
+                Support Our Mission
               </Button>
             </div>
             
             <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1665250855519-25e3f817a96f?w=800&q=80"
+                src="https://images.unsplash.com/photo-1639979511572-ff346bc5b3b7?w=800&q=80"
                 alt="Modern Indian family community"
                 className="w-full h-full object-cover"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Donation Section */}
+      <section className="py-20 bg-gradient-to-br from-green-50 via-white to-teal-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-6">
+              <Heart className="text-red-600 fill-red-600" size={32} />
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Help Us Protect Every Child
+            </h2>
+            
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              Your donation directly funds food testing in certified labs. Every contribution helps us uncover the truth about what our children eat and holds brands accountable.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-6 mb-10">
+              <Card className="p-6 border-2 border-green-200 bg-white">
+                <div className="text-3xl font-bold text-green-600 mb-2">₹100</div>
+                <p className="text-sm text-gray-600">Tests one product parameter</p>
+              </Card>
+              <Card className="p-6 border-2 border-green-400 bg-green-50 transform scale-105">
+                <div className="text-3xl font-bold text-green-700 mb-2">₹500</div>
+                <p className="text-sm text-gray-700 font-semibold">Funds partial product testing</p>
+              </Card>
+              <Card className="p-6 border-2 border-green-200 bg-white">
+                <div className="text-3xl font-bold text-green-600 mb-2">₹1000+</div>
+                <p className="text-sm text-gray-600">Complete product analysis</p>
+              </Card>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button 
+                size="lg" 
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all"
+                onClick={() => setShowDonationModal(true)}
+              >
+                <Heart className="mr-2 fill-white" size={20} />
+                Make a Donation
+              </Button>
+              <p className="text-sm text-gray-500">
+                Secure payment via Razorpay • Tax receipts available
+              </p>
+            </div>
+
+            <div className="mt-10 pt-8 border-t border-gray-200">
+              <div className="flex flex-wrap justify-center gap-8 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-gray-900">50,000+</div>
+                  <div className="text-sm text-gray-600">Products tested so far</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-gray-900">1000+</div>
+                  <div className="text-sm text-gray-600">Parents in community</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-gray-900">100%</div>
+                  <div className="text-sm text-gray-600">Transparency guaranteed</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -458,6 +539,11 @@ const Home = () => {
           </form>
         </div>
       </section>
+
+      {/* Donation Modal */}
+      {showDonationModal && (
+        <DonationModal onClose={() => setShowDonationModal(false)} />
+      )}
     </div>
   );
 };

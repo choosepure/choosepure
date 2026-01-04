@@ -101,3 +101,209 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Test Donation Feature on Homepage - Donation section visibility, modal functionality, amount selection, form validation, and Razorpay payment integration"
+
+frontend:
+  - task: "Admin Login Flow"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/LoginModal.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+        - agent: "testing"
+        - comment: "✓ Admin login successful with credentials support@choosepure.in/123456. Login modal opens correctly, credentials are accepted, and user gains admin access. ADMIN link appears in navigation after login."
+
+  - task: "Admin Panel Access"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Admin.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+        - agent: "testing"
+        - comment: "✓ Admin panel loads successfully with proper title 'Admin Panel'. Stats cards display correctly showing 3 Test Reports, 3 Blog Posts, 4 Upcoming Tests, 0 Waitlist Entries. All 5 tabs are visible: Test Reports, Blog Posts, Upcoming Tests, Forum Posts, Subscriptions."
+
+  - task: "Subscriptions Tab Management"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Admin.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+        - agent: "testing"
+        - comment: "✓ Subscriptions tab works perfectly. Displays 3 subscription tiers (Basic ₹299, Premium ₹799, Annual ₹2499) with complete details including prices, duration, and features. Each tier has functional Edit and Delete buttons. 'Add New Plan' button is available."
+
+  - task: "Test Reports Tab Management"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Admin.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+        - agent: "testing"
+        - comment: "✓ Test Reports tab displays 3 test reports (Amul Gold Milk, Mother Dairy Milk, Dabur Honey) with product images, names, brands, and purity scores. Each report has View, Edit, and Delete buttons. 'Add New Report' button is available."
+
+  - task: "Pricing Page Display"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Pricing.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        - working: true
+        - agent: "testing"
+        - comment: "✓ Pricing page loads correctly with 'Choose Your Plan' title. Displays 3 subscription tiers with proper pricing, features, and 'Subscribe Now' buttons. Premium plan is highlighted as 'Most Popular'. Trust section shows 100+ Test Reports, Secure Payment Gateway, 24/7 Support."
+
+  - task: "Content Gating for Non-Subscribed Users"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Reports.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Content gating implemented in Reports page. Non-subscribed users should see 'Lock + Subscribe' badge instead of purity scores and 'Subscribe to view' message for test parameters with 'View Plans' button."
+        - working: true
+        - agent: "testing"
+        - comment: "✓ Content gating working perfectly. Found 3 'Subscribe' badges replacing purity scores, subscription notice in header, 3 'Subscribe to view' messages for test parameters, and 3 'View Plans' buttons. All gated content sections properly styled with dashed borders."
+
+  - task: "Pricing Navigation from Reports"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Reports.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "View Plans button in gated content area should navigate to /pricing page."
+        - working: true
+        - agent: "testing"
+        - comment: "✓ Navigation working correctly. Clicking 'View Plans' button successfully navigates to /pricing page and displays 'Choose Your Plan' title with all subscription tiers."
+
+  - task: "Subscribe Button Login Prompt"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Pricing.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Subscribe Now button should prompt for login when user is not authenticated, showing error toast or redirecting to login."
+        - working: true
+        - agent: "testing"
+        - comment: "✓ Login prompt working correctly. Clicking 'Subscribe Now' as non-logged-in user shows toast message 'Login Required - Please login to subscribe to a plan'. No login modal opens, which is correct behavior."
+
+  - task: "Donation Section Visibility"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Home.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test donation section visibility on homepage with heart icon, headline, description, impact cards (₹100, ₹500, ₹1000+), Make a Donation button, and statistics."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ Donation section fully visible and working. Found: 'Help Us Protect Every Child' heading with heart icon, description about food testing in certified labs, all 3 impact cards (₹100, ₹500, ₹1000+), 'Make a Donation' button, and all statistics (50,000+ products, 1000+ parents, 100% transparency). Section properly styled and positioned at bottom of homepage."
+
+  - task: "Donation Modal Functionality"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/DonationModal.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test donation modal opening with Support Our Cause header, 5 preset amount buttons, custom amount input, donor information fields, impact section, and action buttons."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ Donation modal fully functional. Opens with 'Support Our Cause' header and heart icon, displays all 5 preset amount buttons (₹100, ₹500, ₹1000, ₹2000, ₹5000), custom amount input field, all donor information fields (name*, email*, phone, message), impact section explaining donation usage, and Cancel/Donate action buttons. Modal opens from both 'Make a Donation' and 'Support Our Mission' buttons."
+
+  - task: "Amount Selection and Form Validation"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/DonationModal.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test amount selection (preset and custom), form validation for required fields, and proper UI feedback."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ Amount selection and form validation working perfectly. Preset buttons highlight when selected (green styling), custom amount input deselects preset buttons, form validation shows red toast 'Missing Information - Please enter your name and email' when required fields are empty. Donate button dynamically updates to show selected amount (e.g., 'Donate ₹2500')."
+
+  - task: "Razorpay Payment Integration"
+    implemented: true
+    working: true
+    file: "/app/backend/routes/donation_routes.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test Razorpay payment flow with test keys, order creation, payment processing, and verification."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ Razorpay integration working excellently. Payment popup opens successfully with all payment options (UPI, Cards, EMI, Netbanking, Wallet, Pay Later). Shows correct amount (₹2500), merchant name 'ChoosePure', and QR code for UPI payments. Backend properly configured with test keys (rzp_test_*). Order creation and payment flow functioning correctly."
+
+  - task: "Support Mission Button"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Home.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test Support Our Mission button in How It Works section opens donation modal."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ Support Mission button working correctly. Located in 'How It Works' section with heart icon, opens the same donation modal as 'Make a Donation' button. Button properly styled with green background and positioned in the movement section alongside family image."
+
+metadata:
+  created_by: "testing_agent"
+  version: "1.0"
+  test_sequence: 1
+
+test_plan:
+  current_focus: []
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+    - agent: "testing"
+    - message: "✅ TESTING COMPLETED SUCCESSFULLY - All admin panel and subscription management features are working correctly. Admin login, panel access, subscription management, test reports management, and pricing page all function as expected. No critical issues found."
+    - agent: "main"
+    - message: "Added content gating testing tasks for Reports page. Need to test: 1) Non-subscribed users see 'Lock + Subscribe' badges instead of purity scores, 2) Test parameters show 'Subscribe to view' message with 'View Plans' button, 3) View Plans button navigates to pricing, 4) Subscribe Now prompts for login when not authenticated."
+    - agent: "testing"
+    - message: "✅ CONTENT GATING TESTING COMPLETED SUCCESSFULLY - All content gating features working perfectly: 1) Non-subscribed users see 'Subscribe' badges instead of purity scores (3 found), 2) Test parameters show 'Subscribe to view' messages with 'View Plans' buttons (3 found), 3) 'View Plans' navigation to pricing works correctly, 4) 'Subscribe Now' shows proper login required toast message. UI elements properly styled with lock icons and dashed borders."
+    - agent: "testing"
+    - message: "🎯 STARTING DONATION FEATURE TESTING - Added 5 donation-related tasks to test: 1) Donation section visibility on homepage, 2) Donation modal functionality, 3) Amount selection and form validation, 4) Razorpay payment integration with test keys, 5) Support Mission button. Backend has donation routes with Razorpay test keys configured."
+    - agent: "testing"
+    - message: "🎉 DONATION FEATURE TESTING COMPLETED SUCCESSFULLY - All 5 donation tasks are working perfectly: ✅ Donation section visible with all elements (heart icon, headline, impact cards, statistics), ✅ Modal opens with complete functionality (5 preset amounts, custom input, form fields, impact section), ✅ Amount selection and form validation working (highlighting, validation toasts), ✅ Razorpay integration excellent (popup opens with all payment options for ₹2500), ✅ Support Mission button opens modal correctly. No critical issues found - donation feature is production ready."
