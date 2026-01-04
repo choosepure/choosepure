@@ -122,7 +122,18 @@ const LoginModal = ({ isOpen, onClose }) => {
           )}
 
           <div>
-            <Label htmlFor="password">Password</Label>
+            <div className="flex justify-between items-center mb-1">
+              <Label htmlFor="password">Password</Label>
+              {!isSignup && (
+                <button
+                  type="button"
+                  onClick={() => setShowForgotPassword(true)}
+                  className="text-sm text-green-600 hover:text-green-700 font-medium"
+                >
+                  Forgot Password?
+                </button>
+              )}
+            </div>
             <Input
               id="password"
               name="password"
