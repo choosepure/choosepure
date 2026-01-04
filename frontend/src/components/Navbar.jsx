@@ -53,6 +53,7 @@ const Navbar = () => {
 
             {/* Social Icons & Auth */}
             <div className="hidden md:flex items-center space-x-4">
+              <ShareButton size="sm" variant="ghost" />
               <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-red-600 transition-colors">
                 <Youtube size={20} />
               </a>
