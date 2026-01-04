@@ -104,6 +104,11 @@ const Navbar = () => {
               {isAuthenticated && user?.isAdmin && (
                 <Link to="/admin" className="block text-gray-700 hover:text-green-600 font-medium py-2">ADMIN</Link>
               )}
+              
+              <div className="pt-4 border-t">
+                <ShareButton size="default" variant="outline" />
+              </div>
+              
               {!isAuthenticated && (
                 <Button onClick={() => setShowLoginModal(true)} className="w-full bg-green-600 hover:bg-green-700 mt-4">
                   Login
