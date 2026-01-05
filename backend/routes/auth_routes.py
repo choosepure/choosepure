@@ -4,6 +4,7 @@ from models import UserCreate, UserLogin, UserResponse, User
 from auth import get_password_hash, verify_password, create_access_token, get_current_user
 from datetime import datetime
 import logging
+from email_service import email_service
 
 logger = logging.getLogger(__name__)
 
@@ -39,6 +40,15 @@ async def register(user_data: UserCreate, db: AsyncIOMotorDatabase = Depends(get
         
         result = await db.users.insert_one(user.dict(by_alias=True, exclude={"id"}))
         user_id = str(result.inserted_id)
+        
+        # Send welcome email
+        email_result = await email_service.send_welcome_email(
+            to_email=user.email,
+            user_name=user.name
+        )
+        if not email_result["success"]:
+            logger.error(f"Failed to send welcome email: {email_result.get('message')}")
+            # Don't fail registration if email fails
         
         # Create access token
         access_token = create_access_token(data={"sub": user_id, "email": user.email})

@@ -6,6 +6,7 @@ import secrets
 import hashlib
 from passlib.context import CryptContext
 import logging
+from email_service import email_service
 
 logger = logging.getLogger(__name__)
 
@@ -70,16 +71,23 @@ async def request_password_reset(request: ForgotPasswordRequest, db: AsyncIOMoto
             upsert=True
         )
         
-        # In production, send email here with reset_token
-        # For development/demo, we'll return the token
+        # Send password reset email
+        user_name = user.get("name", user.get("username", ""))
+        email_result = await email_service.send_password_reset_email(
+            to_email=request.email,
+            reset_token=reset_token,
+            user_name=user_name
+        )
+        
+        if not email_result["success"]:
+            logger.error(f"Failed to send password reset email: {email_result.get('message')}")
+            # Don't fail the request if email fails, but log it
+        
         logger.info(f"Password reset requested for {request.email}")
-        logger.info(f"Reset token (DEV ONLY): {reset_token}")
         
         return {
             "success": True,
-            "message": "Password reset code sent to your email",
-            "reset_token": reset_token,  # Remove this in production!
-            "note": "In production, this token would be sent via email only"
+            "message": "Password reset code sent to your email"
         }
         
     except Exception as e:

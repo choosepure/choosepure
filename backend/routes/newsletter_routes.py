@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, status, Depends
 from motor.motor_asyncio import AsyncIOMotorDatabase
 from models import NewsletterSubscribe, Newsletter
 import logging
+from email_service import email_service
 
 logger = logging.getLogger(__name__)
 
@@ -37,6 +38,12 @@ async def subscribe_to_newsletter(subscribe_data: NewsletterSubscribe, db: Async
         # Create new subscription
         newsletter = Newsletter(email=subscribe_data.email)
         result = await db.newsletter_subscribers.insert_one(newsletter.dict(by_alias=True, exclude={"id"}))
+        
+        # Send confirmation email
+        email_result = await email_service.send_newsletter_confirmation_email(subscribe_data.email)
+        if not email_result["success"]:
+            logger.error(f"Failed to send newsletter confirmation email: {email_result.get('message')}")
+            # Don't fail the subscription if email fails
         
         return {
             "success": True,
