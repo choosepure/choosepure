@@ -13,14 +13,22 @@ class MailgunEmailService:
         self.api_key = os.getenv('MAILGUN_API_KEY')
         self.domain = os.getenv('MAILGUN_DOMAIN')
         self.from_email = os.getenv('MAILGUN_FROM_EMAIL', f'noreply@{self.domain}')
-        self.base_url = f'https://api.mailgun.net/v3/{self.domain}'
+        
+        # Check for EU region endpoint
+        self.endpoint = os.getenv('MAILGUN_ENDPOINT', 'api.mailgun.net')
+        self.base_url = f'https://{self.endpoint}/v3/{self.domain}'
         
         if not self.api_key or not self.domain:
             logger.warning("Mailgun credentials not configured. Email sending will be disabled.")
+            logger.warning(f"MAILGUN_API_KEY present: {bool(self.api_key)}")
+            logger.warning(f"MAILGUN_DOMAIN present: {bool(self.domain)}")
             self.enabled = False
         else:
             self.enabled = True
             logger.info(f"Mailgun email service initialized for domain: {self.domain}")
+            logger.info(f"From email: {self.from_email}")
+            logger.info(f"Endpoint: {self.endpoint}")
+            logger.info(f"Base URL: {self.base_url}")
     
     async def send_email(
         self,
@@ -74,6 +82,10 @@ class MailgunEmailService:
                 for tag in tags:
                     data[f'o:tag'] = tag
             
+            logger.info(f"Sending email to {to_email} with subject: {subject}")
+            logger.debug(f"Using from email: {data['from']}")
+            logger.debug(f"Mailgun URL: {self.base_url}/messages")
+            
             # Send email via Mailgun API
             response = requests.post(
                 f'{self.base_url}/messages',
@@ -81,6 +93,9 @@ class MailgunEmailService:
                 data=data,
                 timeout=30
             )
+            
+            logger.info(f"Mailgun API response status: {response.status_code}")
+            logger.debug(f"Mailgun API response: {response.text}")
             
             if response.status_code == 200:
                 result = response.json()
@@ -96,7 +111,8 @@ class MailgunEmailService:
                 return {
                     "success": False,
                     "error": "API_ERROR",
-                    "message": error_msg
+                    "message": error_msg,
+                    "status_code": response.status_code
                 }
                 
         except requests.exceptions.Timeout:
