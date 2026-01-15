@@ -13,7 +13,7 @@ const Footer = () => {
               <img 
                 src="/logo.png" 
                 alt="ChoosePure" 
-                className="h-10 sm:h-14 w-auto brightness-0 invert"
+                className="h-16 sm:h-20 w-auto brightness-0 invert"
               />
             </div>
             <p className="text-sm text-gray-400">
