@@ -34,7 +34,7 @@ const Navbar = () => {
               <img 
                 src="/logo.png" 
                 alt="ChoosePure" 
-                className="h-12 w-auto transition-transform group-hover:scale-105"
+                className="h-16 w-auto transition-transform group-hover:scale-105"
               />
             </Link>
 
