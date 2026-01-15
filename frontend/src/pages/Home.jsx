@@ -48,7 +48,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[500px] sm:h-[600px] flex items-center">
+      <section className="relative h-[500px] sm:h-[600px] flex items-center pt-36 sm:pt-44">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.pexels.com/photos/4259140/pexels-photo-4259140.jpeg?w=1920&q=80"
@@ -60,16 +60,16 @@ const Home = () => {
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-in slide-in-from-left duration-700">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight animate-in slide-in-from-left duration-700">
               Do you really know what's
               <span className="block mt-2">In your child's food?</span>
             </h1>
-            <p className="text-lg sm:text-xl text-white/90 mb-8 animate-in slide-in-from-left duration-700 delay-100">
+            <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 animate-in slide-in-from-left duration-700 delay-100">
               Join India's first parent-led community that tests food for purity. Together, we ensure every child eats pure.
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 items-center">
               <a href="#waitlist">
-                <Button size="lg" className="bg-teal-500 hover:bg-teal-600 text-white px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg animate-in slide-in-from-left duration-700 delay-200 w-full sm:w-auto">
+                <Button size="lg" className="bg-teal-500 hover:bg-teal-600 text-white px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base lg:text-lg animate-in slide-in-from-left duration-700 delay-200 w-full sm:w-auto">
                   JOIN THE WAITLIST
                   <ArrowRight className="ml-2" size={20} />
                 </Button>

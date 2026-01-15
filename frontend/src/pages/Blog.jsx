@@ -19,7 +19,7 @@ const Blog = () => {
   const recentPosts = blogPosts.slice(1);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white py-24">
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-40 sm:pt-48 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
