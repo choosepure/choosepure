@@ -26,8 +26,7 @@ subscription_tiers = [
         "features": [
             "Access to all test reports",
             "View detailed purity scores",
-            "Basic test parameters",
-            "Community forum access"
+            "Basic test parameters"
         ],
         "is_active": True,
         "created_at": datetime.utcnow()

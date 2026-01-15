@@ -193,3 +193,5 @@ android-sdk/ -e
 # Environment files
 *.env
 *.env.*
+# Archived directories
+choosepure-simplified-archived/

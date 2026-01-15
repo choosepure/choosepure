@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { Badge } from '../components/ui/badge';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { reportsAPI, blogAPI, votingAPI, forumAPI, waitlistAPI, subscriptionAPI } from '../services/api';
+import { reportsAPI, blogAPI, votingAPI, waitlistAPI, subscriptionAPI } from '../services/api';
 import { toast } from '../hooks/use-toast';
 import TestReportForm from '../components/admin/TestReportForm';
 import BlogPostForm from '../components/admin/BlogPostForm';
@@ -20,7 +20,6 @@ const Admin = () => {
   const [testReports, setTestReports] = useState([]);
   const [blogPosts, setBlogPosts] = useState([]);
   const [upcomingTests, setUpcomingTests] = useState([]);
-  const [forumPosts, setForumPosts] = useState([]);
   const [waitlistEntries, setWaitlistEntries] = useState(0);
   const [subscriptionTiers, setSubscriptionTiers] = useState([]);
   
@@ -39,11 +38,10 @@ const Admin = () => {
   const loadAllData = async () => {
     setLoading(true);
     try {
-      const [reports, blogs, tests, forum, waitlist, tiers] = await Promise.all([
+      const [reports, blogs, tests, waitlist, tiers] = await Promise.all([
         reportsAPI.getAll(),
         blogAPI.getPosts(),
         votingAPI.getUpcomingTests(),
-        forumAPI.getPosts(),
         waitlistAPI.getCount(),
         subscriptionAPI.getTiers()
       ]);
@@ -51,7 +49,6 @@ const Admin = () => {
       setTestReports(reports.data.reports || []);
       setBlogPosts(blogs.data.posts || []);
       setUpcomingTests(tests.data.tests || []);
-      setForumPosts(forum.data.posts || []);
       setWaitlistEntries(waitlist.data.count || 0);
       setSubscriptionTiers(tiers.data.tiers || []);
     } catch (error) {
@@ -116,25 +113,6 @@ const Admin = () => {
         toast({
           title: 'Error',
           description: 'Failed to delete test',
-          variant: 'destructive'
-        });
-      }
-    }
-  };
-
-  const handleDeleteForumPost = async (id) => {
-    if (window.confirm('Are you sure you want to delete this forum post?')) {
-      try {
-        await forumAPI.deletePost(id);
-        toast({
-          title: 'Success',
-          description: 'Forum post deleted successfully',
-        });
-        loadAllData();
-      } catch (error) {
-        toast({
-          title: 'Error',
-          description: 'Failed to delete forum post',
           variant: 'destructive'
         });
       }
@@ -229,7 +207,6 @@ const Admin = () => {
             <TabsTrigger value="reports">Test Reports</TabsTrigger>
             <TabsTrigger value="blogs">Blog Posts</TabsTrigger>
             <TabsTrigger value="tests">Upcoming Tests</TabsTrigger>
-            <TabsTrigger value="forum">Forum Posts</TabsTrigger>
             <TabsTrigger value="subscriptions">Subscriptions</TabsTrigger>
           </TabsList>
 
@@ -407,43 +384,6 @@ const Admin = () => {
                           <Edit size={16} />
                         </Button>
                         <Button variant="destructive" size="sm" onClick={() => handleDeleteTest(test.id)}>
-                          <Trash2 size={16} />
-                        </Button>
-                      </div>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="forum">
-            <Card className="p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Forum Posts Moderation</h2>
-              </div>
-
-              <div className="space-y-4">
-                {forumPosts.map((post) => (
-                  <Card key={post.id} className="p-4 hover:shadow-lg transition-shadow">
-                    <div className="flex items-center justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-3 mb-2">
-                          <img src={post.authorImage} alt={post.author} className="w-10 h-10 rounded-full" />
-                          <div>
-                            <h3 className="text-lg font-bold text-gray-900">{post.title}</h3>
-                            <p className="text-sm text-gray-600">{post.author}</p>
-                          </div>
-                        </div>
-                        <p className="text-gray-700 line-clamp-2">{post.content}</p>
-                        <div className="flex items-center space-x-4 mt-3 text-sm">
-                          <Badge>{post.category}</Badge>
-                          <span className="text-gray-600">{post.likes} likes</span>
-                          <span className="text-gray-600">{post.replies} replies</span>
-                        </div>
-                      </div>
-                      <div className="flex space-x-2">
-                        <Button variant="destructive" size="sm" onClick={() => handleDeleteForumPost(post.id)}>
                           <Trash2 size={16} />
                         </Button>
                       </div>

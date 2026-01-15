@@ -11,7 +11,7 @@ import { Progress } from '../components/ui/progress';
 import { toast } from '../hooks/use-toast';
 import { 
   communityStats, upcomingTests, testReports, 
-  forumPosts, blogPosts 
+  blogPosts 
 } from '../mockData';
 
 const Dashboard = () => {
@@ -196,10 +196,6 @@ const Dashboard = () => {
                   <span>Votes Cast</span>
                   <span className="text-2xl font-bold">{votedTests.length}</span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span>Forum Posts</span>
-                  <span className="text-2xl font-bold">7</span>
-                </div>
               </div>
               <Button 
                 onClick={handleContribute}
@@ -207,28 +203,6 @@ const Dashboard = () => {
               >
                 Contribute Now
               </Button>
-            </Card>
-
-            {/* Community Activity */}
-            <Card className="p-6">
-              <div className="flex items-center space-x-2 mb-4">
-                <MessageSquare className="text-green-600" size={24} />
-                <h3 className="text-xl font-bold text-gray-900">Latest Discussions</h3>
-              </div>
-              <div className="space-y-3">
-                {forumPosts.slice(0, 4).map((post) => (
-                  <div key={post.id} className="pb-3 border-b last:border-b-0">
-                    <h4 className="font-semibold text-gray-900 text-sm mb-1 line-clamp-1 hover:text-green-600 cursor-pointer">
-                      {post.title}
-                    </h4>
-                    <div className="flex items-center space-x-3 text-xs text-gray-600">
-                      <span>{post.author}</span>
-                      <span>•</span>
-                      <span>{post.replies} replies</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </Card>
 
             {/* Latest Articles */}

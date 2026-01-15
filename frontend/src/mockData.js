@@ -93,53 +93,6 @@ export const upcomingTests = [
   }
 ];
 
-export const forumPosts = [
-  {
-    id: '1',
-    author: 'Priya Sharma',
-    authorImage: 'https://i.pravatar.cc/150?img=1',
-    title: 'Shocked by the honey test results!',
-    content: 'I\'ve been using Brand X honey for years thinking it was pure. The test results opened my eyes. Thank you ChoosePure!',
-    category: 'Test Results',
-    replies: 23,
-    likes: 45,
-    timeAgo: '2 hours ago'
-  },
-  {
-    id: '2',
-    author: 'Rajesh Kumar',
-    authorImage: 'https://i.pravatar.cc/150?img=12',
-    title: 'Which ghee brand should we test next?',
-    content: 'Looking for community input on which ghee brands we should prioritize for testing. Drop your suggestions!',
-    category: 'Voting',
-    replies: 67,
-    likes: 89,
-    timeAgo: '5 hours ago'
-  },
-  {
-    id: '3',
-    author: 'Anjali Patel',
-    authorImage: 'https://i.pravatar.cc/150?img=5',
-    title: 'How to identify fake spices at home?',
-    content: 'While we wait for test results, here are some quick home tests you can do to check spice purity...',
-    category: 'Tips & Tricks',
-    replies: 34,
-    likes: 112,
-    timeAgo: '1 day ago'
-  },
-  {
-    id: '4',
-    author: 'Vikram Reddy',
-    authorImage: 'https://i.pravatar.cc/150?img=13',
-    title: 'Community milestone: 1000 members!',
-    content: 'We\'ve reached 1000 responsible parents! Together we\'re making food transparency a reality.',
-    category: 'Announcements',
-    replies: 156,
-    likes: 892,
-    timeAgo: '2 days ago'
-  }
-];
-
 export const blogPosts = [
   {
     id: '1',

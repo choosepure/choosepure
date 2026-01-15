@@ -8,7 +8,7 @@ from pathlib import Path
 
 # Import routes
 from routes import auth_routes, waitlist_routes, report_routes, voting_routes
-from routes import forum_routes, blog_routes, newsletter_routes, stats_routes, subscription_routes, password_reset_routes, email_routes
+from routes import blog_routes, newsletter_routes, stats_routes, subscription_routes, password_reset_routes, email_routes
 
 # Try to import donation_routes (may not exist in older deployments)
 try:
@@ -46,7 +46,6 @@ api_router.include_router(auth_routes.router)
 api_router.include_router(waitlist_routes.router)
 api_router.include_router(report_routes.router)
 api_router.include_router(voting_routes.router)
-api_router.include_router(forum_routes.router)
 api_router.include_router(blog_routes.router)
 api_router.include_router(newsletter_routes.router)
 api_router.include_router(stats_routes.router)

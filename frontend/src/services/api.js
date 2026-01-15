@@ -70,16 +70,6 @@ export const votingAPI = {
   deleteTest: (id) => api.delete(`/voting/tests/${id}`),
 };
 
-// Forum APIs
-export const forumAPI = {
-  getPosts: (params) => api.get('/forum/posts', { params }),
-  getPost: (id) => api.get(`/forum/posts/${id}`),
-  createPost: (data) => api.post('/forum/posts', data),
-  likePost: (id, data) => api.post(`/forum/posts/${id}/like`, data),
-  replyToPost: (id, data) => api.post(`/forum/posts/${id}/reply`, data),
-  deletePost: (id) => api.delete(`/forum/posts/${id}`),
-};
-
 // Blog APIs
 export const blogAPI = {
   getPosts: (params) => api.get('/blog/posts', { params }),

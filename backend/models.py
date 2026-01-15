@@ -142,44 +142,6 @@ class VoteCreate(BaseModel):
     test_id: str
     user_id: str
 
-# Forum Models
-class ForumReply(BaseModel):
-    user_id: str
-    user_name: str
-    user_image: str
-    content: str
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-
-class ForumPost(BaseModel):
-    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
-    user_id: str
-    author: str
-    author_image: str
-    title: str
-    content: str
-    category: str
-    likes: List[str] = []  # user IDs
-    replies: List[ForumReply] = []
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
-
-    class Config:
-        json_encoders = {ObjectId: str}
-        populate_by_name = True
-
-class ForumPostCreate(BaseModel):
-    user_id: str
-    title: str
-    content: str
-    category: str
-
-class ForumReplyCreate(BaseModel):
-    user_id: str
-    content: str
-
-class ForumLike(BaseModel):
-    user_id: str
-
 # Blog Models
 class BlogPost(BaseModel):
     id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")

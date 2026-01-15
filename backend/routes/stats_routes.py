@@ -19,7 +19,6 @@ async def get_community_stats(db: AsyncIOMotorDatabase = Depends(get_db)):
         total_members = await db.users.count_documents({}) + await db.waitlist.count_documents({})
         tests_completed = await db.test_reports.count_documents({})
         upcoming_tests = await db.upcoming_tests.count_documents({"status": "voting"})
-        active_posts = await db.forum_posts.count_documents({})
         
         # Calculate products analyzed (unique brands * categories)
         pipeline = [
@@ -67,9 +66,6 @@ async def get_user_stats(user_id: str, db: AsyncIOMotorDatabase = Depends(get_db
         votes_result = await db.upcoming_tests.aggregate(votes_pipeline).to_list(1)
         votes_cast = votes_result[0]["total"] if votes_result else 0
         
-        # Count forum posts
-        forum_posts = await db.forum_posts.count_documents({"user_id": user_id})
-        
         # Count contributions (simplified)
         contributions_pipeline = [
             {"$match": {"contributors.user_id": user_id}},
@@ -81,7 +77,6 @@ async def get_user_stats(user_id: str, db: AsyncIOMotorDatabase = Depends(get_db
         return {
             "testsContributed": tests_contributed,
             "votesCast": votes_cast,
-            "forumPosts": forum_posts,
             "contributions": []
         }
     except HTTPException:

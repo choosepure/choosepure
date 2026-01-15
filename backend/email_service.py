@@ -248,7 +248,6 @@ class MailgunEmailService:
                 <ul style="font-size: 16px; margin-bottom: 20px; padding-left: 20px;">
                     <li>Discover ethical and sustainable products</li>
                     <li>Read and write product reviews</li>
-                    <li>Join discussions in our community forum</li>
                     <li>Stay updated with our newsletter</li>
                 </ul>
                 
@@ -282,7 +281,6 @@ class MailgunEmailService:
         With ChoosePure, you can:
         - Discover ethical and sustainable products
         - Read and write product reviews
-        - Join discussions in our community forum
         - Stay updated with our newsletter
         
         If you have any questions, feel free to reach out to our support team.
