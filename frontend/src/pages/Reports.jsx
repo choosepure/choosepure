@@ -65,13 +65,13 @@ const Reports = () => {
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">Test Reports</h1>
-          <p className="text-xl text-gray-600">Transparent, unbiased food testing results from certified labs</p>
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Test Reports</h1>
+          <p className="text-lg sm:text-xl text-gray-600 px-4">Transparent, unbiased food testing results from certified labs</p>
           
           {!isSubscribed && (
-            <div className="mt-6">
-              <Badge className="bg-yellow-600 text-white px-4 py-2">
+            <div className="mt-4 sm:mt-6">
+              <Badge className="bg-yellow-600 text-white px-3 sm:px-4 py-2 text-sm">
                 Subscribe to view detailed purity scores
               </Badge>
             </div>
@@ -79,8 +79,8 @@ const Reports = () => {
         </div>
 
         {/* Search and Filter */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-12">
-          <div className="flex flex-col md:flex-row gap-4">
+        <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 mb-8 sm:mb-12">
+          <div className="flex flex-col gap-4">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
               <Input
@@ -95,7 +95,7 @@ const Reports = () => {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm sm:text-base"
               >
                 {categories.map(cat => (
                   <option key={cat} value={cat}>{cat}</option>

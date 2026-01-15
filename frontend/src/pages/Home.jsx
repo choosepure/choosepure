@@ -48,7 +48,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center">
+      <section className="relative h-[500px] sm:h-[600px] flex items-center">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.pexels.com/photos/4259140/pexels-photo-4259140.jpeg?w=1920&q=80"
@@ -60,16 +60,16 @@ const Home = () => {
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight animate-in slide-in-from-left duration-700">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-in slide-in-from-left duration-700">
               Do you really know what's
               <span className="block mt-2">In your child's food?</span>
             </h1>
-            <p className="text-xl text-white/90 mb-8 animate-in slide-in-from-left duration-700 delay-100">
+            <p className="text-lg sm:text-xl text-white/90 mb-8 animate-in slide-in-from-left duration-700 delay-100">
               Join India's first parent-led community that tests food for purity. Together, we ensure every child eats pure.
             </p>
-            <div className="flex flex-wrap gap-4 items-center">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 items-center">
               <a href="#waitlist">
-                <Button size="lg" className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-6 text-lg animate-in slide-in-from-left duration-700 delay-200">
+                <Button size="lg" className="bg-teal-500 hover:bg-teal-600 text-white px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg animate-in slide-in-from-left duration-700 delay-200 w-full sm:w-auto">
                   JOIN THE WAITLIST
                   <ArrowRight className="ml-2" size={20} />
                 </Button>
@@ -79,6 +79,7 @@ const Home = () => {
                 variant="outline"
                 title="ChoosePure - India's Food Safety Community"
                 description="Join India's first parent-led community that tests food for purity"
+                className="w-full sm:w-auto"
               />
             </div>
           </div>
@@ -86,45 +87,45 @@ const Home = () => {
       </section>
 
       {/* Trust Badges */}
-      <section className="py-8 bg-white border-b">
+      <section className="py-6 sm:py-8 bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-center gap-8">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
             <div className="flex items-center space-x-2">
-              <Shield className="text-green-600" size={24} />
-              <span className="font-semibold text-gray-700">FSSAI Approved</span>
+              <Shield className="text-green-600" size={20} />
+              <span className="font-semibold text-gray-700 text-sm sm:text-base">FSSAI Approved</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Award className="text-green-600" size={24} />
-              <span className="font-semibold text-gray-700">NABL Certified Labs</span>
+              <Award className="text-green-600" size={20} />
+              <span className="font-semibold text-gray-700 text-sm sm:text-base">NABL Certified Labs</span>
             </div>
             <div className="flex items-center space-x-2">
-              <CheckCircle2 className="text-green-600" size={24} />
-              <span className="font-semibold text-gray-700">100% Transparent</span>
+              <CheckCircle2 className="text-green-600" size={20} />
+              <span className="font-semibold text-gray-700 text-sm sm:text-base">100% Transparent</span>
             </div>
             <div className="flex items-center space-x-2">
-              <TrendingUp className="text-green-600" size={24} />
-              <span className="font-semibold text-gray-700">{communityStats.totalMembers}+ Parents</span>
+              <TrendingUp className="text-green-600" size={20} />
+              <span className="font-semibold text-gray-700 text-sm sm:text-base">{communityStats.totalMembers}+ Parents</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Why ChoosePure */}
-      <section className="py-20 bg-gradient-to-b from-green-50 to-white">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-green-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">Why Choosepure?</h2>
-          <div className="w-24 h-1 bg-green-600 mx-auto mb-12"></div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-4">Why Choosepure?</h2>
+          <div className="w-24 h-1 bg-green-600 mx-auto mb-8 sm:mb-12"></div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {features.map((feature, index) => (
-              <Card key={index} className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-none bg-white">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6">
-                  {feature.icon === 'FlaskConical' && <FlaskConical className="text-white" size={32} />}
-                  {feature.icon === 'Users' && <Users className="text-white" size={32} />}
-                  {feature.icon === 'FileCheck' && <FileCheck className="text-white" size={32} />}
+              <Card key={index} className="p-6 sm:p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-none bg-white">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                  {feature.icon === 'FlaskConical' && <FlaskConical className="text-white" size={24} />}
+                  {feature.icon === 'Users' && <Users className="text-white" size={24} />}
+                  {feature.icon === 'FileCheck' && <FileCheck className="text-white" size={24} />}
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">{feature.title}</h3>
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">{feature.description}</p>
               </Card>
             ))}
           </div>
@@ -132,33 +133,33 @@ const Home = () => {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">How it works?</h2>
-          <div className="w-24 h-1 bg-green-600 mx-auto mb-12"></div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-4">How it works?</h2>
+          <div className="w-24 h-1 bg-green-600 mx-auto mb-8 sm:mb-12"></div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {howItWorks.map((step, index) => (
               <div key={index} className="relative">
-                <Card className="p-8 hover:shadow-lg transition-all duration-300 bg-gradient-to-br from-white to-green-50 border-green-100">
-                  <div className="absolute -top-4 -left-4 w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
+                <Card className="p-6 sm:p-8 hover:shadow-lg transition-all duration-300 bg-gradient-to-br from-white to-green-50 border-green-100">
+                  <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-10 h-10 sm:w-12 sm:h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg sm:text-xl">
                     {index + 1}
                   </div>
-                  <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-md">
-                    {step.icon === 'UsersRound' && <UsersRound className="text-green-600" size={32} />}
-                    {step.icon === 'Microscope' && <Microscope className="text-green-600" size={32} />}
-                    {step.icon === 'FileText' && <FileText className="text-green-600" size={32} />}
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-md">
+                    {step.icon === 'UsersRound' && <UsersRound className="text-green-600" size={24} />}
+                    {step.icon === 'Microscope' && <Microscope className="text-green-600" size={24} />}
+                    {step.icon === 'FileText' && <FileText className="text-green-600" size={24} />}
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
-                  <p className="text-gray-600">{step.description}</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
+                  <p className="text-gray-600 text-sm sm:text-base">{step.description}</p>
                 </Card>
               </div>
             ))}
           </div>
           
-          <div className="text-center mt-12">
+          <div className="text-center mt-8 sm:mt-12">
             <Link to="/reports">
-              <Button size="lg" variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
+              <Button size="lg" variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 w-full sm:w-auto">
                 SAMPLE TEST REPORT
               </Button>
             </Link>
@@ -167,29 +168,29 @@ const Home = () => {
       </section>
 
       {/* Power of Community */}
-      <section className="py-20 bg-gradient-to-b from-white to-green-50">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-white to-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">Power of Community</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-12">Power of Community</h2>
           
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {testReports.slice(0, 3).map((report) => (
               <Card key={report.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                <div className="h-48 overflow-hidden">
+                <div className="h-40 sm:h-48 overflow-hidden">
                   <img 
                     src={report.image} 
                     alt={report.productName}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-4 sm:p-6">
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900">{report.brand}</h3>
-                      <p className="text-gray-600">{report.category}</p>
+                      <h3 className="text-lg sm:text-2xl font-bold text-gray-900">{report.brand}</h3>
+                      <p className="text-gray-600 text-sm sm:text-base">{report.category}</p>
                     </div>
                     <div className="text-right">
-                      <div className="text-4xl font-bold text-green-600">{report.purityScore}</div>
-                      <p className="text-sm text-gray-600">Purity Score</p>
+                      <div className="text-2xl sm:text-4xl font-bold text-green-600">{report.purityScore}</div>
+                      <p className="text-xs sm:text-sm text-gray-600">Purity Score</p>
                     </div>
                   </div>
                   <Link to={`/reports/${report.id}`}>
@@ -202,49 +203,49 @@ const Home = () => {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <Card className="inline-block p-6 bg-green-600 text-white">
-              <p className="text-lg italic">"Finally someone's testing food for our kids, not just for brands."</p>
-              <p className="mt-2 font-semibold">- Ritu, Mom of a 7 year old</p>
+          <div className="mt-8 sm:mt-12 text-center">
+            <Card className="inline-block p-4 sm:p-6 bg-green-600 text-white">
+              <p className="text-base sm:text-lg italic">"Finally someone's testing food for our kids, not just for brands."</p>
+              <p className="mt-2 font-semibold text-sm sm:text-base">- Ritu, Mom of a 7 year old</p>
             </Card>
           </div>
         </div>
       </section>
 
       {/* Why Join Us - Food Dangers */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">Why Join Us?</h2>
-          <p className="text-center text-gray-600 mb-12 text-lg">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-4">Why Join Us?</h2>
+          <p className="text-center text-gray-600 mb-8 sm:mb-12 text-base sm:text-lg">
             Because the truth about our food is alarming - and we deserve to know...
           </p>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
             {foodDangers.map((danger, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300">
-                <div className="relative h-64">
+                <div className="relative h-48 sm:h-64">
                   <img 
                     src={danger.image} 
                     alt={danger.title}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-4 right-4 bg-yellow-500 text-white p-2 rounded-full">
-                    <AlertTriangle size={24} />
+                    <AlertTriangle size={20} />
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{danger.title}</h3>
+                <div className="p-4 sm:p-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">{danger.title}</h3>
                   <Badge variant="destructive" className="mb-4">{danger.subtitle}</Badge>
-                  <p className="text-gray-600 leading-relaxed">{danger.description}</p>
+                  <p className="text-gray-600 leading-relaxed text-sm sm:text-base">{danger.description}</p>
                 </div>
               </Card>
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <Card className="inline-block p-8 bg-gradient-to-r from-green-50 to-teal-50 border-green-200">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">What's Really in Your Food?</h3>
-              <p className="text-gray-700 max-w-2xl">
+          <div className="mt-8 sm:mt-12 text-center">
+            <Card className="inline-block p-6 sm:p-8 bg-gradient-to-r from-green-50 to-teal-50 border-green-200 max-w-4xl mx-auto">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">What's Really in Your Food?</h3>
+              <p className="text-gray-700 text-sm sm:text-base">
                 And there's no easy way for parents like us to find out which brands are safe. 
                 That's why ChoosePure exists — to make independent testing and real transparency 
                 accessible to every family.
@@ -255,37 +256,37 @@ const Home = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-b from-green-50 to-white">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-green-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">What do members say?</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-12">What do members say?</h2>
           
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {testimonials.slice(0, 3).map((testimonial) => (
-              <Card key={testimonial.id} className="p-6 hover:shadow-lg transition-all duration-300">
+              <Card key={testimonial.id} className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300">
                 <div className="flex items-center mb-4">
                   <img 
                     src={testimonial.image} 
                     alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover"
                   />
                   <div className="ml-3">
-                    <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-600">{testimonial.role}</p>
+                    <h4 className="font-bold text-gray-900 text-sm sm:text-base">{testimonial.name}</h4>
+                    <p className="text-xs sm:text-sm text-gray-600">{testimonial.role}</p>
                   </div>
                 </div>
                 <div className="flex mb-3">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
+                    <Star key={i} size={14} className="fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <p className="text-gray-700 italic">"{testimonial.quote}"</p>
+                <p className="text-gray-700 italic text-sm sm:text-base">"{testimonial.quote}"</p>
               </Card>
             ))}
           </div>
           
-          <div className="text-center mt-8">
+          <div className="text-center mt-6 sm:mt-8">
             <Link to="/reports">
-              <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
+              <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 w-full sm:w-auto">
                 View Sample Reports
               </Button>
             </Link>
@@ -294,54 +295,54 @@ const Home = () => {
       </section>
 
       {/* Community Stats */}
-      <section className="py-12 bg-green-600 text-white">
+      <section className="py-8 sm:py-12 bg-green-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 text-center">
             <div>
-              <div className="text-5xl font-bold mb-2">{communityStats.totalMembers}+</div>
-              <div className="text-green-100">Responsible Parents</div>
+              <div className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-2">{communityStats.totalMembers}+</div>
+              <div className="text-green-100 text-xs sm:text-sm lg:text-base">Responsible Parents</div>
             </div>
             <div>
-              <div className="text-5xl font-bold mb-2">{communityStats.testsCompleted}</div>
-              <div className="text-green-100">Tests Completed</div>
+              <div className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-2">{communityStats.testsCompleted}</div>
+              <div className="text-green-100 text-xs sm:text-sm lg:text-base">Tests Completed</div>
             </div>
             <div>
-              <div className="text-5xl font-bold mb-2">{communityStats.productsAnalyzed}</div>
-              <div className="text-green-100">Products Analyzed</div>
+              <div className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-2">{communityStats.productsAnalyzed}</div>
+              <div className="text-green-100 text-xs sm:text-sm lg:text-base">Products Analyzed</div>
             </div>
             <div>
-              <div className="text-5xl font-bold mb-2">₹{(communityStats.fundsPooled / 1000).toFixed(0)}K</div>
-              <div className="text-green-100">Funds Pooled</div>
+              <div className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-2">₹{(communityStats.fundsPooled / 1000).toFixed(0)}K</div>
+              <div className="text-green-100 text-xs sm:text-sm lg:text-base">Funds Pooled</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Waitlist Form */}
-      <section id="waitlist" className="py-20 bg-gradient-to-b from-white to-green-50">
+      <section id="waitlist" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-white to-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
                 Join 1,000+ Responsible Parents
               </h2>
-              <p className="text-lg text-gray-700 mb-6">
+              <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6">
                 This isn't just a waitlist -- it's a national movement for truth in food.
               </p>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
                 Together, we crowd-fund certified tests on everyday products, publish transparent 
                 reports, and demand honesty from the food industry.
               </p>
-              <p className="text-xl font-semibold text-green-600">No sponsors. No bias.</p>
+              <p className="text-lg sm:text-xl font-semibold text-green-600">No sponsors. No bias.</p>
             </div>
             
-            <Card className="p-8 shadow-xl">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Join the Waitlist Now</h3>
-              <p className="text-gray-600 mb-6">Early access + exclusive benefits</p>
+            <Card className="p-6 sm:p-8 shadow-xl">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Join the Waitlist Now</h3>
+              <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">Early access + exclusive benefits</p>
               
               <form onSubmit={handleWaitlistSubmit} className="space-y-4">
                 <div>
-                  <Label htmlFor="firstName">First Name</Label>
+                  <Label htmlFor="firstName" className="text-sm sm:text-base">First Name</Label>
                   <Input
                     id="firstName"
                     value={waitlistForm.firstName}
@@ -352,7 +353,7 @@ const Home = () => {
                 </div>
                 
                 <div>
-                  <Label htmlFor="mobile">Mobile No.*</Label>
+                  <Label htmlFor="mobile" className="text-sm sm:text-base">Mobile No.*</Label>
                   <Input
                     id="mobile"
                     type="tel"
@@ -364,7 +365,7 @@ const Home = () => {
                 </div>
                 
                 <div>
-                  <Label htmlFor="email">Email*</Label>
+                  <Label htmlFor="email" className="text-sm sm:text-base">Email*</Label>
                   <Input
                     id="email"
                     type="email"
@@ -376,7 +377,7 @@ const Home = () => {
                 </div>
                 
                 <div>
-                  <Label htmlFor="pincode">Pincode</Label>
+                  <Label htmlFor="pincode" className="text-sm sm:text-base">Pincode</Label>
                   <Input
                     id="pincode"
                     value={waitlistForm.pincode}
@@ -385,12 +386,12 @@ const Home = () => {
                   />
                 </div>
                 
-                <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 h-12">
+                <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 h-12 text-sm sm:text-base">
                   Submit
                 </Button>
               </form>
               
-              <p className="text-center text-sm text-gray-600 mt-4">
+              <p className="text-center text-xs sm:text-sm text-gray-600 mt-4">
                 Act Fast! Join the Growing Community Demanding Pure, Safe Food Today!
               </p>
             </Card>
