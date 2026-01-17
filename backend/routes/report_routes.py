@@ -51,13 +51,25 @@ async def purchase_report(
     Create Razorpay order for report purchase
     """
     try:
+        logger.info(f"Purchase report request received for {request.email}")
+        
+        # Check if Razorpay service is initialized
+        if not razorpay_service.client:
+            logger.error("Razorpay service not initialized - missing credentials")
+            raise HTTPException(
+                status_code=500, 
+                detail="Payment service not configured. Please contact support."
+            )
+        
         # Generate our internal order ID
         order_id = f"CP{uuid.uuid4().hex[:8].upper()}"
+        logger.info(f"Generated order ID: {order_id}")
         
         # Calculate delivery time (24 hours from now)
         delivery_time = (datetime.now() + timedelta(hours=24)).strftime("%Y-%m-%d %H:%M")
         
         # Create Razorpay order
+        logger.info(f"Creating Razorpay order for amount: ₹{request.amount}")
         razorpay_order = razorpay_service.create_order(
             amount=request.amount,
             currency="INR",
@@ -71,8 +83,15 @@ async def purchase_report(
             }
         )
         
+        logger.info(f"Razorpay order response: success={razorpay_order['success']}")
+        
         if not razorpay_order["success"]:
-            raise HTTPException(status_code=500, detail=f"Failed to create payment order: {razorpay_order.get('error')}")
+            error_msg = razorpay_order.get('error', 'Unknown error')
+            logger.error(f"Razorpay order creation failed: {error_msg}")
+            raise HTTPException(
+                status_code=500, 
+                detail=f"Failed to create payment order: {error_msg}"
+            )
         
         # Store order details (in production, save to database)
         order_data = {
@@ -87,7 +106,7 @@ async def purchase_report(
         }
         report_orders[order_id] = order_data
         
-        logger.info(f"Report purchase order created: {order_id} -> {razorpay_order['order_id']}")
+        logger.info(f"Report purchase order created successfully: {order_id} -> {razorpay_order['order_id']}")
         
         return PaymentResponse(
             success=True,
@@ -99,9 +118,12 @@ async def purchase_report(
             deliveryTime=delivery_time
         )
         
+    except HTTPException:
+        # Re-raise HTTP exceptions as-is
+        raise
     except Exception as e:
-        logger.error(f"Error creating report purchase order: {str(e)}")
-        raise HTTPException(status_code=500, detail="Failed to create payment order")
+        logger.error(f"Unexpected error creating report purchase order: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Failed to create payment order - please try again")
 
 @router.post("/verify-report-payment")
 async def verify_report_payment(
