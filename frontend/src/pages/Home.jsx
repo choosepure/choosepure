@@ -158,7 +158,7 @@ const Home = () => {
           </div>
           
           <div className="text-center mt-8 sm:mt-12">
-            <Link to="/reports">
+            <Link to="/samplereport">
               <Button size="lg" variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 w-full sm:w-auto">
                 SAMPLE TEST REPORT
               </Button>
@@ -285,9 +285,9 @@ const Home = () => {
           </div>
           
           <div className="text-center mt-6 sm:mt-8">
-            <Link to="/reports">
+            <Link to="/samplereport">
               <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 w-full sm:w-auto">
-                View Sample Reports
+                View Sample Report
               </Button>
             </Link>
           </div>

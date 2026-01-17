@@ -119,4 +119,21 @@ export const passwordResetAPI = {
   resetPassword: (email, reset_token, new_password) => api.post('/password-reset/reset-password', { email, reset_token, new_password }),
 };
 
+// Report Purchase APIs
+export const reportPurchaseAPI = {
+  purchaseReport: (data) => api.post('/purchase-report', data),
+  verifyReportPayment: (data) => api.post('/verify-report-payment', data),
+  getOrderStatus: (orderId) => api.get(`/order/${orderId}`),
+};
+
+// Subscription Payment APIs
+export const subscriptionPaymentAPI = {
+  getPlans: () => api.get('/subscription-plans'),
+  getPlan: (planId) => api.get(`/subscription-plans/${planId}`),
+  createSubscription: (data) => api.post('/create-subscription', data),
+  verifySubscriptionPayment: (data) => api.post('/verify-subscription-payment', data),
+  getSubscriptionStatus: (subscriptionId) => api.get(`/subscription/${subscriptionId}`),
+  cancelSubscription: (subscriptionId) => api.post(`/cancel-subscription/${subscriptionId}`),
+};
+
 export default api;

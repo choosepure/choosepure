@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Check, Loader2 } from 'lucide-react';
+import { Check, Loader2, CreditCard } from 'lucide-react';
 import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
-import { subscriptionAPI } from '../services/api';
+import { subscriptionAPI, subscriptionPaymentAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { toast } from '../hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
+import SubscriptionModal from '../components/SubscriptionModal';
 
 const Pricing = () => {
   const { user, isAuthenticated } = useAuth();
@@ -15,6 +16,7 @@ const Pricing = () => {
   const [loading, setLoading] = useState(true);
   const [subscribing, setSubscribing] = useState(null);
   const [userSubscription, setUserSubscription] = useState(null);
+  const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
 
   useEffect(() => {
     loadTiers();
@@ -25,8 +27,29 @@ const Pricing = () => {
 
   const loadTiers = async () => {
     try {
-      const response = await subscriptionAPI.getTiers();
-      setTiers(response.data.tiers || []);
+      // Load both old and new subscription plans
+      const [oldTiersResponse, newPlansResponse] = await Promise.all([
+        subscriptionAPI.getTiers().catch(() => ({ data: { tiers: [] } })),
+        subscriptionPaymentAPI.getPlans().catch(() => ({ data: { plans: [] } }))
+      ]);
+      
+      // Combine old tiers and new plans
+      const oldTiers = oldTiersResponse.data.tiers || [];
+      const newPlans = newPlansResponse.data.plans || [];
+      
+      // Convert new plans to tier format for compatibility
+      const convertedPlans = newPlans.map(plan => ({
+        id: plan.id,
+        name: plan.name,
+        description: plan.description,
+        price: plan.amount,
+        duration_days: plan.interval === 'yearly' ? 365 : 30,
+        features: plan.features,
+        popular: plan.popular,
+        isNewPlan: true
+      }));
+      
+      setTiers([...oldTiers, ...convertedPlans]);
     } catch (error) {
       toast({
         title: 'Error',
@@ -50,6 +73,13 @@ const Pricing = () => {
   };
 
   const handleSubscribe = async (tier) => {
+    // Use new subscription modal for new plans
+    if (tier.isNewPlan) {
+      setShowSubscriptionModal(true);
+      return;
+    }
+
+    // Legacy subscription handling for old tiers
     if (!isAuthenticated) {
       toast({
         title: 'Login Required',
@@ -139,9 +169,19 @@ const Pricing = () => {
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
             Choose Your Plan
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
             Get access to detailed purity scores, test reports, and premium content
           </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button 
+              onClick={() => setShowSubscriptionModal(true)}
+              className="bg-green-600 hover:bg-green-700 px-8 py-3"
+            >
+              <CreditCard className="mr-2" size={20} />
+              View All Subscription Plans
+            </Button>
+          </div>
           
           {userSubscription && (
             <div className="mt-6">
@@ -154,12 +194,12 @@ const Pricing = () => {
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {tiers.map((tier, index) => (
+          {tiers.slice(0, 3).map((tier, index) => (
             <Card 
               key={tier.id} 
-              className={`p-8 ${index === 1 ? 'border-4 border-green-600 shadow-2xl scale-105' : 'border-2'} hover:shadow-xl transition-all`}
+              className={`p-8 ${tier.popular || index === 1 ? 'border-4 border-green-600 shadow-2xl scale-105' : 'border-2'} hover:shadow-xl transition-all`}
             >
-              {index === 1 && (
+              {(tier.popular || index === 1) && (
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   <Badge className="bg-green-600 text-white px-4 py-1">Most Popular</Badge>
                 </div>
@@ -168,9 +208,12 @@ const Pricing = () => {
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">{tier.name}</h3>
                 <div className="flex items-baseline justify-center mb-2">
-                  <span className="text-5xl font-bold text-green-600">₹{tier.price}</span>
+                  <span className="text-5xl font-bold text-green-600">₹{tier.price || tier.amount}</span>
                 </div>
-                <p className="text-sm text-gray-600">{tier.duration_days} days access</p>
+                <p className="text-sm text-gray-600">
+                  {tier.duration_days ? `${tier.duration_days} days access` : 
+                   tier.interval ? `per ${tier.interval}` : 'subscription'}
+                </p>
               </div>
 
               <p className="text-gray-600 text-center mb-6">{tier.description}</p>
@@ -187,7 +230,7 @@ const Pricing = () => {
               <Button
                 onClick={() => handleSubscribe(tier)}
                 disabled={subscribing === tier.id || (userSubscription && userSubscription.tier_id === tier.id)}
-                className={`w-full ${index === 1 ? 'bg-green-600 hover:bg-green-700' : ''}`}
+                className={`w-full ${tier.popular || index === 1 ? 'bg-green-600 hover:bg-green-700' : ''}`}
               >
                 {subscribing === tier.id ? (
                   <>
@@ -196,6 +239,8 @@ const Pricing = () => {
                   </>
                 ) : userSubscription && userSubscription.tier_id === tier.id ? (
                   'Current Plan'
+                ) : tier.isNewPlan ? (
+                  'Choose Plan'
                 ) : (
                   'Subscribe Now'
                 )}
@@ -228,6 +273,11 @@ const Pricing = () => {
           </div>
         </div>
       </div>
+
+      {/* Subscription Modal */}
+      {showSubscriptionModal && (
+        <SubscriptionModal onClose={() => setShowSubscriptionModal(false)} />
+      )}
     </div>
   );
 };
