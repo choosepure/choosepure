@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const PrivacyPolicy = () => {
   return (
@@ -180,7 +181,15 @@ const PrivacyPolicy = () => {
                   </a>
                 </p>
               </div>
-            </section>
+            <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mt-8">
+              <p className="text-blue-800 font-medium">
+                📋 Please also review our{' '}
+                <Link to="/terms-conditions" className="text-blue-600 hover:text-blue-700 underline">
+                  Terms & Conditions
+                </Link>{' '}
+                for complete information about using ChoosePure services.
+              </p>
+            </div>   </section>
           </div>
         </div>
       </div>
