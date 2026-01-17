@@ -187,6 +187,10 @@ const PrivacyPolicy = () => {
                 <Link to="/terms-conditions" className="text-blue-600 hover:text-blue-700 underline">
                   Terms & Conditions
                 </Link>{' '}
+                and{' '}
+                <Link to="/refund-policy" className="text-blue-600 hover:text-blue-700 underline">
+                  Refund Policy
+                </Link>{' '}
                 for complete information about using ChoosePure services.
               </p>
             </div>   </section>

@@ -104,7 +104,11 @@ const TermsConditions = () => {
               <ul className="list-disc ml-6 text-gray-700 space-y-2">
                 <li>Contributions made towards testing are voluntary and community-driven.</li>
                 <li>Fees paid are used to cover testing, operations, and platform costs.</li>
-                <li>Refunds, if any, are subject to ChoosePure's refund policy (if applicable).</li>
+                <li>Refunds, if any, are subject to ChoosePure's{' '}
+                  <Link to="/refund-policy" className="text-green-600 hover:text-green-700 underline font-medium">
+                    Refund Policy
+                  </Link>.
+                </li>
               </ul>
             </section>
 
@@ -195,7 +199,11 @@ const TermsConditions = () => {
                 <Link to="/privacy-policy" className="font-medium underline hover:text-green-900">
                   Privacy Policy
                 </Link>
-                {' '}to understand how we protect your data.
+                {' '}and{' '}
+                <Link to="/refund-policy" className="font-medium underline hover:text-green-900">
+                  Refund Policy
+                </Link>
+                {' '}for complete information.
               </p>
             </div>
           </div>
