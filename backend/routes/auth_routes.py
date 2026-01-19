@@ -42,13 +42,21 @@ async def register(user_data: UserCreate, db: AsyncIOMotorDatabase = Depends(get
         user_id = str(result.inserted_id)
         
         # Send welcome email
+        logger.info(f"Attempting to send welcome email to {user.email}")
         email_result = await email_service.send_welcome_email(
             to_email=user.email,
             user_name=user.name
         )
+        logger.info(f"Welcome email result: {email_result}")
+        
         if not email_result["success"]:
             logger.error(f"Failed to send welcome email: {email_result.get('message')}")
+            logger.error(f"Email service enabled: {email_service.enabled}")
+            logger.error(f"Email service domain: {email_service.domain}")
             # Don't fail registration if email fails
+        else:
+            logger.info(f"Welcome email sent successfully to {user.email}")
+            logger.info(f"Message ID: {email_result.get('message_id')}")
         
         # Create access token
         access_token = create_access_token(data={"sub": user_id, "email": user.email})
