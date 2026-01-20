@@ -373,5 +373,123 @@ class MailgunEmailService:
             tags=['newsletter', 'confirmation']
         )
 
+    async def send_waitlist_confirmation_email(self, to_email: str, first_name: str) -> Dict[str, Any]:
+        """Send waitlist confirmation email"""
+        subject = "Welcome to ChoosePure Waitlist!"
+        
+        html_content = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Welcome to ChoosePure Waitlist</title>
+        </head>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <div style="background: linear-gradient(135deg, #10b981, #059669); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+                <h1 style="color: white; margin: 0; font-size: 28px;">Welcome to ChoosePure!</h1>
+                <p style="color: white; margin: 10px 0 0 0; opacity: 0.9;">You're on the waitlist!</p>
+            </div>
+            
+            <div style="background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; border: 1px solid #ddd;">
+                <p style="font-size: 16px; margin-bottom: 20px;">
+                    Hello {first_name}!
+                </p>
+                
+                <p style="font-size: 16px; margin-bottom: 20px;">
+                    Thank you for joining the ChoosePure waitlist! We're excited to have you as part of India's first parent-led community for food safety testing.
+                </p>
+                
+                <div style="background: #ecfdf5; border: 2px solid #10b981; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <h3 style="color: #065f46; margin: 0 0 15px 0;">🎉 What's Next?</h3>
+                    <ul style="color: #047857; margin: 0; padding-left: 20px;">
+                        <li>You'll be among the first to know when we launch new features</li>
+                        <li>Get early access to food testing reports</li>
+                        <li>Receive updates on community-driven testing initiatives</li>
+                        <li>Join exclusive discussions about food safety and purity</li>
+                    </ul>
+                </div>
+                
+                <p style="font-size: 16px; margin-bottom: 20px;">
+                    <strong>Our Mission:</strong> Together, we ensure every child eats pure. We test food products through FSSAI-accredited laboratories and share transparent reports with our community.
+                </p>
+                
+                <div style="background: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 16px; margin: 20px 0;">
+                    <h3 style="color: #0c4a6e; margin: 0 0 10px 0;">📊 Why ChoosePure?</h3>
+                    <ul style="color: #0c4a6e; margin: 0; padding-left: 20px;">
+                        <li>FSSAI-accredited laboratory testing</li>
+                        <li>Transparent, unbiased reports</li>
+                        <li>Community-driven product selection</li>
+                        <li>Focus on children's food safety</li>
+                    </ul>
+                </div>
+                
+                <p style="font-size: 14px; color: #666; margin-bottom: 20px;">
+                    We'll keep you updated on our progress and notify you as soon as new features become available. In the meantime, feel free to explore our website and learn more about our mission.
+                </p>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <a href="https://choosepure.in" style="background: #10b981; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                        Visit ChoosePure
+                    </a>
+                </div>
+                
+                <p style="font-size: 14px; color: #666; margin-bottom: 20px;">
+                    Have questions? Reply to this email or contact us at{' '}
+                    <a href="mailto:support@choosepure.in" style="color: #10b981;">support@choosepure.in</a>
+                </p>
+                
+                <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
+                
+                <p style="font-size: 12px; color: #999; text-align: center;">
+                    Thank you for joining the movement for safer food!<br>
+                    ChoosePure - India's First Parent-Led Food Safety Community
+                </p>
+            </div>
+        </body>
+        </html>
+        """
+        
+        text_content = f"""
+        Welcome to ChoosePure Waitlist!
+        
+        Hello {first_name}!
+        
+        Thank you for joining the ChoosePure waitlist! We're excited to have you as part of India's first parent-led community for food safety testing.
+        
+        What's Next?
+        - You'll be among the first to know when we launch new features
+        - Get early access to food testing reports
+        - Receive updates on community-driven testing initiatives
+        - Join exclusive discussions about food safety and purity
+        
+        Our Mission: Together, we ensure every child eats pure. We test food products through FSSAI-accredited laboratories and share transparent reports with our community.
+        
+        Why ChoosePure?
+        - FSSAI-accredited laboratory testing
+        - Transparent, unbiased reports
+        - Community-driven product selection
+        - Focus on children's food safety
+        
+        We'll keep you updated on our progress and notify you as soon as new features become available.
+        
+        Visit us at: https://choosepure.in
+        
+        Have questions? Contact us at support@choosepure.in
+        
+        Thank you for joining the movement for safer food!
+        
+        Best regards,
+        The ChoosePure Team
+        """
+        
+        return await self.send_email(
+            to_email=to_email,
+            subject=subject,
+            html_content=html_content,
+            text_content=text_content,
+            tags=['waitlist', 'confirmation']
+        )
+
 # Global email service instance
 email_service = MailgunEmailService()
