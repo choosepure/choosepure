@@ -51,8 +51,8 @@ const Home = () => {
       <section className="relative h-[500px] sm:h-[600px] flex items-center pt-36 sm:pt-44">
         <div className="absolute inset-0 z-0">
           <img
-            src="/hero-image.jpg"
-            alt="Mother and child cooking together in kitchen"
+            src="https://imageschoosepure.s3.ap-south-1.amazonaws.com/images/mother-daughter-preparing-salad-cooking-kitchen.jpg"
+            alt="Mother and daughter preparing salad together in kitchen"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-green-900/90 via-green-800/80 to-transparent"></div>
