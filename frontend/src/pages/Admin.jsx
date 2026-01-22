@@ -140,7 +140,7 @@ const Admin = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-40 sm:pt-48 pb-12 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-20 sm:pt-24 pb-12 flex items-center justify-center">
         <Card className="p-8 max-w-md text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Admin Access Required</h2>
           <p className="text-gray-600 mb-6">Please login to access the admin panel.</p>
@@ -155,7 +155,7 @@ const Admin = () => {
   // Check if user is admin
   if (!user?.isAdmin) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-40 sm:pt-48 pb-12 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-20 sm:pt-24 pb-12 flex items-center justify-center">
         <Card className="p-8 max-w-md text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Access Denied</h2>
           <p className="text-gray-600 mb-6">You do not have permission to access the admin panel. Only administrators can access this area.</p>
@@ -169,14 +169,14 @@ const Admin = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-40 sm:pt-48 pb-12 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-20 sm:pt-24 pb-12 flex items-center justify-center">
         <div className="text-xl text-gray-600">Loading admin panel...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-40 sm:pt-48 pb-12">
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-20 sm:pt-24 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <h1 className="text-5xl font-bold text-gray-900 mb-4">Admin Panel</h1>

@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="mb-4">
               <img 
                 src="/logo.png" 
-                alt="ChoosePure" 
+                alt="ChoosePure - Healthier Life" 
                 className="h-24 sm:h-32 w-auto brightness-0 invert"
               />
             </div>

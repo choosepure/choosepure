@@ -48,7 +48,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[500px] sm:h-[600px] flex items-center pt-36 sm:pt-44">
+      <section className="relative h-[500px] sm:h-[600px] flex items-center pt-20 sm:pt-24">
         <div className="absolute inset-0 z-0">
           <img
             src="https://imageschoosepure.s3.ap-south-1.amazonaws.com/images/mother-daughter-preparing-salad-cooking-kitchen.jpg"
