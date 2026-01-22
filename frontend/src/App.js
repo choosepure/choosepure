@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import { Toaster } from "./components/ui/toaster";
 import Home from "./pages/Home";
 import Reports from "./pages/Reports";
@@ -22,6 +23,7 @@ function App() {
     <AuthProvider>
       <div className="App">
         <BrowserRouter>
+          <ScrollToTop />
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
