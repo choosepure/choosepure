@@ -1,17 +1,26 @@
-from fastapi import APIRouter, HTTPException, BackgroundTasks, Request
+from fastapi import APIRouter, HTTPException, BackgroundTasks, Request, Depends
 from pydantic import BaseModel, EmailStr
-from typing import Optional
+from typing import Optional, List
 import uuid
 from datetime import datetime, timedelta
 import logging
 import json
+from motor.motor_asyncio import AsyncIOMotorClient
+import os
+from bson import ObjectId
 
 # Import email service and razorpay service
 from email_service import email_service
 from services.razorpay_service import razorpay_service
+from models import TestReport, TestReportCreate, TestParameter
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
+
+# MongoDB connection
+mongo_url = os.environ['MONGO_URL']
+client = AsyncIOMotorClient(mongo_url)
+db = client[os.environ['DB_NAME']]
 
 class ReportPurchaseRequest(BaseModel):
     firstName: str
@@ -41,6 +50,244 @@ class PaymentVerificationRequest(BaseModel):
 
 # In-memory storage for demo (use database in production)
 report_orders = {}
+
+# Test Report CRUD Operations
+@router.get("/reports")
+async def get_all_reports(skip: int = 0, limit: int = 100):
+    """
+    Get all test reports with pagination
+    """
+    try:
+        cursor = db.test_reports.find().skip(skip).limit(limit).sort("created_at", -1)
+        reports = []
+        
+        async for report in cursor:
+            # Convert ObjectId to string and adjust field names for frontend compatibility
+            report_data = {
+                "id": str(report["_id"]),
+                "productName": report["product_name"],
+                "brand": report["brand"],
+                "category": report["category"],
+                "purityScore": report["purity_score"],
+                "testDate": report["test_date"],
+                "testedBy": report["tested_by"],
+                "image": report["image"],
+                "parameters": report["parameters"],
+                "summary": report["summary"],
+                "created_at": report["created_at"]
+            }
+            reports.append(report_data)
+        
+        total_count = await db.test_reports.count_documents({})
+        
+        return {
+            "success": True,
+            "data": {
+                "reports": reports,
+                "total": total_count,
+                "skip": skip,
+                "limit": limit
+            }
+        }
+        
+    except Exception as e:
+        logger.error(f"Error fetching reports: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to fetch reports")
+
+@router.get("/reports/{report_id}")
+async def get_report_by_id(report_id: str):
+    """
+    Get a specific test report by ID
+    """
+    try:
+        if not ObjectId.is_valid(report_id):
+            raise HTTPException(status_code=400, detail="Invalid report ID")
+        
+        report = await db.test_reports.find_one({"_id": ObjectId(report_id)})
+        
+        if not report:
+            raise HTTPException(status_code=404, detail="Report not found")
+        
+        # Convert ObjectId to string and adjust field names for frontend compatibility
+        report_data = {
+            "id": str(report["_id"]),
+            "productName": report["product_name"],
+            "brand": report["brand"],
+            "category": report["category"],
+            "purityScore": report["purity_score"],
+            "testDate": report["test_date"],
+            "testedBy": report["tested_by"],
+            "image": report["image"],
+            "parameters": report["parameters"],
+            "summary": report["summary"],
+            "created_at": report["created_at"]
+        }
+        
+        return {
+            "success": True,
+            "data": report_data
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error fetching report {report_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to fetch report")
+
+@router.post("/reports")
+async def create_report(report_data: TestReportCreate):
+    """
+    Create a new test report
+    """
+    try:
+        # Create the report document
+        report_doc = {
+            "product_name": report_data.product_name,
+            "brand": report_data.brand,
+            "category": report_data.category,
+            "purity_score": report_data.purity_score,
+            "test_date": report_data.test_date,
+            "tested_by": report_data.tested_by,
+            "image": report_data.image,
+            "parameters": [param.dict() for param in report_data.parameters],
+            "summary": report_data.summary,
+            "created_at": datetime.utcnow()
+        }
+        
+        # Insert into database
+        result = await db.test_reports.insert_one(report_doc)
+        
+        # Return the created report
+        created_report = await db.test_reports.find_one({"_id": result.inserted_id})
+        
+        report_response = {
+            "id": str(created_report["_id"]),
+            "productName": created_report["product_name"],
+            "brand": created_report["brand"],
+            "category": created_report["category"],
+            "purityScore": created_report["purity_score"],
+            "testDate": created_report["test_date"],
+            "testedBy": created_report["tested_by"],
+            "image": created_report["image"],
+            "parameters": created_report["parameters"],
+            "summary": created_report["summary"],
+            "created_at": created_report["created_at"]
+        }
+        
+        logger.info(f"Test report created successfully: {result.inserted_id}")
+        
+        return {
+            "success": True,
+            "message": "Test report created successfully",
+            "data": report_response
+        }
+        
+    except Exception as e:
+        logger.error(f"Error creating report: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to create report")
+
+@router.put("/reports/{report_id}")
+async def update_report(report_id: str, report_data: TestReportCreate):
+    """
+    Update an existing test report
+    """
+    try:
+        if not ObjectId.is_valid(report_id):
+            raise HTTPException(status_code=400, detail="Invalid report ID")
+        
+        # Check if report exists
+        existing_report = await db.test_reports.find_one({"_id": ObjectId(report_id)})
+        if not existing_report:
+            raise HTTPException(status_code=404, detail="Report not found")
+        
+        # Update the report document
+        update_doc = {
+            "product_name": report_data.product_name,
+            "brand": report_data.brand,
+            "category": report_data.category,
+            "purity_score": report_data.purity_score,
+            "test_date": report_data.test_date,
+            "tested_by": report_data.tested_by,
+            "image": report_data.image,
+            "parameters": [param.dict() for param in report_data.parameters],
+            "summary": report_data.summary,
+            "updated_at": datetime.utcnow()
+        }
+        
+        # Update in database
+        result = await db.test_reports.update_one(
+            {"_id": ObjectId(report_id)},
+            {"$set": update_doc}
+        )
+        
+        if result.modified_count == 0:
+            raise HTTPException(status_code=400, detail="No changes made to report")
+        
+        # Return the updated report
+        updated_report = await db.test_reports.find_one({"_id": ObjectId(report_id)})
+        
+        report_response = {
+            "id": str(updated_report["_id"]),
+            "productName": updated_report["product_name"],
+            "brand": updated_report["brand"],
+            "category": updated_report["category"],
+            "purityScore": updated_report["purity_score"],
+            "testDate": updated_report["test_date"],
+            "testedBy": updated_report["tested_by"],
+            "image": updated_report["image"],
+            "parameters": updated_report["parameters"],
+            "summary": updated_report["summary"],
+            "created_at": updated_report["created_at"]
+        }
+        
+        logger.info(f"Test report updated successfully: {report_id}")
+        
+        return {
+            "success": True,
+            "message": "Test report updated successfully",
+            "data": report_response
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error updating report {report_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to update report")
+
+@router.delete("/reports/{report_id}")
+async def delete_report(report_id: str):
+    """
+    Delete a test report
+    """
+    try:
+        if not ObjectId.is_valid(report_id):
+            raise HTTPException(status_code=400, detail="Invalid report ID")
+        
+        # Check if report exists
+        existing_report = await db.test_reports.find_one({"_id": ObjectId(report_id)})
+        if not existing_report:
+            raise HTTPException(status_code=404, detail="Report not found")
+        
+        # Delete the report
+        result = await db.test_reports.delete_one({"_id": ObjectId(report_id)})
+        
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=400, detail="Failed to delete report")
+        
+        logger.info(f"Test report deleted successfully: {report_id}")
+        
+        return {
+            "success": True,
+            "message": "Test report deleted successfully"
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error deleting report {report_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to delete report")
+
+# Report Purchase functionality (existing code)
 
 @router.post("/purchase-report", response_model=PaymentResponse)
 async def purchase_report(
