@@ -76,10 +76,10 @@ const Home = () => {
               </a>
               <ShareButton 
                 size="lg"
-                variant="outline"
+                variant="secondary"
                 title="ChoosePure - India's Food Safety Community"
                 description="Join India's first parent-led community that tests food for purity"
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto bg-white/90 hover:bg-white text-gray-900 border-white/30 backdrop-blur-sm shadow-lg"
               />
             </div>
           </div>

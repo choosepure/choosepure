@@ -9,7 +9,8 @@ const ShareButton = ({
   title = 'ChoosePure - Food Safety Testing',
   description = 'Join India\'s first parent-led community that tests food for purity',
   size = 'default',
-  variant = 'outline'
+  variant = 'outline',
+  className = ''
 }) => {
   const [showShareMenu, setShowShareMenu] = useState(false);
 
@@ -66,7 +67,7 @@ const ShareButton = ({
         variant={variant}
         size={size}
         onClick={handleNativeShare}
-        className="gap-2"
+        className={`gap-2 ${className}`}
       >
         <Share2 size={18} />
         Share
