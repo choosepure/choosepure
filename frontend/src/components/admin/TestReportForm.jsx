@@ -22,11 +22,15 @@ const TestReportForm = ({ report, onClose, onSuccess }) => {
     parameters: report?.parameters || []
   });
 
+  // Debug log
+  console.log('TestReportForm rendered with formData:', formData);
+
   const categories = ['Dairy', 'Sweeteners', 'Oils', 'Spices', 'Grains', 'Beverages', 'Snacks'];
   const labs = ['NABL Certified Lab', 'FSSAI Approved Lab', 'ISO 17025 Lab', 'Food Safety Lab India'];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log('Form input changed:', name, '=', value); // Debug log
     setFormData({ ...formData, [name]: value });
   };
 
@@ -86,6 +90,13 @@ const TestReportForm = ({ report, onClose, onSuccess }) => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Debug section - remove this after testing */}
+        <div className="bg-gray-100 p-4 rounded-lg text-sm">
+          <h4 className="font-semibold mb-2">Debug Info (Form State):</h4>
+          <pre className="text-xs overflow-auto max-h-32">
+            {JSON.stringify(formData, null, 2)}
+          </pre>
+        </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <Label htmlFor="product_name">Product Name *</Label>
@@ -120,7 +131,7 @@ const TestReportForm = ({ report, onClose, onSuccess }) => {
               name="category"
               value={formData.category}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2"
+              className="w-full border border-gray-300 bg-white rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
               required
             >
               {categories.map(cat => (
@@ -165,7 +176,7 @@ const TestReportForm = ({ report, onClose, onSuccess }) => {
               name="tested_by"
               value={formData.tested_by}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2"
+              className="w-full border border-gray-300 bg-white rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
               required
             >
               {labs.map(lab => (
@@ -228,7 +239,7 @@ const TestReportForm = ({ report, onClose, onSuccess }) => {
                 <select
                   value={param.status}
                   onChange={(e) => updateParameter(index, 'status', e.target.value)}
-                  className="border border-gray-300 rounded-lg px-3 py-2"
+                  className="border border-gray-300 bg-white rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
                 >
                   <option value="pass">Pass</option>
                   <option value="warning">Warning</option>
