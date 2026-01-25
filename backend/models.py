@@ -126,7 +126,7 @@ class ProductSuggestion(BaseModel):
     votes: int = 0
     voters: List[str] = []  # user IDs who voted
     status: str = "voting"  # voting, testing, completed
-    vote_threshold: int = 80
+    vote_threshold: int = 350
     estimated_test_date: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
     completed_at: Optional[datetime] = None

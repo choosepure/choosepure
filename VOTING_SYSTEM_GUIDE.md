@@ -11,7 +11,7 @@ The new voting system allows the community to democratically choose which produc
 - Both types require the same 80 votes to trigger testing
 
 ### 2. **Vote Threshold System**
-- **80 votes** = Guaranteed testing
+- **350 votes** = Guaranteed testing
 - Real-time progress tracking with visual progress bars
 - Automatic status change to "testing" when threshold reached
 
@@ -44,7 +44,7 @@ The new voting system allows the community to democratically choose which produc
 # Product suggestions with voting data
 ProductSuggestion:
   - product_name, brand, category, description
-  - votes, voters[], vote_threshold (80)
+  - votes, voters[], vote_threshold (350)
   - status: voting/testing/completed
   - suggested_by_admin boolean
 
@@ -122,7 +122,7 @@ ShareInvite:
 ## 🎨 UI/UX Highlights
 
 ### Visual Design
-- **Progress Bars**: Show vote progress toward 80-vote threshold
+- **Progress Bars**: Show vote progress toward 350-vote threshold
 - **Status Badges**: "Admin Pick", "Voted", "Testing Soon"
 - **Premium Indicators**: Crown icons for premium users
 - **Category Tags**: Easy product categorization
@@ -163,7 +163,7 @@ ShareInvite:
 - Return voter percentage
 
 ### Product Metrics
-- Time to reach 80-vote threshold
+- Time to reach 350-vote threshold
 - Suggestion-to-testing conversion rate
 - User satisfaction with tested products
 - Report access and engagement
@@ -180,7 +180,7 @@ ShareInvite:
 1. Visit `/voting` page
 2. Browse available products
 3. Vote for products you want tested
-4. Share with friends to reach 80-vote threshold
+4. Share with friends to reach 350-vote threshold
 5. Access exclusive reports when testing completes
 
 ### For Admins

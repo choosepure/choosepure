@@ -309,7 +309,7 @@ const Admin = () => {
                 <h3 className="font-bold text-yellow-800 mb-2">🚀 New Voting System Features:</h3>
                 <ul className="text-sm text-yellow-700 space-y-1">
                   <li>• Users can suggest products for testing</li>
-                  <li>• 80 votes needed to trigger testing</li>
+                  <li>• 350 votes needed to trigger testing</li>
                   <li>• Vote limits: 1/month (regular), 3/month (premium)</li>
                   <li>• Easy sharing via WhatsApp, Twitter, etc.</li>
                   <li>• Real-time progress tracking</li>

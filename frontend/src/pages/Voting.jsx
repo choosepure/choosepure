@@ -187,7 +187,7 @@ const Voting = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Community Voting</h1>
-          <p className="text-xl text-gray-600 mb-6">Vote for products you want tested. 80 votes = guaranteed testing!</p>
+          <p className="text-xl text-gray-600 mb-6">Vote for products you want tested. 350 votes = guaranteed testing!</p>
           
           {/* User voting status */}
           {isAuthenticated && userVotes && (
