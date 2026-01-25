@@ -37,10 +37,10 @@ const Reports = () => {
       const response = await reportsAPI.getAll(params);
       console.log('Reports API response:', response);
       
-      setReports(response.data.reports || []);
-      setIsSubscribed(response.data.is_subscribed || false);
+      setReports(response.data.data.reports || []);
+      setIsSubscribed(response.data.data.is_subscribed || false);
       
-      console.log('Set reports:', response.data.reports?.length || 0, 'reports');
+      console.log('Set reports:', response.data.data.reports?.length || 0, 'reports');
     } catch (error) {
       console.error('Error loading reports:', error);
       toast({
@@ -83,20 +83,6 @@ const Reports = () => {
               </Badge>
             </div>
           )}
-        </div>
-
-        {/* Debug section - remove after testing */}
-        <div className="bg-yellow-100 border border-yellow-400 rounded-lg p-4 mb-6">
-          <h3 className="font-bold text-yellow-800 mb-2">Debug Info:</h3>
-          <div className="text-sm text-yellow-700">
-            <p>Loading: {loading ? 'Yes' : 'No'}</p>
-            <p>Reports count: {reports.length}</p>
-            <p>Is subscribed: {isSubscribed ? 'Yes' : 'No'}</p>
-            <p>User: {user ? `${user.name} (${user.email})` : 'Not logged in'}</p>
-            <p>Filtered reports: {filteredReports.length}</p>
-            <p>Search term: "{searchTerm}"</p>
-            <p>Selected category: {selectedCategory}</p>
-          </div>
         </div>
 
         {/* Search and Filter */}

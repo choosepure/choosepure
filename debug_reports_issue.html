@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Reports Issue</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .result { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; }
+        button:hover { background: #0056b3; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; font-size: 12px; max-height: 300px; overflow-y: auto; }
+        .report-card { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 8px; background: #f9f9f9; }
+        .report-card h3 { margin: 0 0 10px 0; color: #333; }
+        .report-card .score { font-size: 24px; font-weight: bold; color: #28a745; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Debug: Reports Not Showing Issue</h1>
+        
+        <div class="test-section">
+            <h2>1. API Connectivity Test</h2>
+            <button onclick="testAPI()">Test Backend API</button>
+            <div id="api-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>2. Frontend Simulation Test</h2>
+            <button onclick="testFrontendAPI()">Test Frontend API Call</button>
+            <div id="frontend-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>3. React App Test</h2>
+            <button onclick="testReactApp()">Test React App Response</button>
+            <div id="react-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>4. Sample Reports Display</h2>
+            <button onclick="displaySampleReports()">Show Sample Reports</button>
+            <div id="sample-reports"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>5. Instructions</h2>
+            <div class="info">
+                <p><strong>Next Steps:</strong></p>
+                <ol>
+                    <li>Run all tests above to verify API connectivity</li>
+                    <li>Open <a href="http://localhost:3000/reports" target="_blank">http://localhost:3000/reports</a> in a new tab</li>
+                    <li>Open browser console (F12 → Console) and look for:</li>
+                    <ul>
+                        <li>Console log messages starting with "Loading reports with params:"</li>
+                        <li>Console log messages starting with "Reports API response:"</li>
+                        <li>Any error messages in red</li>
+                    </ul>
+                    <li>Look for the yellow debug panel on the Reports page</li>
+                    <li>Report back what you see in both the debug panel and console</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addResult(containerId, message, type = 'info', data = null) {
+            const container = document.getElementById(containerId);
+            const div = document.createElement('div');
+            div.className = `result ${type}`;
+            
+            let content = `<strong>${new Date().toLocaleTimeString()}</strong>: ${message}`;
+            if (data) {
+                content += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            }
+            
+            div.innerHTML = content;
+            container.appendChild(div);
+        }
+
+        async function testAPI() {
+            const containerId = 'api-results';
+            document.getElementById(containerId).innerHTML = '';
+            
+            try {
+                addResult(containerId, 'Testing backend API...', 'info');
+                
+                const response = await fetch('http://localhost:8000/api/reports');
+                const data = await response.json();
+                
+                if (data.success && data.data.reports) {
+                    addResult(containerId, `✅ API Success: ${data.data.total} reports found`, 'success', {
+                        total: data.data.total,
+                        firstReport: data.data.reports[0] ? {
+                            id: data.data.reports[0].id,
+                            productName: data.data.reports[0].productName,
+                            brand: data.data.reports[0].brand,
+                            purityScore: data.data.reports[0].purityScore
+                        } : null
+                    });
+                } else {
+                    addResult(containerId, '❌ API returned invalid data', 'error', data);
+                }
+                
+            } catch (error) {
+                addResult(containerId, `❌ API Error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testFrontendAPI() {
+            const containerId = 'frontend-results';
+            document.getElementById(containerId).innerHTML = '';
+            
+            try {
+                addResult(containerId, 'Simulating React app API call...', 'info');
+                
+                // Simulate the exact same call the React app makes
+                const API_BASE = 'http://localhost:8000/api';
+                const response = await fetch(`${API_BASE}/reports`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                // Simulate the same data processing as Reports.jsx
+                const reports = data.data.reports || [];
+                const isSubscribed = data.data.is_subscribed || false;
+                
+                addResult(containerId, `✅ Frontend simulation success`, 'success', {
+                    responseStatus: response.status,
+                    dataSuccess: data.success,
+                    reportsCount: reports.length,
+                    isSubscribed: isSubscribed,
+                    sampleReports: reports.slice(0, 2).map(r => ({
+                        id: r.id,
+                        productName: r.productName,
+                        brand: r.brand,
+                        category: r.category,
+                        purityScore: r.purityScore
+                    }))
+                });
+                
+            } catch (error) {
+                addResult(containerId, `❌ Frontend simulation error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testReactApp() {
+            const containerId = 'react-results';
+            document.getElementById(containerId).innerHTML = '';
+            
+            try {
+                addResult(containerId, 'Testing React app...', 'info');
+                
+                const response = await fetch('http://localhost:3000/reports');
+                const text = await response.text();
+                
+                const hasReactRoot = text.includes('id="root"');
+                const hasReactScript = text.includes('react');
+                const isReactApp = hasReactRoot || hasReactScript;
+                
+                addResult(containerId, `React app status: ${response.status}`, isReactApp ? 'success' : 'error', {
+                    status: response.status,
+                    contentType: response.headers.get('content-type'),
+                    hasReactRoot: hasReactRoot,
+                    hasReactScript: hasReactScript,
+                    contentLength: text.length
+                });
+                
+            } catch (error) {
+                addResult(containerId, `❌ React app error: ${error.message}`, 'error');
+            }
+        }
+
+        async function displaySampleReports() {
+            const containerId = 'sample-reports';
+            document.getElementById(containerId).innerHTML = '';
+            
+            try {
+                const response = await fetch('http://localhost:8000/api/reports');
+                const data = await response.json();
+                
+                if (data.success && data.data.reports) {
+                    const reports = data.data.reports.slice(0, 3);
+                    
+                    let html = `<h3>Sample Reports (${reports.length} of ${data.data.total}):</h3>`;
+                    
+                    reports.forEach((report, index) => {
+                        html += `
+                            <div class="report-card">
+                                <h3>${report.productName}</h3>
+                                <p><strong>Brand:</strong> ${report.brand}</p>
+                                <p><strong>Category:</strong> ${report.category}</p>
+                                <p><strong>Score:</strong> <span class="score">${report.purityScore}</span></p>
+                                <p><strong>Test Date:</strong> ${report.testDate}</p>
+                                <p><strong>Summary:</strong> ${report.summary.substring(0, 150)}...</p>
+                            </div>
+                        `;
+                    });
+                    
+                    document.getElementById(containerId).innerHTML = html;
+                } else {
+                    addResult(containerId, '❌ No reports data available', 'error');
+                }
+                
+            } catch (error) {
+                addResult(containerId, `❌ Error displaying reports: ${error.message}`, 'error');
+            }
+        }
+
+        // Auto-run basic test on page load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                testAPI();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
