@@ -115,6 +115,61 @@ class Contributor(BaseModel):
     amount: float
     date: datetime
 
+class ProductSuggestion(BaseModel):
+    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    product_name: str
+    brand: str
+    category: str
+    description: str
+    suggested_by: str  # user_id
+    suggested_by_admin: bool = False
+    votes: int = 0
+    voters: List[str] = []  # user IDs who voted
+    status: str = "voting"  # voting, testing, completed
+    vote_threshold: int = 80
+    estimated_test_date: Optional[str] = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    completed_at: Optional[datetime] = None
+    test_report_id: Optional[str] = None  # Link to completed test report
+
+    class Config:
+        json_encoders = {ObjectId: str}
+        populate_by_name = True
+
+class ProductSuggestionCreate(BaseModel):
+    product_name: str
+    brand: str
+    category: str
+    description: str
+    estimated_test_date: Optional[str] = None
+
+class UserVote(BaseModel):
+    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    user_id: str
+    product_suggestion_id: str
+    voted_at: datetime = Field(default_factory=datetime.utcnow)
+    month_year: str  # Format: "2024-01" for tracking monthly limits
+
+    class Config:
+        json_encoders = {ObjectId: str}
+        populate_by_name = True
+
+class VoteRequest(BaseModel):
+    product_suggestion_id: str
+
+class ShareInvite(BaseModel):
+    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    product_suggestion_id: str
+    shared_by: str  # user_id
+    shared_via: str  # email, whatsapp, twitter, etc.
+    recipient_info: Optional[str] = None  # email or phone if available
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+    class Config:
+        json_encoders = {ObjectId: str}
+        populate_by_name = True
+
+# Legacy voting models (keeping for backward compatibility)
 class UpcomingTest(BaseModel):
     id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
     product_category: str

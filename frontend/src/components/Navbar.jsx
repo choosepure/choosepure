@@ -42,6 +42,7 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-8">
               <Link to="/" className="text-gray-700 hover:text-green-600 font-medium transition-colors">HOME</Link>
               <Link to="/reports" className="text-gray-700 hover:text-green-600 font-medium transition-colors">REPORTS</Link>
+              <Link to="/voting" className="text-gray-700 hover:text-green-600 font-medium transition-colors">VOTING</Link>
               <Link to="/blog" className="text-gray-700 hover:text-green-600 font-medium transition-colors">BLOG</Link>
               <Link to="/pricing" className="text-gray-700 hover:text-green-600 font-medium transition-colors">PRICING</Link>
               <button onClick={handleDashboardClick} className="text-gray-700 hover:text-green-600 font-medium transition-colors">DASHBOARD</button>
@@ -96,6 +97,7 @@ const Navbar = () => {
             <div className="px-4 py-4 space-y-3">
               <Link to="/" className="block text-gray-700 hover:text-green-600 font-medium py-2">HOME</Link>
               <Link to="/reports" className="block text-gray-700 hover:text-green-600 font-medium py-2">REPORTS</Link>
+              <Link to="/voting" className="block text-gray-700 hover:text-green-600 font-medium py-2">VOTING</Link>
               <Link to="/blog" className="block text-gray-700 hover:text-green-600 font-medium py-2">BLOG</Link>
               <Link to="/pricing" className="block text-gray-700 hover:text-green-600 font-medium py-2">PRICING</Link>
               <button onClick={handleDashboardClick} className="block w-full text-left text-gray-700 hover:text-green-600 font-medium py-2">DASHBOARD</button>

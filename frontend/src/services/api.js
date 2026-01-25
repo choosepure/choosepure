@@ -126,6 +126,17 @@ export const reportPurchaseAPI = {
   getOrderStatus: (orderId) => api.get(`/order/${orderId}`),
 };
 
+// Product Voting APIs
+export const productVotingAPI = {
+  getSuggestions: (params) => api.get('/product-voting/suggestions', { params }),
+  createSuggestion: (data) => api.post('/product-voting/suggestions', data),
+  vote: (data) => api.post('/product-voting/vote', data),
+  getUserVotes: () => api.get('/product-voting/user-votes'),
+  shareProduct: (suggestionId, sharedVia, recipientInfo) => 
+    api.post(`/product-voting/share/${suggestionId}`, { shared_via: sharedVia, recipient_info: recipientInfo }),
+  getStats: () => api.get('/product-voting/stats'),
+};
+
 // Subscription Payment APIs
 export const subscriptionPaymentAPI = {
   getPlans: () => api.get('/subscription-plans'),

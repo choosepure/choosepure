@@ -9,7 +9,7 @@ from pathlib import Path
 # Import routes
 from routes import auth_routes, waitlist_routes, voting_routes
 from routes import blog_routes, newsletter_routes, stats_routes, subscription_routes, password_reset_routes, email_routes
-from routes import report_routes, subscription_payment_routes, webhook_routes, debug_routes, test_routes
+from routes import report_routes, subscription_payment_routes, webhook_routes, debug_routes, test_routes, product_voting_routes
 
 # Try to import donation_routes (may not exist in older deployments)
 try:
@@ -46,6 +46,7 @@ async def health_check():
 api_router.include_router(auth_routes.router)
 api_router.include_router(waitlist_routes.router)
 api_router.include_router(voting_routes.router)
+api_router.include_router(product_voting_routes.router)
 api_router.include_router(blog_routes.router)
 api_router.include_router(newsletter_routes.router)
 api_router.include_router(stats_routes.router)

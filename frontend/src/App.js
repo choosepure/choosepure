@@ -12,6 +12,7 @@ import ReportDetail from "./pages/ReportDetail";
 import SampleReport from "./pages/SampleReport";
 import Blog from "./pages/Blog";
 import Dashboard from "./pages/Dashboard";
+import Voting from "./pages/Voting";
 import Admin from "./pages/Admin";
 import Pricing from "./pages/Pricing";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -36,6 +37,8 @@ function App() {
             <Route path="/terms-conditions" element={<TermsConditions />} />
             <Route path="/refund-policy" element={<RefundPolicy />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/voting" element={<Voting />} />
+            <Route path="/vote/:id" element={<Voting />} />
             <Route path="/admin" element={<Admin />} />
           </Routes>
           <Footer />
