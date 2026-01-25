@@ -22,20 +22,27 @@ const Reports = () => {
 
   useEffect(() => {
     loadReports();
-  }, [user]);
+  }, []); // Remove user dependency
 
   const loadReports = async () => {
     setLoading(true);
     try {
       const params = {};
-      if (user?.id) {
-        params.user_id = user.id;
-      }
+      // Remove user_id filtering for now - show all reports
+      // if (user?.id) {
+      //   params.user_id = user.id;
+      // }
       
+      console.log('Loading reports with params:', params);
       const response = await reportsAPI.getAll(params);
+      console.log('Reports API response:', response);
+      
       setReports(response.data.reports || []);
       setIsSubscribed(response.data.is_subscribed || false);
+      
+      console.log('Set reports:', response.data.reports?.length || 0, 'reports');
     } catch (error) {
+      console.error('Error loading reports:', error);
       toast({
         title: 'Error',
         description: 'Failed to load reports',
@@ -76,6 +83,20 @@ const Reports = () => {
               </Badge>
             </div>
           )}
+        </div>
+
+        {/* Debug section - remove after testing */}
+        <div className="bg-yellow-100 border border-yellow-400 rounded-lg p-4 mb-6">
+          <h3 className="font-bold text-yellow-800 mb-2">Debug Info:</h3>
+          <div className="text-sm text-yellow-700">
+            <p>Loading: {loading ? 'Yes' : 'No'}</p>
+            <p>Reports count: {reports.length}</p>
+            <p>Is subscribed: {isSubscribed ? 'Yes' : 'No'}</p>
+            <p>User: {user ? `${user.name} (${user.email})` : 'Not logged in'}</p>
+            <p>Filtered reports: {filteredReports.length}</p>
+            <p>Search term: "{searchTerm}"</p>
+            <p>Selected category: {selectedCategory}</p>
+          </div>
         </div>
 
         {/* Search and Filter */}

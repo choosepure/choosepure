@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Frontend API</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .result { background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Frontend API Test</h1>
+    
+    <div>
+        <button onclick="testReportsAPI()">Test Reports API</button>
+        <button onclick="testFrontendFetch()">Test Frontend Fetch</button>
+        <button onclick="clearResults()">Clear Results</button>
+    </div>
+    
+    <div id="results"></div>
+
+    <script>
+        function addResult(message, isSuccess = true, data = null) {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `result ${isSuccess ? 'success' : 'error'}`;
+            
+            let content = `<strong>${new Date().toLocaleTimeString()}</strong>: ${message}`;
+            if (data) {
+                content += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            }
+            
+            div.innerHTML = content;
+            results.appendChild(div);
+        }
+
+        async function testReportsAPI() {
+            try {
+                addResult('Testing direct API call...');
+                
+                const response = await fetch('http://localhost:8000/api/reports');
+                const data = await response.json();
+                
+                if (data.success) {
+                    addResult(`API Success: Found ${data.data.total} reports`, true, {
+                        total: data.data.total,
+                        reports: data.data.reports.map(r => ({
+                            id: r.id,
+                            productName: r.productName,
+                            brand: r.brand,
+                            category: r.category,
+                            purityScore: r.purityScore
+                        }))
+                    });
+                } else {
+                    addResult('API returned success=false', false, data);
+                }
+            } catch (error) {
+                addResult(`API Error: ${error.message}`, false);
+            }
+        }
+
+        async function testFrontendFetch() {
+            try {
+                addResult('Testing frontend-style fetch (simulating React app)...');
+                
+                // Simulate the same fetch that the React app would do
+                const API_BASE = 'http://localhost:8000/api';
+                
+                const response = await fetch(`${API_BASE}/reports`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                addResult(`Frontend-style fetch: ${data.success ? 'Success' : 'Failed'}`, data.success, {
+                    status: response.status,
+                    statusText: response.statusText,
+                    data: data
+                });
+                
+                // Test if reports array exists and has data
+                if (data.data && data.data.reports) {
+                    addResult(`Reports array length: ${data.data.reports.length}`, true);
+                    
+                    if (data.data.reports.length > 0) {
+                        addResult('First report sample:', true, data.data.reports[0]);
+                    }
+                } else {
+                    addResult('No reports array found in response', false, data);
+                }
+                
+            } catch (error) {
+                addResult(`Frontend fetch error: ${error.message}`, false);
+            }
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        // Auto-test on page load
+        window.addEventListener('load', function() {
+            addResult('Page loaded. Click buttons to test API connectivity.');
+        });
+    </script>
+</body>
+</html>
