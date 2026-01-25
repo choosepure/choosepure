@@ -168,7 +168,7 @@ export const testimonials = [
     name: 'Rajesh Kumar',
     role: 'Father of 9-year-old',
     location: 'Mumbai',
-    image: 'https://images.pexels.com/photos/8819149/pexels-photo-8819149.jpeg',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
     quote: 'I used to think all paneer brands were pure - until ChoosePure showed how much purity can really vary. Now I only trust what our community tests.',
     rating: 5
   },
@@ -186,7 +186,7 @@ export const testimonials = [
     name: 'Anil Patel',
     role: 'Parent',
     location: 'Bangalore',
-    image: 'https://images.pexels.com/photos/8819149/pexels-photo-8819149.jpeg',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
     quote: 'It\'s amazing to be part of something that holds brands accountable. This is the future of food safety.',
     rating: 5
   },
