@@ -205,6 +205,7 @@ const Admin = () => {
         <Tabs defaultValue="reports" className="w-full">
           <TabsList className="grid w-full grid-cols-5 mb-8">
             <TabsTrigger value="reports">Test Reports</TabsTrigger>
+            <TabsTrigger value="voting">Product Voting</TabsTrigger>
             <TabsTrigger value="blogs">Blog Posts</TabsTrigger>
             <TabsTrigger value="tests">Upcoming Tests</TabsTrigger>
             <TabsTrigger value="subscriptions">Subscriptions</TabsTrigger>
@@ -268,6 +269,57 @@ const Admin = () => {
                     </div>
                   </Card>
                 ))}
+              </div>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="voting">
+            <Card className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">Product Voting Management</h2>
+                <Button 
+                  onClick={() => window.open('/voting', '_blank')}
+                  className="bg-green-600 hover:bg-green-700"
+                >
+                  <Plus size={20} className="mr-2" />
+                  View Public Voting Page
+                </Button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <Card className="p-4 bg-blue-50">
+                  <div className="text-2xl font-bold text-blue-600">0</div>
+                  <div className="text-sm text-blue-800">Active Voting</div>
+                </Card>
+                <Card className="p-4 bg-yellow-50">
+                  <div className="text-2xl font-bold text-yellow-600">0</div>
+                  <div className="text-sm text-yellow-800">Reached Threshold</div>
+                </Card>
+                <Card className="p-4 bg-green-50">
+                  <div className="text-2xl font-bold text-green-600">0</div>
+                  <div className="text-sm text-green-800">In Testing</div>
+                </Card>
+                <Card className="p-4 bg-purple-50">
+                  <div className="text-2xl font-bold text-purple-600">0</div>
+                  <div className="text-sm text-purple-800">Total Votes</div>
+                </Card>
+              </div>
+
+              <div className="bg-yellow-100 border border-yellow-400 rounded-lg p-4 mb-6">
+                <h3 className="font-bold text-yellow-800 mb-2">🚀 New Voting System Features:</h3>
+                <ul className="text-sm text-yellow-700 space-y-1">
+                  <li>• Users can suggest products for testing</li>
+                  <li>• 80 votes needed to trigger testing</li>
+                  <li>• Vote limits: 1/month (regular), 3/month (premium)</li>
+                  <li>• Easy sharing via WhatsApp, Twitter, etc.</li>
+                  <li>• Real-time progress tracking</li>
+                  <li>• Users can only see reports for products they voted for</li>
+                </ul>
+              </div>
+
+              <div className="text-center py-12 text-gray-500">
+                <p className="mb-4">Product voting management interface coming soon!</p>
+                <p className="text-sm">For now, visit the public voting page to see the new system in action.</p>
               </div>
             </Card>
           </TabsContent>
