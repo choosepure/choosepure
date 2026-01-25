@@ -1,20 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Download, Share2, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Download, Share2, CheckCircle2, AlertTriangle, Loader2 } from 'lucide-react';
 import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
-import { testReports } from '../mockData';
+import { reportsAPI } from '../services/api';
+import { toast } from '../hooks/use-toast';
 
 const ReportDetail = () => {
   const { id } = useParams();
-  const report = testReports.find(r => r.id === id);
+  const [report, setReport] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadReport();
+  }, [id]);
+
+  const loadReport = async () => {
+    setLoading(true);
+    try {
+      const response = await reportsAPI.getById(id);
+      if (response.success) {
+        setReport(response.data);
+      } else {
+        toast({
+          title: 'Error',
+          description: 'Report not found',
+          variant: 'destructive'
+        });
+      }
+    } catch (error) {
+      console.error('Error loading report:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to load report',
+        variant: 'destructive'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-20 sm:pt-24 pb-12 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-green-600" />
+      </div>
+    );
+  }
 
   if (!report) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-20 sm:pt-24 pb-12 flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Report Not Found</h2>
+          <p className="text-gray-600 mb-6">The report you're looking for doesn't exist or has been removed.</p>
           <Link to="/reports">
             <Button className="bg-green-600 hover:bg-green-700">Back to Reports</Button>
           </Link>

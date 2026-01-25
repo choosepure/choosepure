@@ -22,15 +22,11 @@ const TestReportForm = ({ report, onClose, onSuccess }) => {
     parameters: report?.parameters || []
   });
 
-  // Debug log
-  console.log('TestReportForm rendered with formData:', formData);
-
   const categories = ['Dairy', 'Sweeteners', 'Oils', 'Spices', 'Grains', 'Beverages', 'Snacks'];
   const labs = ['NABL Certified Lab', 'FSSAI Approved Lab', 'ISO 17025 Lab', 'Food Safety Lab India'];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log('Form input changed:', name, '=', value); // Debug log
     setFormData({ ...formData, [name]: value });
   };
 
@@ -90,13 +86,6 @@ const TestReportForm = ({ report, onClose, onSuccess }) => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Debug section - remove this after testing */}
-        <div className="bg-gray-100 p-4 rounded-lg text-sm">
-          <h4 className="font-semibold mb-2">Debug Info (Form State):</h4>
-          <pre className="text-xs overflow-auto max-h-32">
-            {JSON.stringify(formData, null, 2)}
-          </pre>
-        </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <Label htmlFor="product_name">Product Name *</Label>
